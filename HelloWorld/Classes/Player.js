@@ -8,8 +8,8 @@ function Player()
 	var m_jumping = false;
 	var m_crouching = false;
 	var m_gravity = 2.0;
-	var m_floorHeight = 20;
-	var m_screenWidth = 600;
+	var m_floorHeight = 80;
+	var m_screenWidth = 800;
 	var m_airDrag = 0.05;
 	
 	this.m_currentState;
@@ -63,7 +63,7 @@ function Player()
 		}
 		
 		this.m_bounds.Move(this.m_x, this.m_y);
-		this.sprite.setPosition(cc.ccp(this.m_x + (this.m_width/2), this.m_y + (this.m_height/2)));
+		this.sprite.setPosition(cc.ccp(this.m_x + (this.m_width/2), this.m_y - (this.m_height/2)));
 	};
 	
 	this.Jump = function(vX, vY)

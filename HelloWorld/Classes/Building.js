@@ -10,7 +10,7 @@ function Building(layer, physics, x, y, buildingType)
 
 	for(i = 0; i < m_height; i++)
 	{
-		var _block = new Block(buildingType, BlockType.SolidBlock, x, y + (118 * (i - 1)), 334, 118);
+		var _block = new Block(buildingType, BlockType.SolidBlock, x, y + (118 * i), 334, 118 - 1);
 		_block.EnablePhysics(physics);
 		layer.addChild(_block.GetSprite(), 0);
 		

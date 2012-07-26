@@ -17,7 +17,7 @@ Block.prototype = new GameObject();
 
 function Block(buildingType, blockType, x, y, width, height)
 {
-	var m_type = blockType;
+	this.m_type = blockType;
 	
 	this.m_x = x;
 	this.m_y = y;
@@ -25,20 +25,21 @@ function Block(buildingType, blockType, x, y, width, height)
 	this.m_height = height;
 	
 	this.m_sprite;
-	
-	if(blockType == BlockType.BottomBlock)
+		
+	if(this.m_type == BlockType.BottomBlock)
 	{
 		this.m_sprite = cc.Sprite.create("Resources/building 1 base.png");
 	}
-	else if(blockType == BlockType.SolidBlock)
+	else if(this.m_type == BlockType.SolidBlock)
 	{	
 		this.m_sprite = cc.Sprite.create("Resources/building 1 windows.png");
 	}
-	else if(blockType == BlockType.TopBlock)
+	else if(this.m_type == BlockType.TopBlock)
 	{
 		this.m_sprite = cc.Sprite.create("Resources/building 1 windows.png");
 	}
 	
+	this.m_sprite.setAnchorPoint(cc.ccp(0, 1));
 	this.m_sprite.setPosition(cc.ccp(this.m_x, this.m_y));
 	
 	this.GetSprite = function()

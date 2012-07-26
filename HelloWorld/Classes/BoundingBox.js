@@ -11,7 +11,7 @@ function BoundingBox(gameObject, x, y, width, height)
 	this.m_top = y;
 	this.m_left = x;
 	this.m_right = x + width;
-	this.m_bottom = y + height;
+	this.m_bottom = y - height;
 	
 	//Corners. Stored as Vectors.
 	this.m_topLeft = new Vector(this.m_left, this.m_top);
@@ -24,8 +24,8 @@ function BoundingBox(gameObject, x, y, width, height)
 	{
 		if((pointX >= this.m_left)
 			&& (pointX <= this.m_right)
-			&& (pointY >= this.m_top)
-			&& (pointY <= this.m_bottom))
+			&& (pointY <= this.m_top)
+			&& (pointY >= this.m_bottom))
 		{
 			return true;
 		}
@@ -57,9 +57,9 @@ function BoundingBox(gameObject, x, y, width, height)
 		if( this.m_right > target.m_left && this.m_right < target.m_right
 			&&
 			(
-				(this.m_top < target.m_bottom && this.m_top > target.m_top)
+				(this.m_top > target.m_bottom && this.m_top < (target.m_top + this.m_height))
 				||
-				(this.m_bottom > target.m_top && this.m_bottom < target.m_bottom)
+				(this.m_bottom < target.m_top && this.m_bottom > (target.m_bottom + this.height))
 			)
 		)
 		{
@@ -70,9 +70,9 @@ function BoundingBox(gameObject, x, y, width, height)
 		if( this.m_left < target.m_right && this.m_left > target.m_left
 			&&
 			(
-				(this.m_top < target.m_bottom && this.m_top > target.m_top)
+				(this.m_top > target.m_bottom && this.m_top < target.m_top)
 				||
-				(this.m_bottom > target.m_top && this.m_bottom < target.m_bottom)
+				(this.m_bottom < target.m_top && this.m_bottom > target.m_bottom)
 			)
 		)
 		{
@@ -80,7 +80,7 @@ function BoundingBox(gameObject, x, y, width, height)
 		}
 		
 		//Check bottom against top.
-		if( this.m_bottom > target.m_top && this.m_bottom < target.m_bottom
+		if( this.m_bottom < target.m_top && this.m_bottom > target.m_bottom
 			&&
 			(
 				(this.m_right > target.m_left && this.m_right < (target.m_right + this.m_width))
@@ -93,7 +93,7 @@ function BoundingBox(gameObject, x, y, width, height)
 		}
 		
 		//Check top against bottom.
-		if( this.m_top < target.m_bottom && this.m_top > target.m_top
+		if( this.m_top > target.m_bottom && this.m_top < target.m_top
 			&&
 			(
 				(this.m_right > target.m_left && this.m_right < (target.m_right + this.m_width))
@@ -115,7 +115,7 @@ function BoundingBox(gameObject, x, y, width, height)
 		{
 			//Check overlap and determine which is overlapped more.
 			_dx = this.m_right - target.m_left;
-			_dy = this.m_bottom - target.m_top;
+			_dy = target.m_top - this.m_bottom;
 			
 			if(_dx >= _dy)
 			{
@@ -126,20 +126,20 @@ function BoundingBox(gameObject, x, y, width, height)
 			{
 				//Hits more of left side. Set top to false.
 				_collisionDetails.top = false;
-			}								 
+			}
 		}
 		else if(_collisionDetails.right == true && _collisionDetails.top == true)
 		{
 			//Check overlap and determine which is overlapped more.
-			_dx = this.m_left - target.m_right;
-			_dy = this.m_bottom - target.m_top;
+			_dx = target.m_right - this.m_left;
+			_dy = target.m_top - this.m_bottom;
 			
-			if((-_dx) >= _dy)
+			if(_dx >= _dy)
 			{
 				//Hits more of top side. Set right to false.
 				_collisionDetails.right = false;
 			}
-			else if (_dy > (-_dx))
+			else if (_dy > _dx)
 			{
 				//Hits more of right side. Set top to false.
 				_collisionDetails.top = false;
@@ -166,15 +166,15 @@ function BoundingBox(gameObject, x, y, width, height)
 		else if(_collisionDetails.right == true && _collisionDetails.bottom == true)
 		{
 			//Check overlap and determine which is overlapped more.
-			_dx = this.m_left - target.m_right;
+			_dx = target.m_right - this.m_left;
 			_dy = this.m_top - target.m_bottom;
 			
-			if((-_dx) >= _dy)
+			if(_dx >= _dy)
 			{
 				//Hits more of bottom side. Set right to false.
 				_collisionDetails.right = false;
 			}
-			else if (_dy > (-_dx))
+			else if (_dy > _dx)
 			{
 				//Hits more of right side. Set bottom to false.
 				_collisionDetails.bottom = false;
@@ -189,15 +189,15 @@ function BoundingBox(gameObject, x, y, width, height)
 		this.m_top = y;
 		this.m_left = x;
 		this.m_right = x + this.m_width;
-		this.m_bottom = y + this.m_height;
+		this.m_bottom = y - this.m_height;
 		
-		this.m_topLeft.m_x = this.m_left;
-		this.m_topLeft.m_y = this.m_top;
-		this.m_topRight.m_x = this.m_right;
-		this.m_topRight.m_y = this.m_top;
-		this.m_bottomLeft.m_x = this.m_left;
-		this.m_bottomLeft.m_y = this.m_bottom;
-		this.m_bottomRight.m_x = this.m_right;
-		this.m_bottomRight.m_y = this.m_bottom;
+		this.m_topLeft.m_dx = this.m_left;
+		this.m_topLeft.m_dy = this.m_top;
+		this.m_topRight.m_dx = this.m_right;
+		this.m_topRight.m_dy = this.m_top;
+		this.m_bottomLeft.m_dx = this.m_left;
+		this.m_bottomLeft.m_dy = this.m_bottom;
+		this.m_bottomRight.m_dx = this.m_right;
+		this.m_bottomRight.m_dy = this.m_bottom;
 	}
 };

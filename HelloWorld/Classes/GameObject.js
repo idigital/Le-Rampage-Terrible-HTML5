@@ -29,7 +29,7 @@ function GameObject()
 	this.GetOrigin = function()
 	{
 		return new Vector(this.m_x + (this.m_width/2),
-							this.m_y + (this.m_height/2));
+							this.m_y - (this.m_height/2));
 	}
 	
 	return this;
@@ -43,5 +43,5 @@ GameObject.prototype.Move = function(x, y)
 
 GameObject.prototype.HandleCollision = function(collision)
 {
-
+	var temp = 0;
 };

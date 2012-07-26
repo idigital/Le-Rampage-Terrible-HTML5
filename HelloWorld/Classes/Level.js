@@ -36,7 +36,7 @@ function Level(layer)
 	this.m_aimSprite.setPosition(cc.ccp(m_aimPos.m_dx, m_aimPos.m_dy));
 	m_layer.addChild(this.m_aimSprite, 0);
 	
-	m_building1 = new Building(m_layer, m_physics, 400, 100, BuildingType.GreyBuilding);
+	m_building1 = new Building(m_layer, m_physics, 400, 118, BuildingType.GreyBuilding);
 	
 	var label1 = cc.LabelTTF.create("Test", "Arial", 12);
     label1.setPosition(cc.ccp(40, 300));
@@ -114,7 +114,7 @@ function Level(layer)
 			_diffX = _origin.m_dx - m_endX;
 			_diffY = _origin.m_dy - m_endY;
 			
-			m_character.Jump(_diffX / 5, _diffY / 5);
+			m_character.Jump(_diffX / 3, _diffY / 3);
 		}
 	}
 	

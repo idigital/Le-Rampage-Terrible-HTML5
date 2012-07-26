@@ -39,6 +39,7 @@ GameObject.prototype.Move = function(x, y)
 {
 	this.m_x = x;
 	this.m_y = y;
+	this.m_bounds.Move(this.m_x, this.m_y);
 };
 
 GameObject.prototype.HandleCollision = function(collision)

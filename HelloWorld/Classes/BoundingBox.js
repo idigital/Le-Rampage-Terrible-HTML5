@@ -59,7 +59,7 @@ function BoundingBox(gameObject, x, y, width, height)
 			(
 				(this.m_top > target.m_bottom && this.m_top < (target.m_top + this.m_height))
 				||
-				(this.m_bottom < target.m_top && this.m_bottom > (target.m_bottom + this.height))
+				(this.m_bottom < target.m_top && this.m_bottom > (target.m_bottom - this.m_height))
 			)
 		)
 		{
@@ -70,9 +70,9 @@ function BoundingBox(gameObject, x, y, width, height)
 		if( this.m_left < target.m_right && this.m_left > target.m_left
 			&&
 			(
-				(this.m_top > target.m_bottom && this.m_top < target.m_top)
+				(this.m_top > target.m_bottom && this.m_top < (target.m_top + this.m_height))
 				||
-				(this.m_bottom < target.m_top && this.m_bottom > target.m_bottom)
+				(this.m_bottom < target.m_top && this.m_bottom > target.m_bottom - this.m_height)
 			)
 		)
 		{

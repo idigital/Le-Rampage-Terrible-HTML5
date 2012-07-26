@@ -4,7 +4,7 @@ function Player()
 {
 	this.m_velocity = new Vector(0,0);
 	
-	var m_onGround = false;
+	this.m_onGround = false;
 	var m_jumping = false;
 	var m_crouching = false;
 	var m_gravity = 2.0;
@@ -19,9 +19,9 @@ function Player()
     	
 	this.Update = function()
 	{
-		if(this.m_y < m_floorHeight + this.m_height && m_onGround == false)
+		if(this.m_y < m_floorHeight + this.m_height && this.m_onGround == false)
 		{
-			m_onGround = true;
+			this.m_onGround = true;
 			this.m_y = m_floorHeight + this.m_height;
 			this.m_velocity.m_dx = 0;
 			this.m_velocity.m_dy = 0;
@@ -41,25 +41,25 @@ function Player()
 			this.m_velocity.m_dy *= 0.8;
 		}
 
-		if (m_onGround == false)
+		if (this.m_onGround == false)
 		{
 			this.m_x += this.m_velocity.m_dx;
 			this.m_y += this.m_velocity.m_dy;
 			this.m_velocity.m_dy -= m_gravity;
 			this.m_velocity.m_dy -= m_airDrag;
 		}
-		/*else if(m_onGround == true && m_crouching == false && m_jumping == false)
+		/*else if(this.m_onGround == true && m_crouching == false && m_jumping == false)
 		{
 			ChangeState(PlayerState.PlayerIdle);
 		}*/
 		
-		if(m_onGround == true && m_jumping == true)
+		if(this.m_onGround == true && m_jumping == true)
 		{
 			this.x += this.m_velocity.m_dx;
 			this.y += this.m_velocity.m_dy;
 			
 			m_jumping = false;
-			m_onGround = false;
+			this.m_onGround = false;
 		}
 		
 		this.m_bounds.Move(this.m_x, this.m_y);
@@ -68,7 +68,7 @@ function Player()
 	
 	this.Jump = function(vX, vY)
 	{
-		if(m_onGround == true)
+		if(this.m_onGround == true)
 		{
 			this.m_velocity.m_dx = vX;
 			this.m_velocity.m_dy = vY;
@@ -93,6 +93,7 @@ Player.prototype.Move = function(x, y)
 	this.m_x = x;
 	this.m_y = y;
 	this.sprite.setPosition(cc.ccp(this.m_x + (this.m_width/2), this.m_y + (this.m_height/2)));
+	this.m_bounds.Move(this.m_x, this.m_y);
 };
 
 Player.prototype.HandleCollision = function(collision)
@@ -118,12 +119,14 @@ Player.prototype.HandleCollision = function(collision)
 			if(collision.left == true)
 			{
 				this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
+				//this.sprite.setPosition(_boundsOfObjHit.m_left - this.m_width, this.m_y);
 				this.m_velocity.m_dx *= -0.2;
 				this.m_velocity.m_dy *= 0.8;
 			}
 			if(collision.right == true)
 			{
 				this.Move(_boundsOfObjHit.m_right, this.m_y);
+				//this.sprite.setPosition(_boundsOfObjHit.m_right, this.m_y);
 				this.m_velocity.m_dx *= -0.2;
 				this.m_velocity.m_dy *= 0.8;
 			}
@@ -135,7 +138,8 @@ Player.prototype.HandleCollision = function(collision)
 	{
 		if(collision.top == true)
 		{
-			this.Move(this.x, _boundsOfObjHit.m_top - this.m_height);
+			this.Move(this.m_x, _boundsOfObjHit.m_top);// + this.m_height);
+			//this.sprite.setPosition(this.m_x, _boundsOfObjHit.m_top);// + this.m_height);
 			this.m_velocity.m_dx = 0;
 			this.m_velocity.m_dy = 0;
 			
@@ -150,13 +154,15 @@ Player.prototype.HandleCollision = function(collision)
 		{
 			if(collision.left == true)
 			{
-				this.Move(_boundsOfObjHit.m_left - this.m_width, this.y);
+				this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
+				//this.sprite.setPosition(_boundsOfObjHit.m_left - this.m_width, this.m_y);
 				this.m_velocity.m_dx *= -0.2;
 				this.m_velocity.m_dy *= 0.8;
 			}	
 			if(collision.right == true)
 			{
-				this.Move(_boundsOfObjHit.m_right, this.y);
+				this.Move(_boundsOfObjHit.m_right, this.m_y);
+				//this.sprite.setPosition(_boundsOfObjHit.m_right, this.m_y);
 				this.m_velocity.m_dx *= -0.2;
 				this.m_velocity.m_dy *= 0.8;
 			}

@@ -24,9 +24,9 @@ function Level(layer)
 	var m_physics = new PhysicsHandler();
 	
 	m_character = new Player();
-	m_character.Move(100,100);
 	m_character.SetDimensions(46, 64);
 	m_character.EnablePhysics(m_physics);
+	m_character.Move(100,100);
 	
 	m_layer.addChild(m_character.GetSprite(), 0);
 	

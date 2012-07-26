@@ -36,6 +36,8 @@ function Level(layer)
 	this.m_aimSprite.setPosition(cc.ccp(m_aimPos.m_dx, m_aimPos.m_dy));
 	m_layer.addChild(this.m_aimSprite, 0);
 	
+	m_building1 = new Building(m_layer, m_physics, 400, 100, BuildingType.GreyBuilding);
+	
 	var label1 = cc.LabelTTF.create("Test", "Arial", 12);
     label1.setPosition(cc.ccp(40, 300));
     m_layer.addChild(label1, 0);
@@ -72,6 +74,16 @@ function Level(layer)
 		label4.setString("endY:   " + m_endY);
 		label5.setString("diffX:  " + m_diffX);
 		label6.setString("diffY:  " + m_diffY);
+		
+		if(m_dragging == false)
+		{
+			var _origin = m_character.GetOrigin();
+		
+			m_aimPos.m_dx = _origin.m_dx;
+			m_aimPos.m_dy = _origin.m_dy;
+			
+			//this.m_aimSprite.setPosition(cc.ccp(m_aimPos.m_dx, m_aimPos.m_dy));
+		}
 	}
 	
 	m_character.GetSprite().schedule(this.Update, 1 / 60);

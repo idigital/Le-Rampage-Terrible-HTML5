@@ -17,8 +17,6 @@ function Player()
 	this.sprite = cc.Sprite.create("Resources/MonsterIdle.png");
 	this.sprite.setAnchorPoint(cc.ccp(0.5, 0.5));
     	
-
-	
 	this.Update = function()
 	{
 		if(this.m_y < m_floorHeight + this.m_height && m_onGround == false)
@@ -95,4 +93,100 @@ Player.prototype.Move = function(x, y)
 	this.m_x = x;
 	this.m_y = y;
 	this.sprite.setPosition(cc.ccp(this.m_x + (this.m_width/2), this.m_y + (this.m_height/2)));
+};
+
+Player.prototype.HandleCollision = function(collision)
+{
+	//Get bounding box of object hit.
+	var _boundsOfObjHit = collision.m_objHit.GetBounds();
+
+	//If the block is a solid block or bottom block then bounce of the side.
+	if(collision.m_objHit.m_type == BlockType.SolidBlock
+	   || collision.m_objHit.m_type == BlockType.BottomBlock)
+	{
+		if(collision.top == true)
+		{
+
+		}
+		else if(collision.bottom == true)
+		{
+			//this.m_velocity.m_dx *= 0.8;
+			//this.m_velocity.m_dy *= -0.2;
+		}
+		else
+		{
+			if(collision.left == true)
+			{
+				this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
+				this.m_velocity.m_dx *= -0.2;
+				this.m_velocity.m_dy *= 0.8;
+			}
+			if(collision.right == true)
+			{
+				this.Move(_boundsOfObjHit.m_right, this.m_y);
+				this.m_velocity.m_dx *= -0.2;
+				this.m_velocity.m_dy *= 0.8;
+			}
+		}
+	}
+	
+	//If hit top
+	if(collision.m_objHit.m_type == BlockType.TopBlock)
+	{
+		if(collision.top == true)
+		{
+			this.Move(this.x, _boundsOfObjHit.m_top - this.m_height);
+			this.m_velocity.m_dx = 0;
+			this.m_velocity.m_dy = 0;
+			
+			this.m_onGround = true;
+		}
+		else if(collision.bottom == true)
+		{
+			//this.m_velocity.m_x *= 0.8;
+			//this.m_velocity.m_y *= -0.2;
+		}
+		else
+		{
+			if(collision.left == true)
+			{
+				this.Move(_boundsOfObjHit.m_left - this.m_width, this.y);
+				this.m_velocity.m_dx *= -0.2;
+				this.m_velocity.m_dy *= 0.8;
+			}	
+			if(collision.right == true)
+			{
+				this.Move(_boundsOfObjHit.m_right, this.y);
+				this.m_velocity.m_dx *= -0.2;
+				this.m_velocity.m_dy *= 0.8;
+			}
+		}
+	}
+	
+	/*if(collision.m_objHit.m_type == BlockType.GrabBlock)
+	{
+		if(collision.left == true)
+		{
+			this.Move(_boundsOfObjHit.m_left - this.m_width, this.y);
+			this.m_velocity.m_dx = 0.0;
+			this.m_velocity.m_dy = 0.0;
+			this.m_onGround = true;
+		}
+
+		if(collision.right == true)
+		{
+			this.Move(_boundsOfObjHit.m_right, this.y);
+			this.m_velocity.m_dx = 0.0;
+			this.m_velocity.m_dy = 0.0;
+			this.m_onGround = true;
+		}
+	}
+	
+	if(collision.m_objHit.m_type == ObjectType.Objective)
+	{
+		this.Move(50, 500);
+		this.m_onGround = false;
+		this.m_velocity.m_dx = 0.0;
+		this.m_velocity.m_dy = 0.0;
+	}*/
 };

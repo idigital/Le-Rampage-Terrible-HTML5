@@ -91,12 +91,14 @@ cc.loadjs = function (filename) {
 cc.loadjs('../lib/Cocos2d-html5-canvasmenu-min.js');
 
 // User files
-cc.loadjs('Classes/AppDelegate.js');//17
+cc.loadjs('Classes/AppDelegate.js');
 cc.loadjs('Classes/GameObject.js');
 cc.loadjs('Classes/Player.js');
 cc.loadjs('Classes/Vector.js');
 cc.loadjs('Classes/BoundingBox.js');
 cc.loadjs('Classes/PhysicsHandler.js');
+cc.loadjs('Classes/CollisionStructure.js');
+cc.loadjs('Classes/Block.js');
 cc.loadjs('Classes/Building.js');
 cc.loadjs('Classes/Level.js');
-cc.loadjs('Helloworld.js');//19
+cc.loadjs('Helloworld.js');

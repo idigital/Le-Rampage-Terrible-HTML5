@@ -40,3 +40,8 @@ GameObject.prototype.Move = function(x, y)
 	this.m_x = x;
 	this.m_y = y;
 };
+
+GameObject.prototype.HandleCollision = function(collision)
+{
+
+};

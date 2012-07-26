@@ -16,7 +16,8 @@ function Player()
 	
 	this.sprite = cc.Sprite.create("Resources/MonsterIdle.png");
 	this.sprite.setAnchorPoint(cc.ccp(0.5, 0.5));
-    //this.sprite.setPosition(cc.ccp(this.m_x - (this.m_width/2), this.m_y - (this.m_height/2)));
+    	
+
 	
 	this.Update = function()
 	{

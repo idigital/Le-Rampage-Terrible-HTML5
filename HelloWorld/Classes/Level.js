@@ -8,6 +8,8 @@ function Level(layer)
 	var m_startY = 0;
 	var m_endX = 0;
 	var m_endY = 0;
+	var m_diffX = 0;
+	var m_diffY = 0;
 	var m_maxDrag = 30;
 	
 	//Objects in the game.	
@@ -27,12 +29,49 @@ function Level(layer)
 	m_character.EnablePhysics(m_physics);
 	
 	m_layer.addChild(m_character.GetSprite(), 0);
+	
+	var m_aimPos = new Vector(m_character.m_x + (m_character.m_width/2),
+							  m_character.m_y + (m_character.m_height/2));
+	this.m_aimSprite = cc.Sprite.create("Resources/Aim.png");
+	this.m_aimSprite.setPosition(cc.ccp(m_aimPos.m_dx, m_aimPos.m_dy));
+	m_layer.addChild(this.m_aimSprite, 0);
+	
+	var label1 = cc.LabelTTF.create("Test", "Arial", 12);
+    label1.setPosition(cc.ccp(40, 300));
+    m_layer.addChild(label1, 0);
+	
+	var label2 = cc.LabelTTF.create("Test", "Arial", 12);
+    label2.setPosition(cc.ccp(40, 280));
+    m_layer.addChild(label2, 0);
+	
+	var label3 = cc.LabelTTF.create("Test", "Arial", 12);
+    label3.setPosition(cc.ccp(40, 260));
+    m_layer.addChild(label3, 0);
+	
+	var label4 = cc.LabelTTF.create("Test", "Arial", 12);
+    label4.setPosition(cc.ccp(40, 240));
+    m_layer.addChild(label4, 0);
+	
+	var label5 = cc.LabelTTF.create("Test", "Arial", 12);
+    label5.setPosition(cc.ccp(40, 220));
+    m_layer.addChild(label5, 0);
+	
+	var label6 = cc.LabelTTF.create("Test", "Arial", 12);
+    label6.setPosition(cc.ccp(40, 200));
+    m_layer.addChild(label6, 0);
 		
 	this.Update = function()
 	{
 		m_character.Update();
 	
 		m_physics.UpdatePhysics();
+		
+		label1.setString("startX: " + m_startX);
+		label2.setString("startY: " + m_startY);
+		label3.setString("endX:   " + m_endX);
+		label4.setString("endY:   " + m_endY);
+		label5.setString("diffX:  " + m_diffX);
+		label6.setString("diffY:  " + m_diffY);
 	}
 	
 	m_character.GetSprite().schedule(this.Update, 1 / 60);
@@ -58,10 +97,10 @@ function Level(layer)
 			m_endX = endX;
 			m_endY = endY;
 
-			//var _origin = m_level.m_character.GetOrigin();
+			var _origin = m_character.GetOrigin();
 			
-			var _diffX = m_endX;// = _origin.m_x - m_endX;
-			var _diffY = m_endY;// = _origin.m_y - m_endY;
+			_diffX = _origin.m_dx - m_endX;
+			_diffY = _origin.m_dy - m_endY;
 			
 			m_character.Jump(_diffX / 5, _diffY / 5);
 		}
@@ -74,13 +113,15 @@ function Level(layer)
 			m_endX = newX;
 			m_endY = newY;
 			
-			/*var _origin:Vector = m_level.m_character.GetOrigin();
+			var _origin = m_character.GetOrigin();
 			
-			var _diffX:Number = _origin.m_x - m_endX;
-			var _diffY:Number = _origin.m_y - m_endY;
+			m_diffX = _origin.m_dx - m_endX;
+			m_diffY = _origin.m_dy - m_endY;
 			
-			m_level.m_aim.Move(	_origin.m_x + _diffX,
-						_origin.m_y + _diffY);*/
+			m_aimPos.m_dx = _origin.m_dx + m_diffX;
+			m_aimPos.m_dy = _origin.m_dy + m_diffY;
+			
+			this.m_aimSprite.setPosition(cc.ccp(m_aimPos.m_dx, m_aimPos.m_dy));
 		}
 	}
 };

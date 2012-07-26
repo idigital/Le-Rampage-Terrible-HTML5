@@ -97,5 +97,6 @@ cc.loadjs('Classes/Player.js');
 cc.loadjs('Classes/Vector.js');
 cc.loadjs('Classes/BoundingBox.js');
 cc.loadjs('Classes/PhysicsHandler.js');
+cc.loadjs('Classes/Building.js');
 cc.loadjs('Classes/Level.js');
 cc.loadjs('Helloworld.js');//19

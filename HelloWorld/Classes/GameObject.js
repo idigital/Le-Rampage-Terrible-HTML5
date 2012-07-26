@@ -26,6 +26,12 @@ function GameObject()
 		this.m_bounds = physics.CreateBoundingBox(self);
 	}
 	
+	this.GetOrigin = function()
+	{
+		return new Vector(this.m_x + (this.m_width/2),
+							this.m_y + (this.m_height/2));
+	}
+	
 	return this;
 };
 

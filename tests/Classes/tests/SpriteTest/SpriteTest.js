@@ -2718,769 +2718,742 @@ var SpriteChildrenVisibility = SpriteTestDemo.extend({
         var sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_02.png"));
         sprite2.setPosition(cc.ccp(20, 30));
 
-        var sprite3 = cc.Sprite.createWithSp/***Frame(cc.***********Cache.shared****************().s**********ByN****"grossini_dance_03.png"));
- 
- Copyr*****3.setPosition****ccp(-20, 30.orgg
- CopyriaParent.addChild(*****1org
- Copyright (c1    Zynga Inc.
-2, -2
- http://www.cocos2d-x.org
+        var sprite3 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_03.png"));
+        sprite3.setPosition(cc.ccp(-20, 30));
 
- Perm3, on ishttp://www.cocos2drunAc10 RicarBlink*******(5, 1
- Copyright (c)//ated documen ******ated documentation fil 2011   = cc.Nod********(org
- Copyri 2011   2008-2010 Ricardo Q2 * s.width / 3, s.height / 2.org
- Copyrithis    Zynga  2011  , 0 any person obtainingSoftwa*******************************************************************************
- Copyright (c) 2010-2012 coc1s2d-x.org
- Copyright (c1ng without limitatio0, su any person obtainin2l
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the foll2s2d-x.org
- Copyright (c2ng without limitationsada
- Copyright (c)charge,l
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the follos2d-x.org
- Copyright (c) 2008-2010 Ricardo Quesada
- Copyright (c) 2011      Zynga Inc.
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2, -2);
+        sprite1.addChild(sprite3, 2);
 
- http://www.cocos2d-x.org
+        sprite1.runAction(cc.Blink.create(5, 10));
 
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associ
- Co},LINGS title:funpy
-  () {g
- Copyrireturn "****** & (the "Batchre w Visibility"ALINGS IN
- THEonExitWARE.
- ****************, pub_superrestricti}
-} any p//- TAG_NODE = 2;
-var TAG_ANIMATION1 = 1;
-var TAG_SPRITE_LEFT = 2;
-var
-var (the "Zyngaren**********Issue665
-var TAG TAG_NODE = 2;
-var TAG_ANIMATION1 = 1;
-var TAG_SPRITE_LEFT = 2;
-vvar_SPRITE_RIGHT = 3;
+        //
+        // Sprite
+        //
+        aParent = cc.Node.create();
+        aParent.setPosition(cc.ccp(2 * s.width / 3, s.height / 2));
+        this.addChild(aParent, 0);
 
-var TAG_SPR = (the "TestDemo.extend(*******ctorWARE.
- ****************
-varsSoftwaDirear T*******00;
-var().getWinSiz restrg
- Copyri*********************************************ad************s****File(s_c) 2010-Plistorg
- Copyrientation files (the "*********    sceneIdx++;
-    scenp011  s;
+        sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_01.png"));
+        sprite1.setPosition(cc.ccp(0, 0));
 
-var IDC_Nin the SoftwaeIdx = sceneIdxithout r= function, 5subliiction, including without limitatioe rights
- to use, copy, modify, merge, publish, distribute, sublicense, andDC_NEor sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
+        sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_02.png"));
+        sprite2.setPosition(cc.ccp(20, 30));
 
- The above copyright notice and this permissar layer =tice shall be included in
- all copies or substantial portions of the Software.
+        sprite3 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_03.png"));
+        sprite3.setPosition(cc.ccp(-20, 30));
 
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUTar layer =IMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAG// test iTAG_ #SPRITtions:
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2, -2);
+        sprite1.addChild(sprite3, 2);
 
- The abovIs*****le(false Copyright (c) 2011      Zynga Inc.
-
- http://www.cocos2d-x.org
-
- Permission is hereby granted, free of charge, to any person obentation files (the "Software"), to deal
- in the Software without restriction, including without limitation the rights
- to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
-
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAG
-            return new SpriteBatchNodeAnchorPoint();
-        case 6:
-            return new SpriteOffsetAnchorRotation();
-        case 7:
-            return new SpriteBatNGS IN
- THE SOFTWARE.
- ***************************************************************************sub SOFTWARE.
- ************************Nolayer =s should be vhorPoi*********E = 1;
-var TAG_NODE = 2;
-var TAG_ANIMATION1 = 1;
-var TAG_SPRITE_LEFT = 2;
-var TAG_SPRITE_RIGHT =AnchorPointITE1 = 0;
-var TAG_SPRITE2 = 1;
-var TAG_SPRITE3 = 2;
-var TAG_SPRITE4 = 3;
-var TAG_SPRITE5 =eAliased();E6 = 5;
-var TAG_SPRITE7 = 6;
-var TAG_SPRITE8 = 7;
-
-var IDC_NEXT = 100;
-var IDC_BACK = 101;
-var IDC_RESTART 102;
-
-var sceneIdx = -1;
-var MAX_LAYER = 48;
-
-var nextSpriteTestAction = function () {
-   createSpriteTestLayer(scenre without restriction, , publish, distribute, sublicense, and// aAlias (0,0);
-
-    var layer = createSpriteTestLayer(sceneIdx);
-    return layer;
-};
-var restartSpriteTestAction = function () {
-    var layer8wing conditions:
-
- The above copyright notie rights
-4to use, copy, modify, merge
- The aboveAliased();   return layer;
-};
-
-var createSpriteTestLayer = function (index) {
-    switch (index) {
-        case 0:
-            return new Sprite1();
-        case 1:
-            return new SpriteBatchNode1();
-        case 2:
-            return new SpriteFrameTest();
-        case 3:
-            return new SpriteFrameAliasNameTest();
-        case 4:
-            return new SpriteAnchorPoint();
-        case 5:ar layer =4l
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the foll4s2d-x.org
- Copyright (c4above copyright notice and th SpriteBatchNodeOffScale(0.5 Copyright (c) 2011      Zynga Inc.
-
- http://www.cocos2d-x.org
-
- Permission is hereby granted, free of charge, tion is hereby granted, free of charge4, 3BatchNodeChildren2pnew Spr copies of the S(s_pathR
- http://wwwchorF        retu2rn ne      return new 8-2010 Ri
- The agip();
-    modify, merge, publish, dischorFnd ashildrenZ();
-        case.5, turncense, and/or sell
- copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the foll     case 34:
-            return new SpriteChildrenAnch2rPoint();
-        case 35:
-            return new Sprite--------d this permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGn new AnimationCache();
-        case 42:
-            return new SpriteOffsetAnchorSkew();
-        case 43:
-            return new SpriteBatchNodeOffsetAnchorSkew();
-        case 44:
-            return new SpriteOffsetAnchorSkewScale();
-        case 45:
-            return new SpriteBatchNodeOffsetAnchorSkewScale();
-        case 46:
-            return new SpriteOffschorFlip();
-        case 47:
-            return new SpriteBatchNodeOffsetAnchorFlip();
-    }
-    return null;
-};
-
-//----------------------------------------------------1,1------
-//
-// SpriteTestDemo
-//
-//------------------------------------------------------------------
-var SpriteTestDemo = cc.Layer.extend({
-    _title:"",
-
-    ctor:function () {
-    +he rights
-orPoint();
-        case 35:
-            return new Sprit1, 1urn "No title";
-    },
-    subtitle:function () {
-        return "";
-    },
-    onEnter:function () {
-        this._super();
-
-        var winSize = cc.Director.sharedDirector().getWinSize();
-
-        var label = cc.LabelTTF.create(this.title(), "Arial", 28);
-        this.addChild(label, 1);
-        label.setPosition(cc.ccp(winSize.width / 2, winSize.height - 50));
-
-        var strSubtitle = this.subtitle();
-        if (strSubtitle != "") {
-            var l = cc.LabelTTF.create(strSubtitle, "Thonburi", 16);
-            this.addChild(l, 1);
-            l.setPosition(cc.ccp(winSize.width / 2, winSize.height - 80));
-        }
-
-        var item1 = cc.MenuItemImage.create(s_pathB1, s_pathB2, this, this.backCallback);
-        var item2 = cc.MenuItemImage.create(s_pathR1, s_pathR2, this, this.restartCallback);
-        var item3 = cc.MenuItemImage.create(s_pathF1, s_pathF2, this, this.nextCallbacNGS IN
- THE SOFTWARE.
- ******************************: cRIGHT = +      c*****************/
-var TAG_TILE_MAP = 1;
-var TAG_SPRITE_BATCH_NODE = 1;
-var TAG_NODE = 2;
-var TAG_ANIMATION1 = 1;
-var TAG_SPRITE_LEFT = 2;
-var TAG_SPRITE*********BatchNodeAliased();
-        case 26:
-            return new SpriteNewTexture();
-        case 27:
-         var idx = 0 | (cc.RANDOE6 = 5;
-var TAG_SPRITE7 = 6;
-var TAG_SPRITE8 = 7;
-
-var IDC_NEXT = 100;
-var IDC_BACK = 101;
-var IDC_RESTART = 102;
-
-var sceneIdx = -1;
-var MAX_LAYER = 48;
-
-var nextSpriteTestAction = function () {
-    sceneIdx++;
-    sceneIdx = sceneIdx % MAX_LAYER;
-
-    var layer = createSpriteTestLayer(sceneIdx);
-    return layer;
-};
-var backSpriteTestturn new SpriteBatchNodeChildrenZ();
-        case 32:
-            return new SpriteChildrenVisibility();
-        case 33:
-            return new SpriteChildrenVisibilityIssue665();
-        case 34:
-            return new SpriteChildrenAnchorPoint();
-        case 35:
-            return new SpriteBatchNodeChildrenAnchorPoint();
-        case 36:
-            return new SpriteBatchNodeChildrenScale();
-        case 37:
-            return new SpriteChildrenChildren();
-        case 38:
-            return new SpriteBatchNodeChildrenChildren();
-        case 39:
-            return new SpriteNilTexture();
-        case 40:
-            return new SpriteSubclass();
-        case 41:
-            return new AnimationCache();
-        case 42:
-            return new SpriteOffsetAnchorSkew();
-        case 43:
-            return new SpriteBatchNodeOffsetAnchorSkew();
-        case 44:
-            return new SpriteOffsetAnchorSkewScale();
-        case 45:
-            return new SpriteBatchNodeOffsetAnchorSkewScale();
-        case 46:
-            return new SpriteOffsetAnchorFlip();
-        case 47:
-            return new SpriteBatchNodeOffsetAnchorFlip();
-    }
-    return null;
-};
-
-//------------------------------------------------------------------
-//
-// SpriteTestDemo
-//
-//------------------------------------------------------------------
-var SpriteTestDemo = cc.Layer.extend({
-    _title:"",
-
-    ctor:function () {
-        this._super();
+        sprite1.runAction(cc.Blink.create(5, 10));
     },
     title:function () {
-        return "No title";
+        return "Sprite & SpriteBatchNode Visibility";
     },
-    subtitle:function () {
-        return "";
-    },
-    onEnter:function () {
+    onExit:function () {
         this._super();
-
-        var winSize = cc.Director.sharedDirector().getWinSize();
-
-        var label = cc.LabelTTF.create(this.title(), "Arial", 28);
-        this.addChild(label, 1);
-        label.setPosition(cc.ccp(winSize.width / 2, winSize.height - 50));
-
-        var strSubtitle = this.subtitle();
-        if (strSubtitle != "") {
-            var l = cc.LabelTTF.create(strSubtitle, "Thonburi", 16);
-            this.addChild(l, 1);
-            l.setPosition(cc.ccp(winSize.width / 2, winSize.height - 80));
-        }
-
-        var item1 = cc.MenuItemImage.create(s_pathB1, s_pathB2, this, this.backCallback);
-        var item2 = cc.MenuItemImage.create(s_pathR1, s_pathR2, this, this.restartCallback);
-        var item3 = cc.MenuItemImage.create(s_pathF1, s_pathF2, this, this.nextCallback)k);
-
-        var menu = cc.Menu.create(item1, item2, item3, null);
-
-        menu.setPosition(cc.PointZero());
-        item1.setPosition(cc.ccp(winSize.width / 2 - 100, 30));
-        item2.setPosition(cc.ccp(winSize.width / 2, 30));
-        item3.setPosition(cc.ccp(winSize.width / 2 + 100, 30));
-
-        this.addChild(menu, 1);
-    },
-
-    restartCallback:function (sender) {
-        var s = new SpriteTestScene();
-        s.addChild(restartSpriteTestAction());
-
-        cc.Director.sharedDirector().replaceScene(s);
-    },
-    nextCallback:function (sender) {
-        var s = new SpriteTestScene();
-        s.addChild(nextSpriteTestAction());
-        cc.Director.sharedDirector().replaceScene(s);
-    },
-    backCallback:function (sender) {
-        var s = new SpriteTestScene();
-        s.addChild(backSpriteTestAction());
-        cc.Director.sharedDirector().replaceScene(s);
     }
 });
 
 //------------------------------------------------------------------
 //
-// Sprite1
+// SpriteChildrenVisibilityIssue665
 //
 //------------------------------------------------------------------
-var Sprite1 = SpriteTestDemo.extend({
+var SpriteChildrenVisibilityIssue665 = SpriteTestDemo.extend({
     ctor:function () {
-        this.setIsTouchEnabled(true);
-
         var s = cc.Director.sharedDirector().getWinSize();
-        this.addNewSpri*********teWithCoords(cc.ccp(s.width / 2, s.height / 2));
+
+        cc.SpriteFrameCache.sharedSpriteFrameCache().addSpriteFramesWithFile(s_grossiniPlist);
+        //
+        // SpriteBatchNode
+        //
+        // parents
+        var aParent = cc.SpriteBatchNode.create(s_grossini, 50);
+        aParent.setPosition(cc.ccp(s.width / 3, s.height / 2));
+        this.addChild(aParent, 0);
+
+        var sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_01.png"));
+        sprite1.setPosition(cc.ccp(0, 0));
+
+        var sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_02.png"));
+        sprite2.setPosition(cc.ccp(20, 30));
+
+        var sprite3 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_03.png"));
+        sprite3.setPosition(cc.ccp(-20, 30));
+
+        // test issue #665
+        sprite1.setIsVisible(false);
+
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2, -2);
+        sprite1.addChild(sprite3, 2);
+
+        //
+        // Sprite
+        //
+        aParent = cc.Node.create();
+        aParent.setPosition(cc.ccp(2 * s.width / 3, s.height / 2));
+        this.addChild(aParent, 0);
+
+        sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_01.png"));
+        sprite1.setPosition(cc.ccp(0, 0));
+
+        sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_02.png"));
+        sprite2.setPosition(cc.ccp(20, 30));
+
+        sprite3 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_03.png"));
+        sprite3.setPosition(cc.ccp(-20, 30));
+
+        // test issue #665
+        sprite1.setIsVisible(false);
+
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2, -2);
+        sprite1.addChild(sprite3, 2);
     },
     title:function () {
-        return "Sprite (tap screen)";
+        return "Sprite & SpriteBatchNode Visibility";
     },
-
-    addNewSpriteWithCoords:function (p) {
-        var idx = 0     rM_0_1() * 14);
-        var x = (idx % 5) * 85;
-        var y = (0 | (idx / 5)) * 121;
-        var sp    rSpriteBatchNodeNewTexture();
-        case 28:
-            return new SpriteHybrid();
-        case 29:
-            return new SpriteBatchNodeChildren();
-        case 30:
-            return new S_familypriteBatchNodeChildren2ro SoftwaRotateBy    case1sada6ackSpriteTestDC_NEeqze.heigepeatForever    caseroeBatchNodeChildentation files _RIGHT = + , 85, using (the "Software"),  var  1 (winSize.height / 3) ren2();
-        case 31:
-            rear layer = createSpriteTestLayer(sceneIdx);
-    return layer;
-};
-var restartSpriteTestAction = function () {
-    vs_sisterowing conditions:
-
- The above copyright notiize.width / 2, 30));
-  4conditions:
-
- The abov    rXeturn neze.width / 5) * 3, (winSY(2.ackSpriteTesttaining a copy
- oseqence.create(acti createSpriteTestLayer = function (index) {
-    switch (index) {
-        case 0:
-            return new Sprite1();dth / 5), WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- I5ce and this permiss, publish, distributeestriction, includin   Zynga Inc.
-
- http://www.cocos2d-x.org
-
- Permi--------------nSize.height / 3) * 1));
-        sprite3.seition(cc.ccp((winSize.width / 5) * 3,winSize.height / 3) * 1));
-        sprite4.setPosit sceneIdx % MAX_LAYERwinSiz2Software"), to deal
- in the SoftwaeIdx);
-    return layer;
-};
-vap((winSonditions:
-
- The lip();
-        casth / 5) * 1, (winSize.height / 3) * 2));
-        sprite6.setPosition(cc.ccp((winSize.width / 5) * 2, (winSize.height / 3) * 2));
-        spr3 the rights
-sition(cc.ccp((winSize.width / 5) * 3, (winSize.height / 3) * 2));
-        sprite8.setPosition(cc.ccp((winSize.width / 5 permission notice shall be included in
- all copies or substantial portions of the Software.
-
- THE SOFTWARE IS PROVIDED      var fade = cc.RepeatForever.create(cc.Sequence.create(action, action_back, null));
-
-        var tintRed = cc.TintBy.create(2, 0, -255, -255);
-        var tintRedBack = tintRed.reverse();
-        var red = cc.RepeatForever.create(cc.Sequence.create(tintRed, tintRedBack, null));
-
-        var tintGreen =y.create(2, -255, 3Software"), to deal
- in the Software without restriction, sition(cc.ccp((winSize.width / 5) * 1, (winSize.height / 3) * 2));
-        sprite6.setPosition(cc.ccp((winSize.width / 5) * 2, (winSize.height / 3) * 2));
-        sprite7.setPositn the se, copy,3winSize.width / 5) * 3, (winSiz1.height / 3) * 2));
-        spre.height / 3) * 2));
-   sprite5.runAction(red);
-        sprite6.runAction(green);
-        sprite7.runAction(blue);
-        sprite8.runAction(fade);
-
-        // late add: test dirtyColor and dirtyPosition
-        this.addChild(sprite1, 0, TAG_SPRITE1);
-        this.addChild(sprite2, 0, TAG_SPRITE2);
-        this.addChild(sprite3, 0, TAG_SPRITE3);
-        this.addChild(sprite4, 0, TAG_SPRITE4);
-        this.addChild(sprite5, 0, TAG_SPRITE5);
-        this.addChild(sprite6, 0, TAG_SP4, -255);
-        var tintGreenBack = tintGreen.reverse();
-        var green = cc.RepeatForever.create(cc.Sequence.create(tintGreen, tintGreenBack, null));
-
-        var tintBlue = cc.TintBy.create(2, -255, -255, 0);
-        var tintBlueBack = tintBlue.reverse();
-    or array and vertex array should be reindexed
-    removeAndAddSprite:function (dt) {
-        var sprite = this.getChildByTag(TAG_SPRITE5);
-
-        this.removeChild(sprite, false);
-        this.addChild(sprite, 0, TAG_SPRITE5);
-    },
-    title:function () {
-        return "Sprite: Color & Opacity";
+    subtitle:function () {
+        return "No sprites should be visible";
     }
 });
 
 //------------------------------------------------------------------
 //
-// SpriteBatchNodNGS IN
- THE SOFTWARE.
- ******************************/**********+eWithCinSi 85, +tRed   case 24:
-            return new SpriteAliased();
-        case 25:
-            return new SpriteBatchNod_RIGHT =ITE1 = 0;
-var TAG_SPRITE2 = 1;
-var TAG_SPRITE3 = 2;
-var TAG_SPRITE4 = 3;
-var TAG_SPRITE5 =));
-    6 = 5;
-var TAG_SPRITE7 = 6;
-var TAG_SPRITE8 = 7;
-
-var IDC_NEXT = 100;
-var IDC_BACK = 101;
-var IDC_RESTART = 102;
-
-var sceneIdx = -1;
-var MAX_LAYER = 48;
-
-var nextSpriteTestAction = fhostsize.width / 5) * 2, (winSize.height / 3) * 1));
-        sprite3.setPosition(cc.ccp((winSize.width / 5) * 3, (winSize. (winSi_back =tRed.Size.s     sprite5.setPoht / 3) _f, 12cc.ccp((winSize.width / 5) / 3) eBatchNodeOffsetAnchorRotation();
-, 85, 121))3 levels ofeWithCoor.width / 5) * 4, (winSize.height / 3) * 1));
-        sprite5.s_back, null));
-
-       ;
-
-    var layer  (winSize.heiglver.create(cc.Sequence.create(tintGreen, tintGreenBack, null));
-
-        var tintBlue = cc.TintBy.father.gifx.org
- Copyril,
-
+// SpriteChildrenAnchorPoint
+//
+//------------------------------------------------------------------
+var SpriteChildrenAnchorPoint = SpriteTestDemo.extend({
     ctor:function () {
+        var s = cc.Director.sharedDirector().getWinSize();
+        cc.SpriteFrameCache.sharedSpriteFrameCache().addSpriteFramesWithFile(s_grossiniPlist);
+
+        var aParent = cc.Node.create();
+        this.addChild(aParent, 0);
+
+        // anchor (0,0)
+        var sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_08.png"));
+        sprite1.setPosition(cc.ccp(s.width / 4, s.height / 2));
+        sprite1.setAnchorPoint(cc.ccp(0, 0));
+
+        var sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_02.png"));
+        sprite2.setPosition(cc.ccp(20, 30));
+
+        var sprite3 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_03.png"));
+        sprite3.setPosition(cc.ccp(-20, 30));
+
+        var sprite4 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_04.png"));
+        sprite4.setPosition(cc.ccp(0, 0));
+        sprite4.setScale(0.5);
+
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2, -2);
+        sprite1.addChild(sprite3, -2);
+        sprite1.addChild(sprite4, 3);
+
+        var point = cc.Sprite.create(s_pathR1);
+        point.setScale(0.25);
+        point.setPosition(sprite1.getPosition());
+        this.addChild(point, 10);
+
+        // anchor (0.5, 0.5)
+        sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_08.png"));
+        sprite1.setPosition(cc.ccp(s.width / 2, s.height / 2));
+        sprite1.setAnchorPoint(cc.ccp(0.5, 0.5));
+
+        sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_02.png"));
+        sprite2.setPosition(cc.ccp(20, 30));
+
+        sprite3 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_03.png"));
+        sprite3.setPosition(cc.ccp(-20, 30));
+
+        sprite4 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_04.png"));
+        sprite4.setPosition(cc.ccp(0, 0));
+        sprite4.setScale(0.5);
+
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2, -2);
+        sprite1.addChild(sprite3, -2);
+        sprite1.addChild(sprite4, 3);
+
+        point = cc.Sprite.create(s_pathR1);
+        point.setScale(0.25);
+        point.setPosition(sprite1.getPosition());
+        this.addChild(point, 10);
+
+        // anchor (1,1)
+        sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_08.png"));
+        sprite1.setPosition(cc.ccp(s.width / 2 + s.width / 4, s.height / 2));
+        sprite1.setAnchorPoint(cc.ccp(1, 1));
+
+        sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_02.png"));
+        sprite2.setPosition(cc.ccp(20, 30));
+
+        sprite3 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_03.png"));
+        sprite3.setPosition(cc.ccp(-20, 30));
+
+        sprite4 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_04.png"));
+        sprite4.setPosition(cc.ccp(0, 0));
+        sprite4.setScale(0.5);
+
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2, -2);
+        sprite1.addChild(sprite3, -2);
+        sprite1.addChild(sprite4, 3);
+
+        point = cc.Sprite.create(s_pathR1);
+        point.setScale(0.25);
+        point.setPosition(sprite1.getPosition());
+        this.addChild(point, 10);
+    },
+    title:function () {
+        return "Sprite: children + anchor";
+    },
+    onExit:function () {
         this._super();
-    },lrite = this.get.copy
+    }
+});
+
+//------------------------------------------------------------------
+//
+// SpriteBatchNodeChildrenAnchorPoint
+//
+//------------------------------------------------------------------
+var SpriteBatchNodeChildrenAnchorPoint = SpriteTestDemo.extend({
+    ctor:function () {
+        var s = cc.Director.sharedDirector().getWinSize();
+
+        cc.SpriteFrameCache.sharedSpriteFrameCache().addSpriteFramesWithFile(s_grossiniPlist);
+        //
+        // SpriteBatchNode
+        //
+        // parents
+        var aParent = cc.SpriteBatchNode.create(s_grossini, 50);
+        this.addChild(aParent, 0);
+
+        // anchor (0,0)
+        var sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_08.png"));
+        sprite1.setPosition(cc.ccp(s.width / 4, s.height / 2));
+        sprite1.setAnchorPoint(cc.ccp(0, 0));
+
+        var sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_02.png"));
+        sprite2.setPosition(cc.ccp(20, 30));
+
+        var sprite3 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_03.png"));
+        sprite3.setPosition(cc.ccp(-20, 30));
+
+        var sprite4 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_04.png"));
+        sprite4.setPosition(cc.ccp(0, 0));
+        sprite4.setScale(0.5);
+
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2, -2);
+        sprite1.addChild(sprite3, -2);
+        sprite1.addChild(sprite4, 3);
+
+        var point = cc.Sprite.create(s_pathR1);
+        point.setScale(0.25);
+        point.setPosition(sprite1.getPosition());
+        this.addChild(point, 10);
+
+        // anchor (0.5, 0.5)
+        sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_08.png"));
+        sprite1.setPosition(cc.ccp(s.width / 2, s.height / 2));
+        sprite1.setAnchorPoint(cc.ccp(0.5, 0.5));
+
+        sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_02.png"));
+        sprite2.setPosition(cc.ccp(20, 30));
+
+        sprite3 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_03.png"));
+        sprite3.setPosition(cc.ccp(-20, 30));
+
+        sprite4 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_04.png"));
+        sprite4.setPosition(cc.ccp(0, 0));
+        sprite4.setScale(0.5);
+
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2, -2);
+        sprite1.addChild(sprite3, -2);
+        sprite1.addChild(sprite4, 3);
+
+        point = cc.Sprite.create(s_pathR1);
+        point.setScale(0.25);
+        point.setPosition(sprite1.getPosition());
+        this.addChild(point, 10);
+
+
+        // anchor (1,1)
+        sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_08.png"));
+        sprite1.setPosition(cc.ccp(s.width / 2 + s.width / 4, s.height / 2));
+        sprite1.setAnchorPoint(cc.ccp(1, 1));
+
+        sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_02.png"));
+        sprite2.setPosition(cc.ccp(20, 30));
+
+        sprite3 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_03.png"));
+        sprite3.setPosition(cc.ccp(-20, 30));
+
+        sprite4 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossini_dance_04.png"));
+        sprite4.setPosition(cc.ccp(0, 0));
+        sprite4.setScale(0.5);
+
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2, -2);
+        sprite1.addChild(sprite3, -2);
+        sprite1.addChild(sprite4, 3);
+
+        point = cc.Sprite.create(s_pathR1);
+        point.setScale(0.25);
+        point.setPosition(sprite1.getPosition());
+        this.addChild(point, 10);
+    },
+    title:function () {
+        return "SpriteBatchNode: children + anchor";
+    },
+    onExit:function () {
+        this._super();
+    }
+});
+
+//------------------------------------------------------------------
+//
+// SpriteBatchNodeChildrenScale
+//
+//------------------------------------------------------------------
+var SpriteBatchNodeChildrenScale = SpriteTestDemo.extend({
+    ctor:function () {
+        var s = cc.Director.sharedDirector().getWinSize();
+        cc.SpriteFrameCache.sharedSpriteFrameCache().addSpriteFramesWithFile(s_grossini_familyPlist);
+
+        var rot = cc.RotateBy.create(10, 360);
+        var seq = cc.RepeatForever.create(rot);
+
+        //
+        // Children + Scale using Sprite
+        // Test 1
+        //
+        var aParent = cc.Node.create();
+        var sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossinis_sister1.png"));
+        sprite1.setPosition(cc.ccp(s.width / 4, s.height / 4));
+        sprite1.setScaleX(0.5);
+        sprite1.setScaleY(2.0);
+        sprite1.runAction(seq);
+
+
+        var sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossinis_sister2.png"));
+        sprite2.setPosition(cc.ccp(50, 0));
+
+        this.addChild(aParent);
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2);
+
+        rot = cc.RotateBy.create(10, 360);
+        seq = cc.RepeatForever.create(rot);
+        //
+        // Children + Scale using SpriteBatchNode
+        // Test 2
+        //
+        aParent = cc.SpriteBatchNode.create(s_grossini_family);
+        sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossinis_sister1.png"));
+        sprite1.setPosition(cc.ccp(3 * s.width / 4, s.height / 4));
+        sprite1.setScaleX(0.5);
+        sprite1.setScaleY(2.0);
+        sprite1.runAction(seq);
+
+        sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossinis_sister2.png"));
+        sprite2.setPosition(cc.ccp(50, 0));
+
+        this.addChild(aParent);
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2);
+
+        rot = cc.RotateBy.create(10, 360);
+        seq = cc.RepeatForever.create(rot);
+        //
+        // Children + Scale using Sprite
+        // Test 3
+        //
+        aParent = cc.Node.create();
+        sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossinis_sister1.png"));
+        sprite1.setPosition(cc.ccp(s.width / 4, 2 * s.height / 3));
+        sprite1.setScaleX(1.5);
+        sprite1.setScaleY(0.5);
+        sprite1.runAction(seq);
+
+        sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossinis_sister2.png"));
+        sprite2.setPosition(cc.ccp(50, 0));
+
+        this.addChild(aParent);
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2);
+
+        rot = cc.RotateBy.create(10, 360);
+        seq = cc.RepeatForever.create(rot);
+        //
+        // Children + Scale using Sprite
+        // Test 4
+        //
+        aParent = cc.SpriteBatchNode.create(s_grossini_family);
+        sprite1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossinis_sister1.png"));
+        sprite1.setPosition(cc.ccp(3 * s.width / 4, 2 * s.height / 3));
+        sprite1.setScaleX(1.5);
+        sprite1.setScaleY(0.5);
+        sprite1.runAction(seq);
+
+        sprite2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("grossinis_sister2.png"));
+        sprite2.setPosition(cc.ccp(50, 0));
+
+        this.addChild(aParent);
+        aParent.addChild(sprite1);
+        sprite1.addChild(sprite2);
+    },
+    title:function () {
+        return "Sprite/BatchNode + child + scale + rot";
+    }
+});
+
+//------------------------------------------------------------------
+//
+// SpriteChildrenChildren
+//
+//------------------------------------------------------------------
+var SpriteChildrenChildren = SpriteTestDemo.extend({
+    ctor:function () {
+        var s = cc.Director.sharedDirector().getWinSize();
+
+        cc.SpriteFrameCache.sharedSpriteFrameCache().addSpriteFramesWithFile(s_ghostsPlist);
+
+        var rot = cc.RotateBy.create(10, 360);
+        var seq = cc.RepeatForever.create(rot);
+
+        var rot_back = rot.reverse();
+        var rot_back_fe = cc.RepeatForever.create(rot_back);
+
+        //
+        // SpriteBatchNode: 3 levels of children
+        //
+        var aParent = cc.Node.create();
+        this.addChild(aParent);
+
+        // parent
+        var l1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("father.gif"));
+        l1.setPosition(cc.ccp(s.width / 2, s.height / 2));
+        l1.runAction(seq.copy());
+        aParent.addChild(l1);
+        var l1Size = l1.getContentSize();
+
+        // child left
+        var l2a = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("sister1.gif"));
+        l2a.setPosition(cc.ccp(-50 + l1Size.width / 2, 0 + l1Size.height / 2));
+        l2a.runAction(rot_back_fe.copy());
+        l1.addChild(l2a);
+        var l2aSize = l2a.getContentSize();
+
+
+        // child right
+        var l2b = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("sister2.gif"));
+        l2b.setPosition(cc.ccp(+50 + l1Size.width / 2, 0 + l1Size.height / 2));
+        l2b.runAction(rot_back_fe.copy());
+        l1.addChild(l2b);
+        var l2bSize = l2a.getContentSize();
+
+
+        // child left bottom
+        var l3a1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("child1.gif"));
+        l3a1.setScale(0.45);
+        l3a1.setPosition(cc.ccp(0 + l2aSize.width / 2, -100 + l2aSize.height / 2));
+        l2a.addChild(l3a1);
+
+        // child left top
+        var l3a2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("child1.gif"));
+        l3a2.setScale(0.45);
+        l3a1.setPosition(cc.ccp(0 + l2aSize.width / 2, +100 + l2aSize.height / 2));
+        l2a.addChild(l3a2);
+
+        // child right bottom
+        var l3b1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("child1.gif"));
+        l3b1.setScale(0.45);
+        l3b1.setFlipY(true);
+        l3b1.setPosition(cc.ccp(0 + l2bSize.width / 2, -100 + l2bSize.height / 2));
+        l2b.addChild(l3b1);
+
+        // child right top
+        var l3b2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("child1.gif"));
+        l3b2.setScale(0.45);
+        l3b2.setFlipY(true);
+        l3b1.setPosition(cc.ccp(0 + l2bSize.width / 2, +100 + l2bSize.height / 2));
+        l2b.addChild(l3b2);
+    },
+    title:function () {
+        return "Sprite multiple levels of children";
+    }
+});
+
+//------------------------------------------------------------------
+//
+// SpriteBatchNodeChildrenChildren
+//
+//------------------------------------------------------------------
+var SpriteBatchNodeChildrenChildren = SpriteTestDemo.extend({
+    ctor:function () {
+        var s = cc.Director.sharedDirector().getWinSize();
+
+        cc.SpriteFrameCache.sharedSpriteFrameCache().addSpriteFramesWithFile(s_ghostsPlist);
+
+        var rot = cc.RotateBy.create(10, 360);
+        var seq = cc.RepeatForever.create(rot);
+
+        var rot_back = rot.reverse();
+        var rot_back_fe = cc.RepeatForever.create(rot_back);
+
+        //
+        // SpriteBatchNode: 3 levels of children
+        //
+        var aParent = cc.SpriteBatchNode.create(s_ghosts);
+        //TODO for WebGL
+        //aParent.getTexture().generateMipmap();
+        this.addChild(aParent);
+
+        // parent
+        var l1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("father.gif"));
+        l1.setPosition(cc.ccp(s.width / 2, s.height / 2));
+        l1.runAction(seq.copy());
+        aParent.addChild(l1);
+        var l1Size = l1.getContentSize();
+
+        // child left
+        var l2a = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("sister1.gif"));
+        l2a.setPosition(cc.ccp(-50 + l1Size.width / 2, 0 + l1Size.height / 2));
+        l2a.runAction(rot_back_fe.copy());
+        l1.addChild(l2a);
+        var l2aSize = l2a.getContentSize();
+
+
+        // child right
+        var l2b = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("sister2.gif"));
+        l2b.setPosition(cc.ccp(50 + l1Size.width / 2, 0 + l1Size.height / 2));
+        l2b.runAction(rot_back_fe.copy());
+        l1.addChild(l2b);
+        var l2bSize = l2a.getContentSize();
+
+
+        // child left bottom
+        var l3a1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("child1.gif"));
+        l3a1.setScale(0.45);
+        l3a1.setPosition(cc.ccp(0 + l2aSize.width / 2, -100 + l2aSize.height / 2));
+        l2a.addChild(l3a1);
+
+        // child left top
+        var l3a2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("child1.gif"));
+        l3a2.setScale(0.45);
+        l3a1.setPosition(cc.ccp(0 + l2aSize.width / 2, +100 + l2aSize.height / 2));
+        l2a.addChild(l3a2);
+
+        // child right bottom
+        var l3b1 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("child1.gif"));
+        l3b1.setScale(0.45);
+        l3b1.setFlipY(true);
+        l3b1.setPosition(cc.ccp(0 + l2bSize.width / 2, -100 + l2bSize.height / 2));
+        l2b.addChild(l3b1);
+
+        // child right top
+        var l3b2 = cc.Sprite.createWithSpriteFrame(cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("child1.gif"));
+        l3b2.setScale(0.45);
+        l3b2.setFlipY(true);
+        l3b1.setPosition(cc.ccp(0 + l2bSize.width / 2, +100 + l2bSize.height / 2));
+        l2b.addChild(l3b2);
+    },
+    title:function () {
+        return "SpriteBatchNode multiple levels of children";
+    }
+});
+
+//------------------------------------------------------------------
+//
+// SpriteNilTexture
+//
+//------------------------------------------------------------------
+var SpriteNilTexture = SpriteTestDemo.extend({
+    ctor:function () {
+        var s = cc.Director.sharedDirector().getWinSize();
+
+        // TEST: If no texture is given, then Opacity + Color should work.
+        var sprite = new cc.Sprite();
+        sprite.init();
+        sprite.setTextureRect(cc.RectMake(0, 0, 300, 300));
+        sprite.setColor(cc.RED());
+        sprite.setOpacity(128);
+        sprite.setPosition(cc.ccp(3 * s.width / 4, s.height / 2));
+        this.addChild(sprite, 100);
+
+        sprite = new cc.Sprite();
+        sprite.init();
+        sprite.setTextureRect(cc.RectMake(0, 0, 300, 300));
+        sprite.setColor(cc.BLUE());
+        sprite.setOpacity(128);
+        sprite.setPosition(cc.ccp(1 * s.width / 4, s.height / 2));
+        this.addChild(sprite, 100);
+    },
+    title:function () {
+        return "Sprite without texture";
+    },
+    subtitle:function () {
+        return "opacity and color should work";
+    }
+});
+
+var MySprite1 = cc.Sprite.extend({
+    _ivar:0,
+    ctor:function () {
+    }
+});
+MySprite1.spriteWithSpriteFrameName = function (spriteFrameName) {
+    var pFrame = cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName(spriteFrameName);
+    var sprite = new MySprite1();
+    sprite.initWithSpriteFrame(pFrame);
+
+    return sprite;
 };
 
-//---- 2011      Zynga l
- http://wwwt / 3)C_RE =));getContentC_RESTART = 102;
-//rite.crlefnSize.height / 32aer.create(cc.Sequence.create(tintGreen, tintGreenBack, null));
+var MySprite2 = cc.Sprite.extend({
+    _ivar:0,
+    ctor:function () {
+    }
+});
+MySprite2.spriteWithFile = function (name) {
+    var sprite = new MySprite2();
+    sprite.initWithFile(name);
 
-        var tintBlue = cc.TintBy.h / 5) *sprite6.setPositio2a 2008-2010 Ricardo Qu50 +ize.hei () {
-      cc.RepeatFinSize.height / 3) * 2))2aite = this.tion(cc.ccpte7.setPosition(cc.l2d-x.org
-l2a/ 5) * 3, (winSiz2a.height 2a 3) * 2));
-        spsprite8.setPositionr, co 0, -255, -255);bh / 5) * 4, (winSize.height / 3) * 2));
+    return sprite;
+}
 
-        var action = cc.FadeIn.create(2);
-        var action_2ack = action.reversebng without limitatio+= cc.RepeatForever.create(cc.Sequence.create(action, actionbback, null));
+var SpriteSubclass = SpriteTestDemo.extend({
+    ctor:function () {
+        var s = cc.Director.sharedDirector().getWinSize();
 
-        var tintRed = cc.TintBy.createb2, 0, -255, -255);b
-        var tintRedBack = tintRed.reverse();
-    (cc. bottom5) * 3, (winSiz3aver.create(cc.Sequence.create(tintGreen, tintGreenBack, null));
+        cc.SpriteFrameCache.sharedSpriteFrameCache().addSpriteFramesWithFile(s_ghostsPlist);
+        var aParent = cc.SpriteBatchNode.create(s_ghosts);
 
-        var tintBlue = cc.TintBy.WithCback = action.revers3a* 3, (winS(0.4height / 3) *      spe copyright noticcc.R;
-    () {
-     -10on(green);
-nce.create(action, action_bntBy.creat3a
- htate(2, -255, -255, 0);
-top  var tintBlueBactice shall be included in
- all copies or substantial portions of the Software.
+        // MySprite1
+        var sprite = MySprite1.spriteWithSpriteFrameName("father.gif");
+        sprite.setPosition(cc.ccp(s.width / 4 * 1, s.height / 2));
+        aParent.addChild(sprite);
+        this.addChild(aParent);
 
- THE SOFTWARE IS tBlueBack, null));
+        // MySprite2
+        var sprite2 = MySprite2.spriteWithFile(s_pathGrossini);
+        this.addChild(sprite2);
+        sprite2.setPosition(cc.ccp(s.width / 4 * 3, s.height / 2));
+    },
+    title:function () {
+        return "Sprite subclass";
+    },
+    subtitle:function () {
+        return "Testing initWithTexture:rect method";
+    }
+});
 
-      KINDrite5.runAction(red);
-        sprite6.runAction(green);
-        spr+te7.runAction(blue);
-        sprite8.runAction(fade)teBatchNodeOffset;
-        v
-        var tintBlueBabk = tintBlue.reverse();
-        var blue = cc.RepeatForever.create(cc.Sequence.create(tintBlue, tintBlueBack, null));
+//------------------------------------------------------------------
+//
+// AnimationCache
+//
+//------------------------------------------------------------------
+var AnimationCache = SpriteTestDemo.extend({
+    ctor:function () {
+        cc.SpriteFrameCache.sharedSpriteFrameCache().addSpriteFramesWithFile(s_grossiniPlist);
+        cc.SpriteFrameCache.sharedSpriteFrameCache().addSpriteFramesWithFile(s_grossini_grayPlist);
+        cc.SpriteFrameCache.sharedSpriteFrameCache().addSpriteFramesWithFile(s_grossini_bluePlist);
 
-    b   sprite5.runAction(red);
- e(thisFlipY(tru
-   prite, 2);
-     sprite6.runAction(gre     
-        sprite7.runAs as e     var green = cc.RepeatFAction(fadeb;
+        //
+        // create animation "dance"
+        //
+        var animFrames = [];
+        var str = "";
+        for (var i = 1; i < 15; i++) {
+            str = "grossini_dance_" + (i < 10 ? ("0" + i) : i) + ".png";
+            var frame = cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName(str);
+            animFrames.push(frame);
+        }
 
-        // late addChild(t dirtyColor and dibtyPosition
-        batch.addChild(sprite1, 0, TAG_SPRITE1);
-        batch.addChild(sprite2, 0, TAG_SPRITE2);
-        batch.bddChild(sprite3, 0, TAG_SPRITtch.re},
-    // this function test if remove and add works as expected:
- SPRITE4);olor array and vertex array should be reindexon is herIN
- THE SOFTWARE.
- *******************************multiple(cc.ccp((winSize.wi   case 24:
-            return new SpriteAliased();
-        case 25:
-            return new Sprite     var idx = 0 ture(batch.getTexture(), cc.RectMake(85 * 1, 121 * 1, 85, 121));
-        var sprite7 = cc.Sprr SpriteZOrder = SpriteTexture(batch.getTexture(), cc.RectMake(85 * 2, 121 * 1, 85, 121));
-        var sprite8 = cc.Sprite.createWithTexture(batch.getTexture(), cc.RectMake(85 * 3, 121 * 1, 85, 121));
+        var animation = cc.Animation.create(animFrames, 0.2);
 
+        // Add an animation to the Cache
+        cc.AnimationCache.sharedAnimationCache().addAnimation(animation, "dance");
+
+        //
+        // create animation "dance gray"
+        //
+        animFrames = [];
+
+        for (i = 1; i < 15; i++) {
+            str = "grossini_dance_gray_" + (i < 10 ? ("0" + i) : i) + ".png";
+            var frame = cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName(str);
+            animFrames.push(frame);
+        }
+
+        animation = cc.Animation.create(animFrames, 0.2);
+
+        // Add an animation to the Cache
+        cc.AnimationCache.sharedAnimationCache().addAnimation(animation, "dance_gray");
+
+        //
+        // create animation "dance blue"
+        //
+        animFrames = [];
+
+        for (i = 1; i < 4; i++) {
+            str = "grossini_blue_0" + i + ".png";
+            var frame = cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName(str);
+            animFrames.push(frame);
+        }
+
+        animation = cc.Animation.create(animFrames, 0.2);
+
+        // Add an animation to the Cache
+        cc.AnimationCache.sharedAnimationCache().addAnimation(animation, "dance_blue");
+
+        var animCache = cc.AnimationCache.sharedAnimationCache();
+
+        var normal = animCache.animationByName("dance");
+        var dance_grey = animCache.animationByName("dance_gray");
+        var dance_blue = animCache.animationByName("dance_blue");
+
+        var animN = cc.Animate.create(normal);
+        var animG = cc.Animate.create(dance_grey);
+        var animB = cc.Animate.create(dance_blue);
+
+        var seq = cc.Sequence.create(animN, animG, animB);
+
+        // create an sprite without texture
+        var grossini = new cc.Sprite();
+        grossini.init();
 
         var winSize = cc.Director.sharedDirector().getWinSize();
-        sprite1.setPosition(cc.ccp((winSize.width / 5) * 1, (winSize.height / 3) * 1));
-        sprite2.setPosition(cc.ccp((winSize.width / 5) * 2, (winSize.height / 3) * 1));
-        sprite3.setPosition(cc.ccp((winSize.width / 5) * 3, (winSize.height / 3) * 1)eIdx);
-    return layer;winSi
-    sceneIdxTODO for WebGLntRed, tintR 2011   getTextur****generateMipmap sprite4.setPosition(cc.ccp((winSize.width / 5) * 4, (winSize.height / 3) * 1));
-        sprite5.setPosition(cc.ccp((winSize.width / 5) * 1, (winSize.height / 3) * 2));
-        sprite6.setPosition(cc.ccp((winSize.width / 5) * 2, (winSize.height / 3) * 2));
-        sprite7.setPosition(cc.ccp((winSize.width / 5) * 3, (winSize.height / 3) * 2));
-        sprite8.setPosition(cc.ccp((winSize.width / 5) * 4, (winSize.height / 3) * 2));
+        grossini.setPosition(cc.ccp(winSize.width / 2, winSize.height / 2));
+        this.addChild(grossini);
 
-        var action = cc.FadeIn.create(2);
-        var action_back = action.reverse();
-        var fade = cc.RepeatForever.create(cc.Sequence.create(action, action_back, null));
-
-        var tintRed = cc.TintBy.create(2, 0, -255, -255);
-        var tintRedBack = tintRed.reverse();
-        var red = cc.RepeatForever.create(cc.Sequence.create(tintRed, tintRedBack, null));
-
-        var tintGreen = cc.TintBy.create(2, -255, 0, -255);
-        var tintGrenBack = tintGreen.reverse();
-        var green = cc.RepeatForever.create(cc.Sequence.create(tintGreen, tintGreenBack, null));
-
-        var tintBlue = cc.TintBy.create(2, -255, -255, 0);
-        var tintBlueBack = tintBlue.reverse();
-        var blue = cc.RepeatForever.create(cc.Sequence.create(tintBlue, tintBlueBack, null));
-
-        sprite5.runAction(red);
-        sprite6.runAction(green);
-        sprite7.runAction(blue);
-        sprite8.runAction(fade);
-
-        // late add: test dirtyColor and dirtyPosition
-        batch.addChild(sprite1, 0, TAG_SPRITE1);
-        batch.addChild(sprite2, 0, TAG_SPRITE2);
-        batch.addChild(sprite3, 0, TAG_SPRITE3);
-        batch.addChild(sprite4, 0, TAG_SPRITE4);
-        batch.addChild(sprite5, 0, TAG_SPRITE5);
-        batch.addChild(sprite6, 0, TAG_SPRITE6);
-        batch.addChild(sprite7, 0, TAG_SPRITE7);
-        batch.addChild(sprite8, 0, TAG_SPRITE8);
-
-        this.schedule(this.removeAndAddSprite, 2);
-    },
-    // this function test if remove and add works as expected:
-    //   color array and vertex array should be reindexed
-    removeAndAddSprite:function (dt) {
-        var batch = this.getChildByTag(TAG_SPRITE_BATCH_NODE);
-        var sprite = batch.getChildByTag(TAG_SPRITE5);
-
-        batch.removeChild(sprite, false);
-        batch.addChild(sprite, 0, TAG_SPRITE5);
+        // run the animation
+        grossini.runAction(seq);
     },
     title:function () {
-        return "SpriteBatchNode: Color & Opacity";
+        return "AnimationCache";
+    },
+    subtitle:function () {
+        return "Sprite should be animated";
     }
 });
 
-//------------------------------------**********-----------------------------
-//
-// SpriteZOrder
-//
-//------------------------------------------------------------------
-vaNil       ITE1 = 0;
-var TAG_SPRITE2 = 1;
-var TAG_SPRITE3 = 2;
-var TAG_SPRITE4 = 3;
-var TAG_S)
-       xture(batch.getTexture(), cc.RectMake(85 * 2, 121 * 1, 85, 121));
-        var sprite8 = cc.Sprite.createWithTexture(batch, -2EST: If no tz);
-  is given, then Opacity + ColorNodeFlipwork.) * 4, (winSize.heig = newp();
-    SPRITE7);
-        .init--------------------s
-        Recnew SchNoMakeice aadateTest.org
- Copyright (cr SpiteBadeReoED
-};
+var SpriteTestScene = TestScene.extend({
+    runThisTest:function () {
+        sceneIdx = -1;
+        MAX_LAYER = 48;
+        var layer = nextSpriteTestAction();
+        this.addChild(layer);
 
-//---- ctor:func//
-// (128xtend({
-    ctor:funceBack = tintBlue.reverse();
-        var blu modify, merge, publish, disayer =nd asublicense, and/or se-------------------------------------------------------
-var SpriteBatchNodeReorder = SpriteTestDemo.extend({
-    ctor:function () {BLUE       var a = [];
-        var asmtest = cc.SpriteBatchNode.create(s_gho1ts);
-
-        for (var i = 0; i < 10; i++) {
-            var s1 = c;
+        cc.Director.sharedDirector().replaceScene(this);
     }
 });
-
-//-------------------------------------without--------priteFlip();
-        case 23:
-            return new So/
-// Sand cteBatchNodeReord   case 24:
-     
-varMy******ver.create(cc.PRITE7 = 6;
-v_ivar:0N
- THEar TAG_SPRITE8 = 7;
-
-v24:
-   
-       *********************ight = ARE.
- ********
- Copight*********etAnc*****lip();
-    *****************************************
- Copyright ex - 1, "Child o    var-----------------
-       restricti-----------****************);
-  ----------*******ayer =;
-} break;
-
-      tice shall be eed fixed
-            var currentIndex = child.getAtlasIndex();
-  2         //tion== currentIndnld order failed"v = currentIndex;
-  2     }
-
-        prev =tion      Children = asmtest.getDescbreak;
-******SubclasEXT re(batch.getTexture(), cc.RectMake(85 * 2, 121 * 1, 85, 121));
-        var sprite8 = cc.Sprite.createWithTexture(batch.getTexture(), cc.RectMake(85 * 3, 121 * 1, 85, 121));
-
-
-        var winSize = cc.D   sprite.setPosition(cc.ccp((i + 1) * step, s.height / 2));-------------
-       r
-//
-//--------------x();
-            //cc.Assert(prev 
-        spritest = cc.SpriteBatchNode.create(s_ghoerse();
-   * 1to use, copy, modify, merge 2011      Zynga Inc.
-sprite4.setPosition(cc.ccp((winSize.width / 5) * 4  var cur
-};
-
-var createSpriteT[i];
-            if (!ce 47:
-G) 2010-0; i < 10; i++) {
-            von is hereby grante KIND, EXPRESS OR
- IpriteBatchNode to use, copy, modify, mIN
- THE SOFTWARE.
- *******************************sIndex -priteFlip();
-        case 23:
-            return new Svar 4.se  prev =       :;
-v method   case 24:
-            return new SpriteAliased();
-        case 25:
-            return new Anima10 R*****ITE1 = 0;
-var TAG_SPRITE2 = 1;
-var TAG_SPRITE3 = 2;
-var TAG_SPRITE4 = 3;
-varbatch, cc.Rect 1, "Child order failed");
-            ////----UXLog("desce
-var sceneIdx = -1;
-var MAX_LAYER = 48;
-
-var nextSpriteTestAction = function () {
-    sceneI.width / 5) * 1, (winSize.height / 3) * 1));
-        sprite2.setPosition(cc.ccpgraSize.width #744";
-    },
-    subtitle:function () {
-        return "Should not crash";
-    }
-bluepriteBatchNodeChildentation files ****** aatch, cc "012 c".width / 5) * 4, (winSize.hnimriteTe = []priteBatchNode:str = "********Testhis.(
-vari = 1; i < 15; i++*************}
-
-e766 =c) 2010-2012 co" + (  _ba0 ? ("0e2:ni) :e3:n+ "s2d-x-----------     pref
-            ////----UXLog("children %x - atlasIndex:%d", child, curretr-----------------var Sprit.push(     ------------(prev-----------
-var------(winSbatch, cc    cases._batchNo----TE5);
-        batAdd an-----------to---- .RectMa #744";
-  batch, cc.Rect*******batch, cc.Rect
-var batch, ccs._sph, cc,--------e766
-//
-//---------------------------------------- });-----------------------
-var SpriteBatchNopriteTestDemo.ed({
-    _batchNode:null,
-    _sprite1:null,
-    _sprit});te2:null,
-    _sprite3:null,
-    ctor:function () {
-        this._batchNode = cc.SpriteBatchNode.create(s_piece, 15);
-        this.addChild(this._batchNode, 1, 0);
-
-        this._sprite1 is.makeSpriteZ(2);
-        this._sprite1.setPosition(cc.PointMake(200, 160));
-
-        this._sprite2 = this.makeSpriteZ(3);
-        this._sprite2.setPosition(cc.PointMake
-    (264, 160));
-
-        this._sprite3 = this.makeSpritorde);
-        this._sprite3.setPosition(cc.PointMake(328, 160));
-
- 4chNode:null,
-    _sprite1:null,
-    orde_prite3        return "SpriteBatchNode: reorder issue #766";
-    },
-    subtitle:function () {
-        return "In 2 seconds 1 sprite will be reordered";
-    },
-    reorderSprite:function (dt) {
-        this.unschedule(this.reorderSprite);
-
-        this._batchNode.reorderChild(this._sprite1, 4);
-    },
-    makeSpriteZ:function (aZ) {
-atchN* 1, (winSize.heigs._b      ba = this.makeSpriteZ(3);
-        this._satchNodeChildren2normal =
-    }
-}).---------yright (tMake(264, * 3, (winSiZ) {
-  ey-------
-//
-// SpriteBatchNodeReor
-        vsue767
-//
-//----orde------------------------------------       return sprite;
-    N;
-
-//-----turn laye------/ 5) * 3, (winSis._bGfunction () {
-      //--------winSize = cc.DirectoB.sharedDirector().getWinSizorde------------------ition(cc.Sequencturn layector:,rectorosts);BE5);
-        batc--------
-
-     = 0; i < child--------------c) 2010------------------------------c) 2010-------------------------wIDC_REn new SpriteHybrid();
-        case 29:
-            reatchNode.chNode.create(s_gho    thi () {
-     te.creatse, copy, modify, merge, publish, disc) 2010------------------run     ---------   // parent
-     ((winSize.width // http://code.google.com/p/cocos2d-iphone/issues/batch, cc.RectpriteFlip();
-        case 23:
-            return new Sdetail?ideFlip();------eddChild(batch, 0, T
-var TAG_Svar Scenis.aprite.cre; i < sChildrenrunThisvar WARE.
- ****************s.creIdx = -1-----------MAX_LAYER = 48---------------laye766 next= cc.Spritopy
- osprite4.setPosition(cc.ccpPositTART = 102;
-
-va00;
-var IDC_BACK = 101;
-replacee.cre(, puBATCH_NODE = 1

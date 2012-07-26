@@ -77,7 +77,8 @@ cc.loadjs = function (filename) {
             cc.Loader.shareLoader().preload([
                 {type:"image", src:"Resources/HelloWorld.png"},
                 {type:"image", src:"Resources/CloseNormal.png"},
-                {type:"image", src:"Resources/CloseSelected.png"}
+                {type:"image", src:"Resources/CloseSelected.png"},
+				{type:"image", src:"Resources/MonsterIdle.png"}
             ]);
         }
     };
@@ -91,4 +92,10 @@ cc.loadjs('../lib/Cocos2d-html5-canvasmenu-min.js');
 
 // User files
 cc.loadjs('Classes/AppDelegate.js');//17
+cc.loadjs('Classes/GameObject.js');
+cc.loadjs('Classes/Player.js');
+cc.loadjs('Classes/Vector.js');
+cc.loadjs('Classes/BoundingBox.js');
+cc.loadjs('Classes/PhysicsHandler.js');
+cc.loadjs('Classes/Level.js');
 cc.loadjs('Helloworld.js');//19

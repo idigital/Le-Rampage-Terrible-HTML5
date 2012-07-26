@@ -23,14 +23,19 @@
  OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
  THE SOFTWARE.
  ****************************************************************************/
-
+ 
 var Helloworld = cc.Layer.extend({
     isMouseDown:false,
     helloImg:null,
     helloLabel:null,
     circle:null,
     sprite:null,
+	lazyLayer:null,
+	canvas:null,
+	player:null,
 
+	m_level:null,
+	
     init:function () {
 
         //////////////////////////////
@@ -68,7 +73,7 @@ var Helloworld = cc.Layer.extend({
         // add the label as a child to this layer
         this.addChild(this.helloLabel, 5);
 
-        var lazyLayer = new cc.LazyLayer();
+        lazyLayer = new cc.LazyLayer();
         this.addChild(lazyLayer);
 
         // add "HelloWorld" splash screen"
@@ -77,21 +82,61 @@ var Helloworld = cc.Layer.extend({
         this.sprite.setPosition(cc.ccp(size.width / 2, size.height / 2));
 
         lazyLayer.addChild(this.sprite, 0);
-
+		
+		level = new Level(lazyLayer);
+		
+		_canvas = document.getElementById("gameCanvas");
+		_canvas.addEventListener("mousedown", Helloworld.HandleClick, false);
+		_canvas.addEventListener("mouseup", Helloworld.HandleRelease, false);
+		_canvas.addEventListener("mousemove", Helloworld.HandleMove, false);
+		
         return true;
     }
-
 });
+
+Helloworld.HandleClick = function(event)
+{
+	var _x = event.x;
+	var _y = event.y;
+	
+	//_x -= _canvas.offsetLeft;
+	_y -= _canvas.height;
+	
+	level.StartDrag(_x, -(_y));
+};
+
+Helloworld.HandleRelease = function(event)
+{
+	var _x = event.x;
+	var _y = event.y;
+	
+	//_x -= _canvas.offsetLeft;
+	_y -= _canvas.height;
+	
+	level.EndDrag(_x, -(_y));
+}
+
+Helloworld.HandleMove = function(event)
+{
+	var _x = event.x;
+	var _y = event.y;
+	
+	//_x -= _canvas.offsetLeft;
+	_y -= _canvas.height;
+	
+	level.UpdateDrag(_x, -(_y));
+}
 
 Helloworld.scene = function () {
     // 'scene' is an autorelease object
     var scene = cc.Scene.create();
-
+	
     // 'layer' is an autorelease object
     var layer = this.node();
     scene.addChild(layer);
     return scene;
 };
+
 // implement the "static node()" method manually
 Helloworld.node = function () {
     var ret = new Helloworld();
@@ -103,6 +148,3 @@ Helloworld.node = function () {
 
     return null;
 };
-
-
-

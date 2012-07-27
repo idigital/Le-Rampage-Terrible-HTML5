@@ -3,11 +3,18 @@ BuildingType = { GreyBuilding : 0,
 				 GlassBuilding : 2
 				}
 
-function Building(layer, physics, x, y, buildingType)
+function Building(layer, physics, x, y, w, h, buildingType)
 {
-	var m_height = 3;
-	var m_blocks = new Array();
-
+	var m_width = w;
+	var m_height = h;
+	var m_blocks = new Array(w);
+	for(i = 0; i < m_blocks.length; i ++)
+	{
+		m_blocks[i] = new Array(h);
+	}
+	
+	cc.SpriteFrameCache.sharedSpriteFrameCache().addSpriteFrame('Resources/blockFrames.png', "blockFrames");
+	
 	for(i = 0; i < m_height; i++)
 	{
 		var _block = new Block(buildingType, BlockType.SolidBlock, x, y + 0, 334, 118 - 1);

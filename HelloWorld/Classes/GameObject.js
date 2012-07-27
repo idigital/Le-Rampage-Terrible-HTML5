@@ -5,7 +5,11 @@ function GameObject()
 	this.m_width = 0;
 	this.m_height = 0;
 	
-	this.m_velocity;
+	this.m_currentVelocity;
+	
+	//Stores the resultant currentVelocity of all physics collisions.
+	this.m_physicsVelocity;
+	
 	this.m_bounds;
 		
 	this.SetDimensions = function(width, height)
@@ -16,7 +20,7 @@ function GameObject()
 	
 	this.GetBounds = function()
 	{
-		//returns bounding box.
+		//Returns bounding box.
 		return this.m_bounds;
 	}
 	

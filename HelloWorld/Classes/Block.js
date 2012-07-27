@@ -24,19 +24,26 @@ function Block(buildingType, blockType, x, y, width, height)
 	this.m_width = width;
 	this.m_height = height;
 	
+	this.m_blockIntegrity = 100;
+	
+	var _spriteFrame = cc.SpriteFrameCache.sharedSpriteFrameCache().spriteFrameByName("blocksFrame");
+	
 	this.m_sprite;
-		
+
 	if(this.m_type == BlockType.BottomBlock)
 	{
-		this.m_sprite = cc.Sprite.create("Resources/building 1 base.png");
+		//this.m_sprite = cc.Sprite.create("Resources/building 1 base.png");
+		this.m_sprite = cc.Sprite.createWithSpriteFrame(_spriteFrame);
 	}
 	else if(this.m_type == BlockType.SolidBlock)
 	{	
-		this.m_sprite = cc.Sprite.create("Resources/building 1 windows.png");
+		//this.m_sprite = cc.Sprite.create("Resources/building 1 windows.png");
+		this.m_sprite = cc.Sprite.createWithSpriteFrame(_spriteFrame);
 	}
 	else if(this.m_type == BlockType.TopBlock)
 	{
-		this.m_sprite = cc.Sprite.create("Resources/building 1 windows.png");
+		//this.m_sprite = cc.Sprite.create("Resources/building 1 windows.png");
+		this.m_sprite = cc.Sprite.createWithSpriteFrame(_spriteFrame);
 	}
 	
 	this.m_sprite.setAnchorPoint(cc.ccp(0, 1));

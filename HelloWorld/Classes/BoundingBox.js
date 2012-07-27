@@ -1,6 +1,5 @@
 function BoundingBox(gameObject, x, y, width, height)
 {
-
 	this.m_parent = gameObject;
 	
 	//Dimensions.

@@ -10,7 +10,8 @@ function Level()
   var m_endY = 0;
   var m_diffX = 0;
   var m_diffY = 0;
-  var m_maxDrag = 30;
+  var m_maxPower = 100;
+  var m_power = 0;
 
   //Objects in the game.
   var m_character;
@@ -31,7 +32,7 @@ function Level()
   var m_aimPos = new Vector(0, 0);
   var m_aimSprite = new Sprite("images/Aim.png", 4, 4);
 
-  m_building = new Building(m_physics, 400, 500, 3, 3, BuildingType.GreyBuilding);
+  m_building = new Building(m_physics, 400, 500, 5, 5, BuildingType.GreyBuilding);
 
   //Side-scrolling variables.
   var m_screenX = 100;
@@ -73,7 +74,10 @@ function Level()
     m_character.Draw(context, m_screenX, m_screenY);
     m_aimSprite.Draw(context, m_aimPos.m_dx, m_aimPos.m_dy,
                      m_screenX, m_screenY);
-  }
+
+    context.fillStyle = "Black";
+    context.fillText("Power: " + m_power, 10, 50);
+}
 
 
   this.MouseClick = function(mouseX, mouseY)
@@ -106,13 +110,6 @@ function Level()
     if(m_dragging == true)
     {
       m_dragging = false;
-      m_endX = mouseX + m_screenX;
-      m_endY = mouseY + m_screenY;
-
-      var _origin = m_character.GetOrigin();
-
-      m_diffX = _origin.m_dx - m_endX;
-      m_diffY = _origin.m_dy - m_endY;
 
       m_character.Jump(m_diffX / 10, m_diffY / 10);
     }
@@ -129,6 +126,23 @@ function Level()
 
       m_diffX = _origin.m_dx - m_endX;
       m_diffY = _origin.m_dy - m_endY;
+
+      //Calculate power and cap at max power.
+      m_power = Math.sqrt((m_diffX * m_diffX) + (m_diffY * m_diffY));
+
+      if(m_power > m_maxPower)
+      {
+        //Get aim angle and cap power at max power.
+        var _radians = Math.atan2(m_diffY, m_diffX);
+        m_power = m_maxPower;
+
+        //Get new x and y values.
+        m_diffX = m_maxPower * Math.cos(_radians);
+        m_diffY = m_maxPower * Math.sin(_radians);
+      }
+
+      //Half power to make jumps less high.
+      m_power /= 2;
 
       m_aimPos.m_dx = _origin.m_dx + m_diffX;
       m_aimPos.m_dy = _origin.m_dy + m_diffY;

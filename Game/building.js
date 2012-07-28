@@ -46,7 +46,9 @@ function Building(physics, x, y, w, h, buildingType)
     {
       for(j = 0; j < m_height; j++)
       {
-        this.sprite.DrawFrame(context, 0, m_blocks[i][j].m_x, m_blocks[i][j].m_y, screenX, screenY);
+        this.sprite.DrawFrame(context, 0,
+                              m_blocks[i][j].m_x, m_blocks[i][j].m_y,
+                              screenX, screenY);
 
         m_blocks[i][j].m_bounds.Draw(context, screenX, screenY);
       }

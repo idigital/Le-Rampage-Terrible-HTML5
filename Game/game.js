@@ -71,9 +71,6 @@ function Game()
     m_level.Update(_dt, mouseX, mouseY, leftClick);
     m_level.Draw(backBufferContext2D);
 
-    backBufferContext2D.fillStyle = "Black";
-    backBufferContext2D.fillText("Sample String", 10, 50);
-
     //Once done drawing, copy the back buffer to the displayed canvas.
     context2D.drawImage(backBuffer, 0, 0);
   };

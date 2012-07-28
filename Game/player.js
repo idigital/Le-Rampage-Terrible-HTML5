@@ -116,7 +116,7 @@ Player.prototype.HandleCollision = function(collision)
     }
     else if(collision.bottom == true)
     {
-      //this.m_currentVelocity.m_dx *= 0.8;
+      //this.m_currentVelocity.m_dx *= 0.2;
       //this.m_currentVelocity.m_dy *= -0.2;
     }
     else
@@ -124,17 +124,15 @@ Player.prototype.HandleCollision = function(collision)
       if(collision.left == true)
       {
         this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
-        //this.sprite.setPosition(_boundsOfObjHit.m_left - this.m_width, this.m_y);
         this.m_currentVelocity.m_dx *= -0.2;
-        this.m_currentVelocity.m_dy *= 0.8;
+        this.m_currentVelocity.m_dy *= 0.2;
       }
 
       if(collision.right == true)
       {
         this.Move(_boundsOfObjHit.m_right, this.m_y);
-        //this.sprite.setPosition(_boundsOfObjHit.m_right, this.m_y);
         this.m_currentVelocity.m_dx *= -0.2;
-        this.m_currentVelocity.m_dy *= 0.8;
+        this.m_currentVelocity.m_dy *= 0.2;
       }
     }
   }
@@ -160,17 +158,15 @@ Player.prototype.HandleCollision = function(collision)
       if(collision.left == true)
       {
         this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
-        //this.sprite.setPosition(_boundsOfObjHit.m_left - this.m_width, this.m_y);
         this.m_currentVelocity.m_dx *= -0.2;
-        this.m_currentVelocity.m_dy *= 0.8;
+        this.m_currentVelocity.m_dy *= 0.2;
       }	
 
       if(collision.right == true)
       {
         this.Move(_boundsOfObjHit.m_right, this.m_y);
-        //this.sprite.setPosition(_boundsOfObjHit.m_right, this.m_y);
         this.m_currentVelocity.m_dx *= -0.2;
-        this.m_currentVelocity.m_dy *= 0.8;
+        this.m_currentVelocity.m_dy *= 0.2;
       }
     }
   }

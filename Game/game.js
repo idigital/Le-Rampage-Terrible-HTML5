@@ -17,14 +17,15 @@ function entryPoint()
 
 function Game()
 {
-  this.m_lastFrame = new Date().getTime();
+  var m_startDate = new Date();
+  var m_lastFrame = m_startDate.getTime();
 
   var canvas;
   var context2D;
   var backBuffer;
   var backBufferContext2D;
 
-  var sprite = new Sprite("images/MonsterIdle.png", 0, 0);
+  var m_level;
 
   this.Initialise = function()
   {
@@ -44,6 +45,8 @@ function Game()
       backBuffer.font = "bold 12px sans-serif";
     }
 
+    m_level = new Level();
+
     canvas.onmousemove = this.MouseMove;
     canvas.onmousedown = this.MouseDown;
     canvas.onmouseup = this.MouseUp;
@@ -56,15 +59,17 @@ function Game()
   this.Draw = function()
   {
     //Caluclate the time since the last frame.
-    var _thisFrame = new Date().getTime();
-    var _dt = (_thisFrame = this.m_lastFrame) / 1000;
-    this.m_lastFrame = _thisFrame;
+    var _date = new Date();
+    var _thisFrame = _date.getTime();
+    var _dt = (_thisFrame - m_lastFrame) / 1000;
+    m_lastFrame = _thisFrame;
 
     //Clear the drawing contexts.
     backBufferContext2D.clearRect(0, 0, backBuffer.width, backBuffer.height);
     context2D.clearRect(0, 0, canvas.width, canvas.height);
 
-    sprite.Draw(backBufferContext2D);
+    m_level.Update(_dt, mouseX, mouseY, leftClick);
+    m_level.Draw(backBufferContext2D);
 
     backBufferContext2D.fillStyle = "Black";
     backBufferContext2D.fillText("Sample String", 10, 50);
@@ -91,8 +96,8 @@ function Game()
       } while (_element = _element.offsetParent);
     }
 
-      mouseX = e.pageX - _offsetX;
-      mouseY = e.pageY - _offsetY;
+    mouseX = e.pageX - _offsetX;
+    mouseY = e.pageY - _offsetY;
   };
 
 

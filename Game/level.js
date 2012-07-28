@@ -33,6 +33,10 @@ function Level()
 
   m_building = new Building(m_physics, 400, 500, 3, 3, BuildingType.GreyBuilding);
 
+  //Side-scrolling variables.
+  var m_screenX = 100;
+  var m_screenY = 100;
+
   this.Update = function(dt, mouseX, mouseY, leftClick)
   {
     //Detect left click when it first occurs and handle event.
@@ -57,14 +61,18 @@ function Level()
     }
 
     m_physics.UpdatePhysics();
+
+    m_screenX = m_character.m_x - 100;
+    m_screenY = m_character.m_y - 400;
   }
 
   this.Draw = function(context)
   {
-    bg.Draw(context, 0, 0);
-    m_building.Draw(context);
-    m_character.Draw(context);
-    m_aimSprite.Draw(context, m_aimPos.m_dx, m_aimPos.m_dy);
+    bg.Draw(context, 0, 0, m_screenX, m_screenY);
+    m_building.Draw(context, m_screenX, m_screenY);
+    m_character.Draw(context, m_screenX, m_screenY);
+    m_aimSprite.Draw(context, m_aimPos.m_dx, m_aimPos.m_dy,
+                     m_screenX, m_screenY);
   }
 
 
@@ -78,11 +86,12 @@ function Level()
 
     var _bounds = m_character.GetBounds();
 
-    if(_bounds.CheckForPointCollision(mouseX, mouseY))
+    if(_bounds.CheckForPointCollision(mouseX + m_screenX,
+                                      mouseY + m_screenY))
     {
       m_dragging = true;
-      m_startX = mouseX;
-      m_startY = mouseY;
+      m_startX = mouseX + m_screenX;
+      m_startY = mouseY + m_screenY;
     } 
   }
 
@@ -97,8 +106,8 @@ function Level()
     if(m_dragging == true)
     {
       m_dragging = false;
-      m_endX = mouseX;
-      m_endY = mouseY;
+      m_endX = mouseX + m_screenX;
+      m_endY = mouseY + m_screenY;
 
       var _origin = m_character.GetOrigin();
 
@@ -113,8 +122,8 @@ function Level()
   {
     if(m_dragging == true)
     {
-      m_endX = mouseX;
-      m_endY = mouseY;
+      m_endX = mouseX + m_screenX;
+      m_endY = mouseY + m_screenY;
 
       var _origin = m_character.GetOrigin();
 

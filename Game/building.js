@@ -40,15 +40,15 @@ function Building(physics, x, y, w, h, buildingType)
     }
   }
 
-  this.Draw = function(context)
+  this.Draw = function(context, screenX, screenY)
   {
     for(i = 0; i < m_width; i++)
     {
       for(j = 0; j < m_height; j++)
       {
-        this.sprite.DrawFrame(context, 0, m_blocks[i][j].m_x, m_blocks[i][j].m_y);
+        this.sprite.DrawFrame(context, 0, m_blocks[i][j].m_x, m_blocks[i][j].m_y, screenX, screenY);
 
-        m_blocks[i][j].m_bounds.Draw(context);
+        m_blocks[i][j].m_bounds.Draw(context, screenX, screenY);
       }
     }
   }

@@ -189,11 +189,12 @@ function BoundingBox(gameObject, x, y, width, height)
     this.m_bottomRight.m_dy = this.m_bottom;
   }
 
-  this.Draw = function(context)
+  this.Draw = function(context, screenX, screenY)
   {
     context.lineWidth = 1;
     context.strokeStyle = 'green';
-    context.strokeRect(this.m_left, this.m_top, this.m_width, this.m_height);
+    context.strokeRect(this.m_left - screenX, this.m_top - screenY,
+                       this.m_width, this.m_height);
   }
 };
 

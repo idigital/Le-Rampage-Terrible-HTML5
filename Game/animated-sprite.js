@@ -30,7 +30,7 @@ function AnimatedSprite(filename, frameWidth, frameHeight, numFrames)
     }
   }
 
-  this.DrawFrame = function(context, frame, x, y)
+  this.DrawFrame = function(context, frame, x, y, screenX, screenY)
   {
     //Check frame is in bounds.
     if(frame >= 0 && frame < this.m_numFrames)
@@ -38,16 +38,16 @@ function AnimatedSprite(filename, frameWidth, frameHeight, numFrames)
       var _offset = this.m_width * frame;
 
       context.drawImage(this.m_image, _offset, 0, this.m_width, this.m_height,
-                        x, y, this.m_width, this.m_height);
+                        x - screenX, y - screenY, this.m_width, this.m_height);
     }
   }
 };
 
-AnimatedSprite.prototype.Draw = function(context, x, y)
+AnimatedSprite.prototype.Draw = function(context, x, y, screenX, screenY)
 {
   var _offset = m_witdh * m_currentFrame;
 
   context.drawImage(this.m_image, _offset, 0, this.m_width, this.m_height,
-                    x, y, this.m_width, this.m_height);
+                    x - screenX, y - screenY, this.m_width, this.m_height);
 };
 

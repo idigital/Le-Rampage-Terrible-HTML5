@@ -9,9 +9,9 @@ function Sprite(filename, width, height)
   this.m_height = height;
 };
 
-Sprite.prototype.Draw = function(context, x, y)
+Sprite.prototype.Draw = function(context, x, y, screenX, screenY)
 {
-  context.drawImage(this.m_image, x, y);
+  context.drawImage(this.m_image, x - screenX, y - screenY);
 };
 
 

@@ -94,11 +94,11 @@ Player.prototype.Move = function(x, y)
   this.m_bounds.Move(this.m_x, this.m_y);
 };
 
-Player.prototype.Draw = function(context)
+Player.prototype.Draw = function(context, screenX, screenY)
 {
-  this.sprite.Draw(context, this.m_x, this.m_y);
+  this.sprite.Draw(context, this.m_x, this.m_y, screenX, screenY);
 
-  this.m_bounds.Draw(context);
+  this.m_bounds.Draw(context, screenX, screenY);
 }
 
 Player.prototype.HandleCollision = function(collision)

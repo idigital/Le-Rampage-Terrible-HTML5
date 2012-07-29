@@ -3,6 +3,7 @@ Player.prototype = new GameObject();
 function Player()
 {
   this.m_currentVelocity = new Vector(0,0);
+  this.m_mass = 1;
 	
   this.m_onGround = false;
   var m_jumping = false;
@@ -15,6 +16,8 @@ function Player()
   this.m_currentState;
 
   this.sprite = new Sprite("images/MonsterIdle.png", 0, 0, 46, 64);
+
+  this.m_type = ObjectType.Player;
  
   this.Update = function(dt)
   {

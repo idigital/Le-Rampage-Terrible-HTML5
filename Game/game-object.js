@@ -1,3 +1,7 @@
+ObjectType = { Player : 7
+
+};
+
 function GameObject()
 {
   this.m_x = 0;
@@ -11,6 +15,8 @@ function GameObject()
   this.m_physicsVelocity;
 
   this.m_bounds;
+
+  this.m_type;
 
   this.SetDimensions = function(width, height)
   {

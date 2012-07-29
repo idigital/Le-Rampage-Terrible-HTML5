@@ -9,8 +9,8 @@ function BoundingBox(gameObject, x, y, width, height)
   //Edges. Stored as single number.
   this.m_top = y;
   this.m_left = x;
-  this.m_right = x + width;
-  this.m_bottom = y + height;
+  this.m_right = x + width - 1;
+  this.m_bottom = y + height - 1;
 	
   //Corners. Stored as Vectors.
   this.m_topLeft = new Vector(this.m_left, this.m_top);
@@ -192,7 +192,7 @@ function BoundingBox(gameObject, x, y, width, height)
   this.Draw = function(context, screenX, screenY)
   {
     context.lineWidth = 1;
-    context.strokeStyle = 'green';
+    context.strokeStyle = 'red';
     context.strokeRect(this.m_left - screenX, this.m_top - screenY,
                        this.m_width, this.m_height);
   }

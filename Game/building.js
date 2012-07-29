@@ -46,7 +46,22 @@ function Building(physics, x, y, w, h, buildingType)
     {
       for(j = 0; j < m_height; j++)
       {
-        this.sprite.DrawFrame(context, 0,
+        var _frame;
+        if(m_blocks[i][j].m_blockIntegrity == 3)
+        {
+          _frame = 0;
+        }
+        else if(m_blocks[i][j].m_blockIntegrity < 3
+                && m_blocks[i][j].m_blockIntegrity >= 1)
+        {
+          _frame = 1;
+        }
+        else if(m_blocks[i][j].m_blockIntegrity < 1)
+        {
+          _frame = 2;
+        }
+
+        this.sprite.DrawFrame(context, _frame,
                               m_blocks[i][j].m_x, m_blocks[i][j].m_y,
                               screenX, screenY);
 

@@ -43,6 +43,22 @@ function Building(physics, x, y, w, h, buildingType)
     }
   }
 
+  this.Update = function(dt)
+  {
+	//Iterate through building array and update blocks if necessary.
+	for(i = 0; i < m_width; i++)
+    {
+      for(j = 0; j < m_height; j++)
+      {
+		if(m_blocks[i][j].m_blockIntegrity <= 0
+			&& j > 0)
+        {
+		  m_blocks[i][j - 1].m_type = BlockType.TopBlock;
+		}
+	  }
+	}
+  };
+  
   this.Draw = function(context, screenX, screenY)
   {
     for(i = 0; i < m_width; i++)

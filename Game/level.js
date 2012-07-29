@@ -69,6 +69,8 @@ function Level()
     }
 
     m_physics.UpdatePhysics();
+	
+	m_building.Update(dt);
 
     m_screenX = m_character.m_x - 100;
     m_screenY = m_character.m_y - 400;

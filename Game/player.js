@@ -163,11 +163,16 @@ Player.prototype.HandleCollision = function(collision)
   {
     if(collision.top == true)
     {
-      this.Move(this.m_x, _boundsOfObjHit.m_top  - this.m_height);
-      this.m_currentVelocity.m_dx = 0;
-      this.m_currentVelocity.m_dy = 0;
+	  collision.m_objHit.m_blockIntegrity -= 1;
+		
+	  if(collision.m_objHit.m_blockIntegrity > 0)
+	  {
+        this.Move(this.m_x, _boundsOfObjHit.m_top  - this.m_height);
+        this.m_currentVelocity.m_dx = 0;
+        this.m_currentVelocity.m_dy = 0;
 
-      this.m_onGround = true;
+        this.m_onGround = true;
+	  }
     }
     else if(collision.bottom == true)
     {
@@ -178,16 +183,34 @@ Player.prototype.HandleCollision = function(collision)
     {
       if(collision.left == true)
       {
-        this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
-        this.m_currentVelocity.m_dx *= -0.2;
-        this.m_currentVelocity.m_dy *= 0.2;
+		//if(collision.m_objHit.m_type == ObjectType.Player)
+		//{
+			//this.m_blockIntegrity -= collision.m_objHit.m_currentVelocity.GetDistance();
+			collision.m_objHit.m_blockIntegrity -= 1;
+		//}
+		
+		if(collision.m_objHit.m_blockIntegrity > 0)
+		{
+			this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
+			this.m_currentVelocity.m_dx *= -0.2;
+			this.m_currentVelocity.m_dy *= 0.2;
+		}
       }	
 
       if(collision.right == true)
       {
-        this.Move(_boundsOfObjHit.m_right, this.m_y);
-        this.m_currentVelocity.m_dx *= -0.2;
-        this.m_currentVelocity.m_dy *= 0.2;
+	  	//if(collision.m_objHit.m_type == ObjectType.Player)
+		//{
+			//this.m_blockIntegrity -= collision.m_objHit.m_currentVelocity.GetDistance();
+			collision.m_objHit.m_blockIntegrity -= 1;
+		//}
+		
+		if(collision.m_objHit.m_blockIntegrity > 0)
+		{
+			this.Move(_boundsOfObjHit.m_right, this.m_y);
+			this.m_currentVelocity.m_dx *= -0.2;
+			this.m_currentVelocity.m_dy *= 0.2;
+		}
       }
     }
   }

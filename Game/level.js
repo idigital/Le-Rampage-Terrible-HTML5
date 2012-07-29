@@ -28,7 +28,7 @@ function Level()
   m_character.Move(100, 400);
 
   var bg = new Sprite("images/Background.png", 800, 600);
-
+  
   var m_aimPos = new Vector(0, 0);
   var m_aimSprite = new Sprite("images/Aim.png", 4, 4);
 
@@ -37,9 +37,15 @@ function Level()
   //Side-scrolling variables.
   var m_screenX = 100;
   var m_screenY = 100;
+  
+  //Scoring variables.
+  var m_timeElapsed = 0;
+  var m_damageScore = 0;
 
   this.Update = function(dt, mouseX, mouseY, leftClick)
   {
+	m_timeElapsed += dt;
+	
     //Detect left click when it first occurs and handle event.
     if(leftClick == true && m_leftClickRegistered == false)
       this.MouseClick(mouseX, mouseY);
@@ -59,6 +65,7 @@ function Level()
       var _charOrigin = m_character.GetOrigin();
       m_aimPos.m_dx = _charOrigin.m_dx - 2;
       m_aimPos.m_dy = _charOrigin.m_dy - 2;
+	  m_power = 0;
     }
 
     m_physics.UpdatePhysics();
@@ -77,6 +84,7 @@ function Level()
 
     context.fillStyle = "Black";
     context.fillText("Power: " + m_power, 10, 50);
+	context.fillText("Time Score:: " + m_timeElapsed.toFixed(2), 10, 70);
 }
 
 

@@ -15,7 +15,10 @@ function Building(physics, x, y, w, h, buildingType)
     m_blocks[i] = new Array(h);
   }
 
-  this.sprite = new AnimatedSprite("images/blockFrames.png", 64, 64, 3);
+  //this.sprite = new AnimatedSprite("images/blockFrames.png", 64, 64, 3);
+  //this.sprite = new AnimatedSprite("images/damage.png", 213, 128, 1);
+  //this.sprite = new AnimatedSprite("images/building-blocks.png", 320, 128, 4);
+  this.sprite = new AnimatedSprite("images/damageExample.png", 240, 144, 2);
 
   for(i = 0; i < m_width; i++)
   {
@@ -26,12 +29,12 @@ function Building(physics, x, y, w, h, buildingType)
       if(j != m_height - 1)
       {
         _block = new Block(buildingType, BlockType.SolidBlock,
-                           x + (i * 64), y - ((j + 1) * 64), 64, 64);
+                           x + (i * 240), y - ((j + 1) * 144), 240, 144);
       }
       else
       {
         _block = new Block(buildingType, BlockType.TopBlock,
-                           x + (i * 64), y - ((j + 1) * 64), 64, 64);
+                           x + (i * 240), y - ((j + 1) * 144), 240, 144);
       }
 
       _block.EnablePhysics(physics);
@@ -47,11 +50,11 @@ function Building(physics, x, y, w, h, buildingType)
       for(j = 0; j < m_height; j++)
       {
         var _frame;
-        if(m_blocks[i][j].m_blockIntegrity == 3)
+        if(m_blocks[i][j].m_blockIntegrity == 2)
         {
           _frame = 0;
         }
-        else if(m_blocks[i][j].m_blockIntegrity < 3
+        else if(m_blocks[i][j].m_blockIntegrity < 2
                 && m_blocks[i][j].m_blockIntegrity >= 1)
         {
           _frame = 1;

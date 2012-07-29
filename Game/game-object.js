@@ -17,6 +17,9 @@ function GameObject()
   this.m_bounds;
 
   this.m_type;
+  
+  //Array to store collisions each physics update.
+  this.m_collisions = new Array();
 
   this.SetDimensions = function(width, height)
   {
@@ -41,6 +44,11 @@ function GameObject()
     return new Vector(this.m_x + (this.m_width/2),
     this.m_y + (this.m_height/2));
   }
+  
+  this.AddCollision = function(collision)
+  {
+	this.m_collisions.push(collision);
+  }
 
   return this;
 };
@@ -61,3 +69,9 @@ GameObject.prototype.HandleCollision = function(collision)
 {
 
 };
+
+GameObject.prototype.UpdatePhysics = function()
+{
+
+};
+

@@ -34,14 +34,22 @@ function PhysicsHandler()
         {
           //Get collision details and pass it first object to handle.
           var _collisionDetails = _obj1.GetCollisionDetails(_obj2);
-          _obj1.m_parent.HandleCollision(_collisionDetails);
+		  
+		  _obj1.m_parent.AddCollision(_collisionDetails);
+		  
+          //_obj1.m_parent.HandleCollision(_collisionDetails);
 
           //Invert collision details and pass to other object.
-          var _collisionInvert = _collisionDetails.Invert(_obj1);
-          _obj2.m_parent.HandleCollision(_collisionInvert);
+          //var _collisionInvert = _collisionDetails.Invert(_obj1);
+          //_obj2.m_parent.HandleCollision(_collisionInvert);
         }
       }
     }
+	
+	for(i = 0; i < m_objects.length; i++)
+    {
+		m_objects[i].m_parent.UpdatePhysics();
+	}
   }
 };
 

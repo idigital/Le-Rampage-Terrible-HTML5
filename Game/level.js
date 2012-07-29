@@ -23,7 +23,7 @@ function Level()
   var m_physics = new PhysicsHandler();
 
   m_character = new Player();
-  m_character.SetDimensions(46, 64);
+  m_character.SetDimensions(92, 128);
   m_character.EnablePhysics(m_physics);
   m_character.Move(100, 400);
 
@@ -32,7 +32,7 @@ function Level()
   var m_aimPos = new Vector(0, 0);
   var m_aimSprite = new Sprite("images/Aim.png", 4, 4);
 
-  m_building = new Building(m_physics, 400, 500, 5, 5, BuildingType.GreyBuilding);
+  m_building = new Building(m_physics, 400, 500, 10, 10, BuildingType.GreyBuilding);
 
   //Side-scrolling variables.
   var m_screenX = 100;
@@ -85,6 +85,7 @@ function Level()
     context.fillStyle = "Black";
     context.fillText("Power: " + m_power, 10, 50);
 	context.fillText("Time Score:: " + m_timeElapsed.toFixed(2), 10, 70);
+	context.fillText("Damage Score:: " + m_damageScore, 10, 90);
 }
 
 

@@ -15,7 +15,7 @@ function Player()
 
   this.m_currentState;
 
-  this.sprite = new Sprite("images/MonsterIdle.png", 0, 0, 46, 64);
+  this.sprite = new Sprite("images/MonsterIdle2.png", 0, 0, 82, 128);
 
   this.m_type = ObjectType.Player;
  
@@ -218,4 +218,14 @@ this.m_onGround = false;
 this.m_currentVelocity.m_dx = 0.0;
 this.m_currentVelocity.m_dy = 0.0;
 }*/
+};
+
+Player.prototype.UpdatePhysics = function()
+{
+	for(i = 0; i < this.m_collisions.length; i++)
+	{
+		this.HandleCollision(this.m_collisions[i]);
+	}
+	
+	this.m_collisions = [];
 };

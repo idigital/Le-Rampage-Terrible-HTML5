@@ -26,13 +26,3 @@ function Block(buildingType, blockType, x, y, width, height)
 
   this.m_blockIntegrity = 2;
 };
-
-Block.prototype.HandleCollision = function(collision)
-{
-  //if(collision.m_objHit.m_type == ObjectType.Player)
-  //{
-    //this.m_blockIntegrity -= collision.m_objHit.m_currentVelocity.GetDistance();
-  //  this.m_blockIntegrity -= 1;
-  //}
-};
-

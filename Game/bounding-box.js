@@ -1,7 +1,10 @@
 function BoundingBox(gameObject, x, y, width, height)
 {
   this.m_parent = gameObject;
-	
+
+  this.m_parentBounds;
+  this.m_childBounds = null;
+
   //Dimensions.
   this.m_width = width;
   this.m_height = height;

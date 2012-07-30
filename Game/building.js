@@ -5,6 +5,16 @@ BuildingType = { GreyBuilding : 0,
 
 function Building(physics, x, y, w, h, buildingType)
 {
+  //Holds the building's overall bounding box in order to make collision
+  //detection more efficient.
+  var m_bounds;
+
+  var m_sections;
+
+  //Arrays that hold the wall and floor sections of the building.
+  var m_walls;
+  var m_floors;
+
   var m_width = w;
   var m_height = h;
 

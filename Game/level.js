@@ -1,8 +1,6 @@
 function Level()
 {
   //Dragging variables.
-  var m_leftClickRegistered = false;
-  var m_leftReleaseRegistered = true;
   var m_dragging = false;
   var m_startX = 0;
   var m_startY = 0;
@@ -42,17 +40,19 @@ function Level()
   var m_timeElapsed = 0;
   var m_damageScore = 0;
 
-  this.Update = function(dt, mouseX, mouseY, leftClick)
+  this.Update = function(dt, mouseX, mouseY, leftClick, leftRelease)
   {
-	m_timeElapsed += dt;
+    m_timeElapsed += dt;
 	
-    //Detect left click when it first occurs and handle event.
-    if(leftClick == true && m_leftClickRegistered == false)
+    if(leftClick == true)
+    {
       this.MouseClick(mouseX, mouseY);
+    }
 
-    //Detect left click release.
-    if(leftClick == false && m_leftReleaseRegistered == false)
+    if(leftRelease == true)
+    {
       this.MouseRelease(mouseX, mouseY);
+    }
 
     //Respond to mouse movement.
     this.MouseMove(mouseX, mouseY);
@@ -70,7 +70,7 @@ function Level()
 
     m_physics.UpdatePhysics();
 	
-	m_building.Update(dt);
+    m_building.Update(dt);
 
     m_screenX = m_character.m_x - 100;
     m_screenY = m_character.m_y - 400;
@@ -93,12 +93,6 @@ function Level()
 
   this.MouseClick = function(mouseX, mouseY)
   {
-    //Register that this click has been detected and handled.
-    m_leftClickRegistered = true;
-
-    //Prepare to respond to left click release.
-    m_leftReleaseRegistered = false;
-
     var _bounds = m_character.GetBounds();
 
     if(_bounds.CheckForPointCollision(mouseX + m_screenX,
@@ -112,12 +106,6 @@ function Level()
 
   this.MouseRelease = function(mouseX, mouseY)
   {
-    //Register that this release has been detected and handled.
-    m_leftReleaseRegistered = true;
-
-    //Prepare to respond to next left click.
-    m_leftClickRegistered = false;
-
     if(m_dragging == true)
     {
       m_dragging = false;

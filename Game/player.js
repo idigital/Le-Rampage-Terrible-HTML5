@@ -9,13 +9,13 @@ function Player()
   var m_jumping = false;
   var m_crouching = false;
   var m_gravity = 9.8;
-  var m_floorHeight = 500;
+  var m_floorHeight = 600;
   var m_worldWidth = 2000;
   var m_airDrag = 0.99;
 
   this.m_currentState;
 
-  this.sprite = new Sprite("images/MonsterIdle2.png", 0, 0, 82, 128);
+  this.sprite = new Sprite("images/MonsterIdle2.png", 256, 256);
 
   this.m_type = ObjectType.Player;
  
@@ -126,11 +126,7 @@ Player.prototype.HandleCollision = function(collision)
     {
       if(collision.left == true)
       {
-		//if(collision.m_objHit.m_type == ObjectType.Player)
-		//{
-			//this.m_blockIntegrity -= collision.m_objHit.m_currentVelocity.GetDistance();
 			collision.m_objHit.m_blockIntegrity -= 1;
-		//}
 		
 		if(collision.m_objHit.m_blockIntegrity > 0)
 		{
@@ -142,11 +138,7 @@ Player.prototype.HandleCollision = function(collision)
 
       if(collision.right == true)
       {
-	  	//if(collision.m_objHit.m_type == ObjectType.Player)
-		//{
-			//this.m_blockIntegrity -= collision.m_objHit.m_currentVelocity.GetDistance();
 			collision.m_objHit.m_blockIntegrity -= 1;
-		//}
 		
 		if(collision.m_objHit.m_blockIntegrity > 0)
 		{
@@ -183,11 +175,7 @@ Player.prototype.HandleCollision = function(collision)
     {
       if(collision.left == true)
       {
-		//if(collision.m_objHit.m_type == ObjectType.Player)
-		//{
-			//this.m_blockIntegrity -= collision.m_objHit.m_currentVelocity.GetDistance();
 			collision.m_objHit.m_blockIntegrity -= 1;
-		//}
 		
 		if(collision.m_objHit.m_blockIntegrity > 0)
 		{
@@ -199,11 +187,7 @@ Player.prototype.HandleCollision = function(collision)
 
       if(collision.right == true)
       {
-	  	//if(collision.m_objHit.m_type == ObjectType.Player)
-		//{
-			//this.m_blockIntegrity -= collision.m_objHit.m_currentVelocity.GetDistance();
 			collision.m_objHit.m_blockIntegrity -= 1;
-		//}
 		
 		if(collision.m_objHit.m_blockIntegrity > 0)
 		{
@@ -245,10 +229,10 @@ this.m_currentVelocity.m_dy = 0.0;
 
 Player.prototype.UpdatePhysics = function()
 {
-	for(i = 0; i < this.m_collisions.length; i++)
-	{
-		this.HandleCollision(this.m_collisions[i]);
-	}
-	
-	this.m_collisions = [];
+  for(i = 0; i < this.m_collisions.length; i++)
+  {
+    this.HandleCollision(this.m_collisions[i]);
+  }
+
+  this.m_collisions = [];
 };

@@ -21,20 +21,20 @@ function Level()
   var m_physics = new PhysicsHandler();
 
   m_character = new Player();
-  m_character.SetDimensions(92, 128);
+  m_character.SetDimensions(256, 256);
   m_character.EnablePhysics(m_physics);
-  m_character.Move(100, 400);
+  m_character.Move(50, 334);
 
-  var bg = new Sprite("images/Background.png", 800, 600);
+  var bg = new Sprite("images/SkyBackground.png", 800, 600);
   
   var m_aimPos = new Vector(0, 0);
   var m_aimSprite = new Sprite("images/Aim.png", 4, 4);
 
-  m_building = new Building(m_physics, 400, 500, 10, 10, BuildingType.GreyBuilding);
+  m_building = new Building(m_physics, 380, 600 - 384, null);
 
   //Side-scrolling variables.
-  var m_screenX = 100;
-  var m_screenY = 100;
+  var m_screenX = 50;
+  var m_screenY = 50;
   
   //Scoring variables.
   var m_timeElapsed = 0;

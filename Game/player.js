@@ -198,6 +198,16 @@ Player.prototype.HandleCollision = function(collision)
       }
     }
   }
+  
+  if(collision.m_objHit.m_type == ObjectType.Building)
+  {
+	if(collision.left == true)
+    {
+      this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
+	  this.m_currentVelocity.m_dx *= -0.2;
+	  this.m_currentVelocity.m_dy *= 0.2;
+    }
+  }
 	
 /*if(collision.m_objHit.m_type == BlockType.GrabBlock)
 {

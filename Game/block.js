@@ -1,10 +1,10 @@
-BlockType = { SolidBlock : 0,
-              BreakableBlock : 1,
-              TopBlock : 2,
-              BottomBlock : 3,
-              GrabBlock : 4,
-              PassableBlock : 5,
-              PassableBaseBlock : 6
+BlockType = { SolidBlock : "solidBlock",
+              BreakableBlock : "breakableBlock",
+              TopBlock : "topBlock",
+              BottomBlock : "bottomBlock",
+              GrabBlock : "grabBlock",
+              PassableBlock : "passableBlock",
+              PassableBaseBlock : "passableBaseBlock"
             };
 			
 BlockFace = { Top : 0,

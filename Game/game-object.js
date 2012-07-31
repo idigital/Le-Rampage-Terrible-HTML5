@@ -1,5 +1,5 @@
-ObjectType = { Player : 7
-
+ObjectType = { Player : "player",
+				Building : "building"
 };
 
 function GameObject()

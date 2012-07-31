@@ -4,7 +4,9 @@ BlockType = { SolidBlock : "solidBlock",
               BottomBlock : "bottomBlock",
               GrabBlock : "grabBlock",
               PassableBlock : "passableBlock",
-              PassableBaseBlock : "passableBaseBlock"
+              PassableBaseBlock : "passableBaseBlock",
+              WallBlock : "wallBlock",
+              FloorBlock : "floorBlock"
             };
 			
 BlockFace = { Top : 0,

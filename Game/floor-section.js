@@ -17,6 +17,8 @@ function FloorSection(image, x, y)
   //detection more efficient.
   this.m_bounds;
 
+  this.m_type = BlockType.FloorBlock;
+
   //List of the blocks that make up the floor.
   this.m_blocks = new Array();
 

@@ -2,7 +2,7 @@ function BoundingBox(gameObject, x, y, width, height)
 {
   this.m_parent = gameObject;
 
-  this.m_parentBounds;
+  this.m_parentBoundingBox = null;
   this.m_childBounds = null;
 
   //Dimensions.
@@ -12,14 +12,82 @@ function BoundingBox(gameObject, x, y, width, height)
   //Edges. Stored as single number.
   this.m_top = y;
   this.m_left = x;
-  this.m_right = x + width - 1;
-  this.m_bottom = y + height - 1;
+  this.m_right = x + width;
+  this.m_bottom = y + height;
 	
   //Corners. Stored as Vectors.
   this.m_topLeft = new Vector(this.m_left, this.m_top);
   this.m_topRight = new Vector(this.m_right, this.m_top);
   this.m_bottomLeft = new Vector(this.m_left, this.m_bottom);
   this.m_bottomRight = new Vector(this.m_right, this.m_bottom);
+
+  this.AddChildBounds = function(childBounds)
+  {
+    //Create array if not already created.
+    if(this.m_childBounds == null)
+    {
+      this.m_childBounds = new Array();
+    }
+
+    //Check valid child bounds and update own bounds to account for addition.
+    if(childBounds != null)
+    {
+      childBounds.m_parentBoundingBox = this;
+      this.m_childBounds.push(childBounds);
+
+      this.CheckChildBoundsAndUpdateBounds();
+    }
+  }
+
+  this.CheckChildBoundsAndUpdateBounds = function()
+  {
+    //Check bounding box has child bounds. If not then skip.
+    if(this.m_childBounds != null && this.m_childBounds.length > 0)
+    {
+      //Get top, left, right and bottom most point and update own bounds
+      //to cover them.
+
+      //Get initial values from first child bounds.
+      var _mostTop = this.m_childBounds[0].m_top;
+      var _mostLeft = this.m_childBounds[0].m_left;
+      var _mostRight = this.m_childBounds[0].m_right;
+      var _mostBottom = this.m_childBounds[0].m_bottom;
+
+      //Check initial values against other child bounds to get bounds that
+      //include them all.
+      for(i = 1; i < this.m_childBounds.length; i++)
+      {
+        if(this.m_childBounds[i].m_top < _mostTop)
+        {
+          _mostTop = this.m_childBounds[i].m_top;
+        }
+
+        if(this.m_childBounds[i].m_left < _mostLeft)
+        {
+          _mostLeft = this.m_childBounds[i].m_left;
+        }
+
+        if(this.m_childBounds[i].m_right > _mostRight)
+        {
+          _mostRight = this.m_childBounds[i].m_right;
+        }
+
+        if(this.m_childBounds[i].m_bottom > _mostBottom)
+        {
+          _mostBottom = this.m_childBounds[i].m_bottom;
+        }
+      }
+
+      //Set new bounds and update corners.
+      this.m_top = _mostTop;
+      this.m_left = _mostLeft;
+      this.m_right = _mostRight;
+      this.m_bottom = _mostBottom;
+
+      this.UpdateCorners();
+    }
+
+  }
 
   //Returns true if a point falls inside the bounding box.
   this.CheckForPointCollision = function(pointX, pointY)
@@ -182,6 +250,11 @@ function BoundingBox(gameObject, x, y, width, height)
     this.m_right = x + this.m_width;
     this.m_bottom = y + this.m_height;
 
+    this.UpdateCorners();
+  }
+
+  this.UpdateCorners = function()
+  {
     this.m_topLeft.m_dx = this.m_left;
     this.m_topLeft.m_dy = this.m_top;
     this.m_topRight.m_dx = this.m_right;

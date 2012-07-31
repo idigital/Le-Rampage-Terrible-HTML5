@@ -22,8 +22,8 @@ function Level()
 
   m_character = new Player();
   m_character.SetDimensions(256, 256);
-  m_character.EnablePhysics(m_physics);
-  m_character.Move(50, 334);
+  m_character.EnablePhysics(m_physics, false);
+  m_character.Move(0, 334);
 
   var bg = new Sprite("images/SkyBackground.png", 800, 600);
   
@@ -72,8 +72,8 @@ function Level()
 	
     m_building.Update(dt);
 
-    m_screenX = m_character.m_x - 100;
-    m_screenY = m_character.m_y - 400;
+    m_screenX = m_character.m_x - 50;
+    m_screenY = m_character.m_y - 284;
   }
 
   this.Draw = function(context)
@@ -86,8 +86,8 @@ function Level()
 
     context.fillStyle = "Black";
     context.fillText("Power: " + m_power, 10, 50);
-	context.fillText("Time Score:: " + m_timeElapsed.toFixed(2), 10, 70);
-	context.fillText("Damage Score:: " + m_damageScore, 10, 90);
+    context.fillText("Time Score:: " + m_timeElapsed.toFixed(2), 10, 70);
+    context.fillText("Damage Score:: " + m_damageScore, 10, 90);
 }
 
 

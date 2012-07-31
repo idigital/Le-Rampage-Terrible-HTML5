@@ -22,7 +22,7 @@ function Building(physics, x, y, file)
 
   //Holds the building's overall bounding box in order to make collision
   //detection more efficient.
-  var m_bounds;
+  this.m_bounds;
 
   //A 2d array that holds the sections of the building.
   var m_sections;
@@ -57,6 +57,10 @@ function Building(physics, x, y, file)
   else
   {
     //Create generic building.
+    this.m_width = 0;//Building.SECTION_WIDTH + (Building.WALL_WIDTH * 2);
+    this.m_height = 0;//Building.SECTION_HEIGHT;
+
+    this.EnablePhysics(physics, false);
 
     //Set up initial section.
     m_sections = new Array(1);
@@ -65,28 +69,30 @@ function Building(physics, x, y, file)
                                    this.m_backgroundSprite,
                                    this.m_x + Building.WALL_WIDTH, this.m_y);
 
-	//Set up initial walls.
-	m_walls = new Array();
-	var _wall1 = new WallSection(this.m_wallSprite, this.m_x, this.m_y);
-	_wall1.EnablePhysics(physics);
-	m_walls.push(_wall1);
-	var _wall2 = new WallSection(this.m_wallSprite, this.m_x + Building.WALL_WIDTH + Building.SECTION_WIDTH, this.m_y);
-	_wall2.EnablePhysics(physics);
-	m_walls.push(_wall2);
+    m_sections[0][0].EnablePhysics(physics, true);
+    this.m_bounds.AddChildBounds(m_sections[0][0].GetBounds());
+
+    //Set up initial walls.
+    m_walls = new Array();
+    var _wall1 = new WallSection(this.m_wallSprite, this.m_x, this.m_y);
+    _wall1.EnablePhysics(physics, true);
+    this.m_bounds.AddChildBounds(_wall1.GetBounds());
+    m_walls.push(_wall1);
+
+    var _wall2 = new WallSection(this.m_wallSprite,
+                                 this.m_x + Building.WALL_WIDTH
+                                 + Building.SECTION_WIDTH, this.m_y);
+    _wall2.EnablePhysics(physics, true);
+    this.m_bounds.AddChildBounds(_wall2.GetBounds());
+    m_walls.push(_wall2);
 	
-	//Set up initial floor section as ceiling set into initial sections.
-	m_floors = new Array();
-	var _floor = new FloorSection(this.m_floorSprite, this.m_x + Building.WALL_WIDTH, this.m_y);
-	_floor.EnablePhysics(physics);
-	m_floors.push(_floor);
-	
-	this.m_width = Building.SECTION_WIDTH + (Building.WALL_WIDTH * 2);
-	this.m_height = Building.SECTION_HEIGHT;
-	
-	this.EnablePhysics(physics);
-    
-    //
-	
+    //Set up initial floor section as ceiling set into initial sections.
+    m_floors = new Array();
+    var _floor = new FloorSection(this.m_floorSprite,
+                                  this.m_x + Building.WALL_WIDTH, this.m_y);
+    _floor.EnablePhysics(physics, true);
+    this.m_bounds.AddChildBounds(_floor.GetBounds());
+    m_floors.push(_floor);
   }
 
 
@@ -126,15 +132,28 @@ function Building(physics, x, y, file)
       }
     }
 	
-	for(i = 0; i < m_walls.length; i++)
-	{
-	  m_walls[i].Draw(context, screenX, screenY);
-	}
+    for(i = 0; i < m_walls.length; i++)
+    {
+      m_walls[i].Draw(context, screenX, screenY);
+    }
 	
-	for(i = 0; i < m_floors.length; i++)
-	{
-	  m_floors[i].Draw(context, screenX, screenY);
-	}
+    for(i = 0; i < m_floors.length; i++)
+    {
+      m_floors[i].Draw(context, screenX, screenY);
+    }
+    
+    context.lineWidth = 1;
+    context.strokeStyle = 'red';
+    context.strokeRect(this.m_bounds.m_left - screenX,
+                       this.m_bounds.m_top - screenY,
+                       this.m_bounds.m_right - screenX, 
+                       this.m_bounds.m_bottom - screenY);
+    
+    context.fillStyle = "Black";
+    context.fillText("Building Bounds Left:" + this.m_bounds.m_left, 10, 200);
+    context.fillText("Building Bounds Top:" + this.m_bounds.m_top, 10, 220);
+    context.fillText("Building Bounds Right:" + this.m_bounds.m_right, 10, 240);
+    context.fillText("Building Bounds Bottom:" + this.m_bounds.m_bottom, 10, 260);
   }
 };
 

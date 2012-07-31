@@ -1,9 +1,13 @@
+Section.prototype = new GameObject();
+
 function Section(foregroundImage, backgroundImage, x, y)
 {
   this.m_foregroundImage = foregroundImage;
   this.m_backgroundImage = backgroundImage;
   this.m_x = x;
   this.m_y = y;
+
+  this.m_type = BlockType.PassableBlock;
 
   this.Draw = function(context, screenX, screenY)
   {

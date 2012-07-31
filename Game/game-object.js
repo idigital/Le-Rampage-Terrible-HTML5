@@ -33,10 +33,10 @@ function GameObject()
     return this.m_bounds;
   }
 
-  this.EnablePhysics = function(physics)
+  this.EnablePhysics = function(physics, hasParent)
   {
     var self = this;
-    this.m_bounds = physics.CreateBoundingBox(self);
+    this.m_bounds = physics.CreateBoundingBox(self, hasParent);
   }
 
   this.GetOrigin = function()

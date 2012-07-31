@@ -17,6 +17,8 @@ function WallSection(image, x, y)
   //detection more efficient.
   this.m_bounds;
 
+  this.m_type = BlockType.WallBlock;
+
   //List of the blocks that make up the wall.
   this.m_blocks = new Array();
 

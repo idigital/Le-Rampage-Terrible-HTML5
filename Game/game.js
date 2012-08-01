@@ -29,12 +29,7 @@ function Game()
   var backBuffer;
   var backBufferContext2D;
 
-  var m_level;
-
-  var m_editMode = false;
-  var m_editor;
-  var m_editorButton;
-  var m_editorBounds;
+  var m_screenManager = new ScreenManager();
 
   this.Initialise = function()
   {
@@ -53,12 +48,6 @@ function Game()
       backBufferContext2D = backBuffer.getContext('2d');
       backBuffer.font = "bold 12px sans-serif";
     }
-
-    m_level = new Level();
-
-    m_editor = new Editor(m_level);
-    m_editorButton = new Sprite("images/editButton.png", 32, 32);
-    m_editorBounds = new BoundingBox(null, canvasWidth - 32, 0, 32, 32);
 
     canvas.onmousemove = this.MouseMove;
     canvas.onmousedown = this.MouseDown;
@@ -109,37 +98,10 @@ function Game()
       leftReleaseOccured = true;
     }
 
-    if(leftClickOccured == true
-       && m_editorBounds.CheckForPointCollision(mouseX, mouseY))
-    {
-      if(m_editMode == true)
-      {
-        m_editMode = false;
-      }
-      else if(m_editMode == false)
-      {
-        m_editMode = true;
-      }
-
-      leftClickOccured = false;
-    }
-
-    if(m_editMode == true)
-    {
-      m_editor.Update(_dt, mouseX, mouseY,
-                      leftClickOccured, leftReleaseOccured);
-
-      m_editor.Draw(backBufferContext2D);
-    }
-    else
-    {
-      m_level.Update(_dt, mouseX, mouseY,
-                     leftClickOccured, leftReleaseOccured);
-
-      m_level.Draw(backBufferContext2D);
-    }
-
-    m_editorButton.Draw(backBufferContext2D, canvas.width - 32, 0, 0, 0);
+    m_screenManager.Update(_dt, mouseX, mouseY, leftClickOccured,
+                           leftReleaseOccured);
+    
+    m_screenManager.Draw(backBufferContext2D);
 
     //Once done drawing, copy the back buffer to the displayed canvas.
     context2D.drawImage(backBuffer, 0, 0);

@@ -23,18 +23,19 @@ function Level()
   m_character = new Player();
   m_character.SetDimensions(128, 128);
   m_character.EnablePhysics(m_physics, false);
-  m_character.Move(0, 334);
+  m_character.Move(0, 472);
 
   var bg = new Sprite("images/SkyBackground.png", 800, 600);
   
   var m_aimPos = new Vector(0, 0);
   var m_aimSprite = new Sprite("images/Aim.png", 4, 4);
 
-  m_building = new Building(m_physics, 380, 600 - 192, null);// "levels/level1.xml");
+  m_building = new Building(m_physics, 380, 600 - 192);
+  m_building.Load("levels/level1.xml");
 
   //Side-scrolling variables.
-  var m_screenX = 50;
-  var m_screenY = 50;
+  var m_screenX = 0;
+  var m_screenY = 0;
   
   //Scoring variables.
   var m_timeElapsed = 0;
@@ -73,7 +74,7 @@ function Level()
     m_building.Update(dt);
 
     m_screenX = m_character.m_x - 50;
-    m_screenY = m_character.m_y - 284;
+    m_screenY = m_character.m_y - 422;
   }
 
   this.Draw = function(context)

@@ -21,7 +21,7 @@ function Level()
   var m_physics = new PhysicsHandler();
 
   m_character = new Player();
-  m_character.SetDimensions(256, 256);
+  m_character.SetDimensions(128, 128);
   m_character.EnablePhysics(m_physics, false);
   m_character.Move(0, 334);
 
@@ -30,7 +30,7 @@ function Level()
   var m_aimPos = new Vector(0, 0);
   var m_aimSprite = new Sprite("images/Aim.png", 4, 4);
 
-  m_building = new Building(m_physics, 380, 600 - 384, null);
+  m_building = new Building(m_physics, 380, 600 - 192, null);// "levels/level1.xml");
 
   //Side-scrolling variables.
   var m_screenX = 50;

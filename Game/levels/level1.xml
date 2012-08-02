@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<building>
+  <pos>400</pos>
+  <structure width = "2", height = "2">
+    <row>
+	  <section><type>Destructable</type></section>
+	  <section><type>Destructable</type></section>
+	</row>
+	<row>
+	  <section><type>Destructable</type></section>
+	  <section><type>Destructable</type></section>
+	</row>
+  </structure>
+</building>

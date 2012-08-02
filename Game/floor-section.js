@@ -6,8 +6,8 @@ FloorSection.prototype = new GameObject();
 function FloorSection(image, x, y)
 {
   //Constants.
-  FloorSection.FLOOR_WIDTH = 512;
-  FloorSection.FLOOR_HEIGHT = 16;
+  FloorSection.FLOOR_WIDTH = 256;
+  FloorSection.FLOOR_HEIGHT = 8;
 
   this.m_image = image;
   this.m_x = x;

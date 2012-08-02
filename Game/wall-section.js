@@ -6,8 +6,8 @@ WallSection.prototype = new GameObject();
 function WallSection(image, x, y)
 {
   //Constants.
-  WallSection.WALL_WIDTH = 16;
-  WallSection.WALL_HEIGHT = 384;
+  WallSection.WALL_WIDTH = 8;
+  WallSection.WALL_HEIGHT = 192;
 
   this.m_image = image;
   this.m_x = x;

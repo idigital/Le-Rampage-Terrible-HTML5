@@ -12,11 +12,6 @@ function Section(foregroundImage, backgroundImage, x, y)
   this.Draw = function(context, screenX, screenY)
   {
     this.m_foregroundImage.Draw(context, this.m_x, this.m_y, screenX, screenY);
-
-    context.lineWidth = 1;
-    context.strokeStyle = 'red';
-    context.strokeRect(this.m_x - screenX, this.m_y - screenY,
-                       512, 384);
   }
 };
 

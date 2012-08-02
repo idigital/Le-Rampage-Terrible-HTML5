@@ -8,12 +8,12 @@ Building.prototype = new GameObject();
 function Building(physics, x, y, file)
 {
   //Constants.
-  Building.SECTION_WIDTH = 512;
-  Building.SECTION_HEIGHT = 384;
-  Building.WALL_WIDTH = 16;
-  Building.WALL_HEIGHT = 384;
-  Building.FLOOR_WIDTH = 512;
-  Building.FLOOR_HEIGHT = 16;
+  Building.SECTION_WIDTH = 256;
+  Building.SECTION_HEIGHT = 192;
+  Building.WALL_WIDTH = 8;
+  Building.WALL_HEIGHT = 192;
+  Building.FLOOR_WIDTH = 256;
+  Building.FLOOR_HEIGHT = 8;
 
   this.m_x = x;
   this.m_y = y;
@@ -25,11 +25,11 @@ function Building(physics, x, y, file)
   this.m_bounds;
 
   //A 2d array that holds the sections of the building.
-  var m_sections;
+  var m_sections = null;
 
   //Arrays that hold the wall and floor sections of the building.
-  var m_walls;
-  var m_floors;
+  var m_walls = null;
+  var m_floors = null;
 
   //Load the sprites required for the section's foreground, background, the
   //floor sprite and wall sprite.
@@ -46,21 +46,40 @@ function Building(physics, x, y, file)
                                   Building.WALL_WIDTH,
                                   Building.WALL_HEIGHT);
 
+  this.m_width = 0;
+  this.m_height = 0;
+
+  this.EnablePhysics(physics, false);
+  
   //When a building is created check if a file of the building plan has been
   //passed. If so load the building plan. If not create a single block
   //building which can then be developed.
   if(file != null)
   {
     //Load existing building plan.
-    //TO_DO
+	
+	var _xmlhttp;
+	
+	if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      _xmlhttp = new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      _xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+	
+	_xmlhttp.open("GET", file, false);
+	_xmlhttp.send();
+	var _stringDoc = _xmlhttp.response;
+	var _parser = new DOMParser();
+    _xmlDoc = _parser.parseFromString(_stringDoc,'text/xml');
+    //_xmlDoc = _xmlhttp.responseXML;
+	
   }
   else
   {
     //Create generic building.
-    this.m_width = 0;//Building.SECTION_WIDTH + (Building.WALL_WIDTH * 2);
-    this.m_height = 0;//Building.SECTION_HEIGHT;
-
-    this.EnablePhysics(physics, false);
 
     //Set up initial section.
     m_sections = new Array(1);
@@ -115,33 +134,42 @@ function Building(physics, x, y, file)
   
   this.Draw = function(context, screenX, screenY)
   {
-    //Get width of building.
-    var _width = m_sections.length;
+    if(m_sections != null)
+	{
+      //Get width of building.
+      var _width = m_sections.length;
 
-    for(i = 0; i < _width; i++)
-    {
-      //Get height of that column.
-      var _height = m_sections[i].length;
-
-      for(j = 0; j < _height; j++)
+      for(i = 0; i < _width; i++)
       {
-        //Draw if a section in that space.
-        if(m_sections[i][j] != null)
+        //Get height of that column.
+        var _height = m_sections[i].length;
+
+        for(j = 0; j < _height; j++)
         {
-          m_sections[i][j].Draw(context, screenX, screenY);
+          //Draw if a section in that space.
+          if(m_sections[i][j] != null)
+          {
+            m_sections[i][j].Draw(context, screenX, screenY);
+          }
         }
       }
-    }
+	}
 	
-    for(i = 0; i < m_walls.length; i++)
-    {
-      m_walls[i].Draw(context, screenX, screenY);
-    }
+	if(m_walls != null)
+	{
+      for(i = 0; i < m_walls.length; i++)
+      {
+        m_walls[i].Draw(context, screenX, screenY);
+      }
+	}
 	
-    for(i = 0; i < m_floors.length; i++)
-    {
-      m_floors[i].Draw(context, screenX, screenY);
-    }
+	if(m_floors != null)
+	{
+      for(i = 0; i < m_floors.length; i++)
+      {
+        m_floors[i].Draw(context, screenX, screenY);
+      }
+	}
     
     context.lineWidth = 1;
     context.strokeStyle = 'red';
@@ -157,4 +185,3 @@ function Building(physics, x, y, file)
     context.fillText("Building Bounds Bottom:" + this.m_bounds.m_bottom, 10, 260);
   }
 };
-

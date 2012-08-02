@@ -15,7 +15,7 @@ function Player()
 
   this.m_currentState;
 
-  this.sprite = new Sprite("images/MonsterIdle2.png", 256, 256);
+  this.sprite = new Sprite("images/MonsterIdle2.png", 128, 128);
 
   this.m_type = ObjectType.Player;
  

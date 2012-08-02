@@ -1,11 +1,6 @@
 <building>
   <width>3</width>
-  <height>3</height>
-  <row>
-    <section><type>Destructable</type></section>
-	<section><type>Destructable</type></section>
-    <section><type>Destructable</type></section>
-  </row>
+  <height>2</height>
   <row>
 	<section><type>Destructable</type></section>
     <section><type>Destructable</type></section>

@@ -19,7 +19,7 @@ function FloorSection(image, x, y)
   //detection more efficient.
   this.m_bounds;
 
-  this.m_type = BlockType.FloorBlock;
+  this.m_type = ObjectType.Floor;
 
   //List of the blocks that make up the floor.
   this.m_blocks = new Array();
@@ -31,12 +31,15 @@ function FloorSection(image, x, y)
   
   this.Draw = function(context, screenX, screenY)
   {
-    this.m_image.Draw(context, this.m_x, this.m_y, screenX, screenY);
+	if(this.m_blocks[0].m_blockIntegrity > 0)
+	{
+		this.m_image.Draw(context, this.m_x, this.m_y, screenX, screenY);
 
-    context.lineWidth = 1;
-    context.strokeStyle = 'green';
-    context.strokeRect(this.m_x - screenX, this.m_y - screenY,
-                       FloorSection.FLOOR_WIDTH, FloorSection.FLOOR_HEIGHT);
+		context.lineWidth = 1;
+		context.strokeStyle = 'green';
+		context.strokeRect(this.m_x - screenX, this.m_y - screenY,
+						   FloorSection.FLOOR_WIDTH, FloorSection.FLOOR_HEIGHT);
+	}
   }
 };
 

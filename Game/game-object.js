@@ -1,5 +1,8 @@
 ObjectType = { Player : "player",
-               Building : "building"
+               Building : "building",
+			   Wall : "wall",
+			   Floor : "floor",
+			   Section : "section"
 };
 
 function GameObject()

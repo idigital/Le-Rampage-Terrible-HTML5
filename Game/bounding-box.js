@@ -89,7 +89,6 @@ function BoundingBox(gameObject, x, y, width, height)
 
       this.UpdateCorners();
     }
-
   }
 
   //Returns true if a point falls inside the bounding box.
@@ -127,123 +126,151 @@ function BoundingBox(gameObject, x, y, width, height)
   //Returns details about collision between two bounding boxes.
   this.GetCollisionDetails = function(target)
   {
-    var _collisionDetails = new CollisionStructure();
-    _collisionDetails.m_objHit = target.m_parent;
+	//Array to hold collision structures.
+	var _collisions = new Array;
+	
+    if(target.m_childBounds != null && target.m_childBounds.length > 0)
+	{
+		for(child = 0; child < target.m_childBounds.length; child++)
+		{
+			if(this.CheckForCollision(target.m_childBounds[child]) == true)
+			{
+				var _newCollisions = this.GetCollisionDetails(target.m_childBounds[child]);
+			}
+		}
+		
+		if(_newCollisions != null && _newCollisions.length > 0)
+		{
+			for(newCollision = 0; newCollision < _newCollisions.length; newCollision++)
+			{
+				_collisions.push(_newCollisions[newCollision]);
+			}
+		}
+		
+		return _collisions;
+	}
+	else
+	{
+		var _collisionDetails = new CollisionStructure();
+		_collisionDetails.m_objHit = target.m_parent;
 
-    //Check right against left.
-    if( this.m_right > target.m_left
-        && this.m_right < target.m_right
-        && this.m_top > (target.m_top - this.m_height)
-        && this.m_bottom < (target.m_bottom + this.m_height))
-    {
-      _collisionDetails.left = true;
-    }
+		//Check right against left.
+		if( this.m_right > target.m_left
+			&& this.m_right < target.m_right
+			&& this.m_top > (target.m_top - this.m_height)
+			&& this.m_bottom < (target.m_bottom + this.m_height))
+		{
+		  _collisionDetails.left = true;
+		}
 
-    //Check left against right.
-    if( this.m_left < target.m_right
-        && this.m_left > target.m_left
-        && this.m_top > (target.m_top - this.m_height)
-        && this.m_bottom < (target.m_bottom + this.m_height))
-    {
-      _collisionDetails.right = true;
-    }
+		//Check left against right.
+		if( this.m_left < target.m_right
+			&& this.m_left > target.m_left
+			&& this.m_top > (target.m_top - this.m_height)
+			&& this.m_bottom < (target.m_bottom + this.m_height))
+		{
+		  _collisionDetails.right = true;
+		}
 
-    //Check bottom against top.
-    if( this.m_bottom > target.m_top
-        && this.m_bottom < target.m_bottom
-        && this.m_left > (target.m_left - this.m_width)
-        && this.m_right < (target.m_right + this.m_width))
-    {
-      _collisionDetails.top = true;
-    }
+		//Check bottom against top.
+		if( this.m_bottom > target.m_top
+			&& this.m_bottom < target.m_bottom
+			&& this.m_left > (target.m_left - this.m_width)
+			&& this.m_right < (target.m_right + this.m_width))
+		{
+		  _collisionDetails.top = true;
+		}
 
-    //Check top against bottom.
-    if( this.m_top < target.m_bottom
-        && this.m_top > target.m_top
-        && this.m_left > (target.m_left - this.m_width)
-        && this.m_right < (target.m_right + this.m_width))
-    {
-      _collisionDetails.bottom = true;
-    }
+		//Check top against bottom.
+		if( this.m_top < target.m_bottom
+			&& this.m_top > target.m_top
+			&& this.m_left > (target.m_left - this.m_width)
+			&& this.m_right < (target.m_right + this.m_width))
+		{
+		  _collisionDetails.bottom = true;
+		}
 
-    //***************************************************
-    //Check for corner collisions and resolve.
-    //***************************************************
+		//***************************************************
+		//Check for corner collisions and resolve.
+		//***************************************************
 
-    var _dx = 0;
-    var _dy = 0;
+		var _dx = 0;
+		var _dy = 0;
 
-    if(_collisionDetails.left == true && _collisionDetails.top == true)
-    {
-      //Check overlap and determine which is overlapped more.
-      _dx = this.m_right - target.m_left;
-      _dy = this.m_bottom - target.m_top;
+		if(_collisionDetails.left == true && _collisionDetails.top == true)
+		{
+		  //Check overlap and determine which is overlapped more.
+		  _dx = this.m_right - target.m_left;
+		  _dy = this.m_bottom - target.m_top;
 
-      if(_dx >= _dy)
-      {
-        //Hits more of top side. Set left to false.
-        _collisionDetails.left = false;
-      }
-      else if (_dy > _dx)
-      {
-        //Hits more of left side. Set top to false.
-        _collisionDetails.top = false;
-      }
-    }
-    else if(_collisionDetails.right == true && _collisionDetails.top == true)
-    {
-      //Check overlap and determine which is overlapped more.
-      _dx = target.m_right - this.m_left;
-      _dy = this.m_bottom - target.m_top;
+		  if(_dx >= _dy)
+		  {
+			//Hits more of top side. Set left to false.
+			_collisionDetails.left = false;
+		  }
+		  else if (_dy > _dx)
+		  {
+			//Hits more of left side. Set top to false.
+			_collisionDetails.top = false;
+		  }
+		}
+		else if(_collisionDetails.right == true && _collisionDetails.top == true)
+		{
+		  //Check overlap and determine which is overlapped more.
+		  _dx = target.m_right - this.m_left;
+		  _dy = this.m_bottom - target.m_top;
 
-      if(_dx >= _dy)
-      {
-        //Hits more of top side. Set right to false.
-        _collisionDetails.right = false;
-      }
-      else if (_dy > _dx)
-      {
-        //Hits more of right side. Set top to false.
-        _collisionDetails.top = false;
-      }
-    }
+		  if(_dx >= _dy)
+		  {
+			//Hits more of top side. Set right to false.
+			_collisionDetails.right = false;
+		  }
+		  else if (_dy > _dx)
+		  {
+			//Hits more of right side. Set top to false.
+			_collisionDetails.top = false;
+		  }
+		}
 
-    if(_collisionDetails.left == true && _collisionDetails.bottom == true)
-    {
-      //Check overlap and determine which is overlapped more.
-      _dx = this.m_right - target.m_left;
-      _dy = target.m_bottom - this.m_top;
+		if(_collisionDetails.left == true && _collisionDetails.bottom == true)
+		{
+		  //Check overlap and determine which is overlapped more.
+		  _dx = this.m_right - target.m_left;
+		  _dy = target.m_bottom - this.m_top;
 
-      if(_dx >= _dy)
-      {
-        //Hits more of bottom side. Set left to false.
-        _collisionDetails.left = false;
-      }
-      else if (_dy > _dx)
-      {
-        //Hits more of left side. Set bottom to false.
-        _collisionDetails.bottom = false;
-      }								 
-    }
-    else if(_collisionDetails.right == true && _collisionDetails.bottom == true)
-    {
-      //Check overlap and determine which is overlapped more.
-      _dx = target.m_right - this.m_left;
-      _dy = target.m_bottom - this.m_top;
+		  if(_dx >= _dy)
+		  {
+			//Hits more of bottom side. Set left to false.
+			_collisionDetails.left = false;
+		  }
+		  else if (_dy > _dx)
+		  {
+			//Hits more of left side. Set bottom to false.
+			_collisionDetails.bottom = false;
+		  }								 
+		}
+		else if(_collisionDetails.right == true && _collisionDetails.bottom == true)
+		{
+		  //Check overlap and determine which is overlapped more.
+		  _dx = target.m_right - this.m_left;
+		  _dy = target.m_bottom - this.m_top;
 
-      if(_dx >= _dy)
-      {
-        //Hits more of bottom side. Set right to false.
-        _collisionDetails.right = false;
-      }
-      else if (_dy > _dx)
-      {
-        //Hits more of right side. Set bottom to false.
-        _collisionDetails.bottom = false;
-      }
-    }
+		  if(_dx >= _dy)
+		  {
+			//Hits more of bottom side. Set right to false.
+			_collisionDetails.right = false;
+		  }
+		  else if (_dy > _dx)
+		  {
+			//Hits more of right side. Set bottom to false.
+			_collisionDetails.bottom = false;
+		  }
+		}
+		
+		_collisions.push(_collisionDetails);
+	}
 
-    return _collisionDetails;
+    return _collisions;
   }
 
   this.Move = function(x, y)

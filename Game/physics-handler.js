@@ -27,8 +27,15 @@ function PhysicsHandler()
   //other bounding box.
   this.UpdatePhysics = function()
   {
+    //Array to be passed to embedded bounding boxes to return all collisions
+	//that occur within embedded bounding boxes.
+    var _collisionDetails = new Array()
+	
     for(i = 0; i < m_objects.length; i++)
     {
+      //Clear array ready for next object.
+      _collisionDetails = [];
+      
       //Compare current bounds agains all other bounds left in array.
       for(j = i + 1; j < m_objects.length; j++)
       {
@@ -39,10 +46,16 @@ function PhysicsHandler()
         if(_obj1.CheckForCollision(_obj2) == true)
         {
           //Get collision details and pass it first object to handle.
-          var _collisionDetails = _obj1.GetCollisionDetails(_obj2);
+          _collisionDetails = _obj1.GetCollisionDetails(_obj2);
 		  
-          _obj1.m_parent.AddCollision(_collisionDetails);
-		  
+		  if(_collisionDetails.length > 0)
+		  {
+		    for(collision = 0; collision < _collisionDetails.length; collision++)
+			{
+			  _obj1.m_parent.AddCollision(_collisionDetails[collision]);
+			}
+		  }
+
           //_obj1.m_parent.HandleCollision(_collisionDetails);
 
           //Invert collision details and pass to other object.

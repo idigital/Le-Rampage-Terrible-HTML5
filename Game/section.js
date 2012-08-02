@@ -7,7 +7,7 @@ function Section(foregroundImage, backgroundImage, x, y)
   this.m_x = x;
   this.m_y = y;
 
-  this.m_type = BlockType.PassableBlock;
+  this.m_type = ObjectType.Section;
 
   this.Draw = function(context, screenX, screenY)
   {

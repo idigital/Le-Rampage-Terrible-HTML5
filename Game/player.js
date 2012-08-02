@@ -110,25 +110,13 @@ Player.prototype.HandleCollision = function(collision)
   var _boundsOfObjHit = collision.m_objHit.GetBounds();
 
   //If the block is a solid block or bottom block then bounce of the side.
-  if(collision.m_objHit.m_type == BlockType.SolidBlock
-    || collision.m_objHit.m_type == BlockType.BottomBlock)
+  if(collision.m_objHit.m_type == ObjectType.Wall)
   {
-    if(collision.top == true)
-    {
-
-    }
-    else if(collision.bottom == true)
-    {
-      //this.m_currentVelocity.m_dx *= 0.2;
-      //this.m_currentVelocity.m_dy *= -0.2;
-    }
-    else
-    {
       if(collision.left == true)
       {
-			collision.m_objHit.m_blockIntegrity -= 1;
+		collision.m_objHit.m_blocks[0].m_blockIntegrity -= 1;
 		
-		if(collision.m_objHit.m_blockIntegrity > 0)
+		if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
 		{
 			this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
 			this.m_currentVelocity.m_dx *= -0.2;
@@ -138,26 +126,25 @@ Player.prototype.HandleCollision = function(collision)
 
       if(collision.right == true)
       {
-			collision.m_objHit.m_blockIntegrity -= 1;
+		collision.m_objHit.m_blocks[0].m_blockIntegrity -= 1;
 		
-		if(collision.m_objHit.m_blockIntegrity > 0)
+		if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
 		{
 			this.Move(_boundsOfObjHit.m_right, this.m_y);
 			this.m_currentVelocity.m_dx *= -0.2;
 			this.m_currentVelocity.m_dy *= 0.2;
 		}
       }
-    }
   }
 
   //If hit top
-  if(collision.m_objHit.m_type == BlockType.TopBlock)
+  if(collision.m_objHit.m_type == ObjectType.Floor)
   {
     if(collision.top == true)
     {
-	  collision.m_objHit.m_blockIntegrity -= 1;
+	  collision.m_objHit.m_blocks[0].m_blockIntegrity -= 1;
 		
-	  if(collision.m_objHit.m_blockIntegrity > 0)
+	  if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
 	  {
         this.Move(this.m_x, _boundsOfObjHit.m_top  - this.m_height);
         this.m_currentVelocity.m_dx = 0;
@@ -171,42 +158,21 @@ Player.prototype.HandleCollision = function(collision)
       //this.m_currentVelocity.m_x *= 0.8;
       //this.m_currentVelocity.m_y *= -0.2;
     }
-    else
-    {
-      if(collision.left == true)
-      {
-			collision.m_objHit.m_blockIntegrity -= 1;
-		
-		if(collision.m_objHit.m_blockIntegrity > 0)
-		{
-			this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
-			this.m_currentVelocity.m_dx *= -0.2;
-			this.m_currentVelocity.m_dy *= 0.2;
-		}
-      }	
-
-      if(collision.right == true)
-      {
-			collision.m_objHit.m_blockIntegrity -= 1;
-		
-		if(collision.m_objHit.m_blockIntegrity > 0)
-		{
-			this.Move(_boundsOfObjHit.m_right, this.m_y);
-			this.m_currentVelocity.m_dx *= -0.2;
-			this.m_currentVelocity.m_dy *= 0.2;
-		}
-      }
-    }
+  }
+  
+  if(collision.m_objHit.m_type == ObjectType.Section)
+  {
+  
   }
   
   if(collision.m_objHit.m_type == ObjectType.Building)
   {
-	if(collision.left == true)
+	/*if(collision.left == true)
     {
       this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
 	  this.m_currentVelocity.m_dx *= -0.2;
 	  this.m_currentVelocity.m_dy *= 0.2;
-    }
+    }*/
   }
 	
 /*if(collision.m_objHit.m_type == BlockType.GrabBlock)

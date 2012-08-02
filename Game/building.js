@@ -67,7 +67,8 @@ function Building(physics, x, y, file)
     m_sections[0] = new Array(1);
     m_sections[0][0] = new Section(this.m_foregroundSprite,
                                    this.m_backgroundSprite,
-                                   this.m_x + Building.WALL_WIDTH, this.m_y);
+                                   this.m_x + Building.WALL_WIDTH, this.m_y,
+								   Building.SECTION_WIDTH, Building.SECTION_HEIGHT);
 
     m_sections[0][0].EnablePhysics(physics, true);
     this.m_bounds.AddChildBounds(m_sections[0][0].GetBounds());
@@ -146,8 +147,8 @@ function Building(physics, x, y, file)
     context.strokeStyle = 'red';
     context.strokeRect(this.m_bounds.m_left - screenX,
                        this.m_bounds.m_top - screenY,
-                       this.m_bounds.m_right - screenX, 
-                       this.m_bounds.m_bottom - screenY);
+                       this.m_bounds.m_width,
+                       this.m_bounds.m_height);
     
     context.fillStyle = "Black";
     context.fillText("Building Bounds Left:" + this.m_bounds.m_left, 10, 200);

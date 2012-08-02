@@ -83,6 +83,9 @@ function BoundingBox(gameObject, x, y, width, height)
       this.m_left = _mostLeft;
       this.m_right = _mostRight;
       this.m_bottom = _mostBottom;
+	  
+	  this.m_width = this.m_right - this.m_left;
+	  this.m_height = this.m_bottom - this.m_top;
 
       this.UpdateCorners();
     }

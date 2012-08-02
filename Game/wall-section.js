@@ -12,6 +12,8 @@ function WallSection(image, x, y)
   this.m_image = image;
   this.m_x = x;
   this.m_y = y;
+  this.m_width = WallSection.WALL_WIDTH;
+  this.m_height = WallSection.WALL_HEIGHT;
 
   //Holds the walls's overall bounding box in order to make collision
   //detection more efficient.

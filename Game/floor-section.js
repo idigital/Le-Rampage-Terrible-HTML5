@@ -12,6 +12,8 @@ function FloorSection(image, x, y)
   this.m_image = image;
   this.m_x = x;
   this.m_y = y;
+  this.m_width = FloorSection.FLOOR_WIDTH;
+  this.m_height = FloorSection.FLOOR_HEIGHT;
 
   //Holds the floor's overall bounding box in order to make collision
   //detection more efficient.

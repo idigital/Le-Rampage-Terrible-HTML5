@@ -5,6 +5,8 @@ function MapScreen()
   this.m_type = ScreenType.MapScreen;
 
   this.m_image = new Sprite("images/screens/MapScreen.png", 900, 600);
+  
+  this.m_cityBounds = new BoundingBox(null, 110, 300, 90, 100);
 };
 
 MapScreen.prototype.Update = function(dt, mouseX, mouseY,
@@ -12,7 +14,11 @@ MapScreen.prototype.Update = function(dt, mouseX, mouseY,
 {
   if(leftClickOccurred == true)
   {
-    return ScreenType.GameScreen;
+	//Check for click on city.
+	if(this.m_cityBounds.CheckForPointCollision(mouseX, mouseY) == true)
+	{
+		return ScreenType.GameScreen;
+	}
   }
 
   return null;

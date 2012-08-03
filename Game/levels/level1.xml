@@ -1,14 +1,39 @@
 <building>
-  <width>3</width>
-  <height>2</height>
+  <width>5</width>
+  <height>5</height>
   <row>
 	<section><type>Destructable</type></section>
     <section><type>Destructable</type></section>
+    <section><type>Destructable</type></section>
+	<section><type>Destructable</type></section>
     <section><type>Destructable</type></section>
   </row>
   <row>
 	<section><type>Destructable</type></section>
     <section><type>Destructable</type></section>
+    <section><type>Destructable</type></section>
+	<section><type>Destructable</type></section>
+    <section><type>Destructable</type></section>
+  </row>
+  <row>
+	<section><type>Destructable</type></section>
+    <section><type>Destructable</type></section>
+    <section><type>Destructable</type></section>
+	<section><type>Destructable</type></section>
+    <section><type>Destructable</type></section>
+  </row>
+  <row>
+	<section><type>Destructable</type></section>
+    <section><type>Destructable</type></section>
+    <section><type>Destructable</type></section>
+	<section><type>Destructable</type></section>
+    <section><type>Destructable</type></section>
+  </row>
+  <row>
+	<section><type>Destructable</type></section>
+    <section><type>Destructable</type></section>
+    <section><type>Destructable</type></section>
+	<section><type>Destructable</type></section>
     <section><type>Destructable</type></section>
   </row>
 </building>

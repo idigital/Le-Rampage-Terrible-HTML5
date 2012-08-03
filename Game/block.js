@@ -26,5 +26,5 @@ function Block(buildingType, blockType, x, y, width, height)
   this.m_width = width;
   this.m_height = height;
 
-  this.m_blockIntegrity = 2;
+  this.m_blockIntegrity = 0;
 };

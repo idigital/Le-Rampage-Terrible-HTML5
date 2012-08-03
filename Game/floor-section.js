@@ -8,6 +8,7 @@ function FloorSection(image, x, y)
   //Constants.
   FloorSection.FLOOR_WIDTH = 256;
   FloorSection.FLOOR_HEIGHT = 8;
+  FloorSection.STARTING_HEALTH = 2;
 
   this.m_image = image;
   this.m_x = x;
@@ -26,6 +27,8 @@ function FloorSection(image, x, y)
 
   var _block = new Block(this, this.m_x, this.m_y, FloorSection.FLOOR_WIDTH,
 						 FloorSection.FLOOR_HEIGHT);
+						 
+  _block.m_blockIntegrity = FloorSection.STARTING_HEALTH;
   
   this.m_blocks.push(_block);
   
@@ -39,7 +42,10 @@ function FloorSection(image, x, y)
 		context.strokeStyle = 'green';
 		context.strokeRect(this.m_x - screenX, this.m_y - screenY,
 						   FloorSection.FLOOR_WIDTH, FloorSection.FLOOR_HEIGHT);
-	}
+						   
+		context.fillStyle = 'green';
+		context.fillText(this.m_blocks[0].m_blockIntegrity, this.m_x - screenX, this.m_y - screenY);
+   	}
   }
 };
 

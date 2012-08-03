@@ -8,6 +8,7 @@ function WallSection(image, x, y)
   //Constants.
   WallSection.WALL_WIDTH = 8;
   WallSection.WALL_HEIGHT = 192;
+  WallSection.STARTING_HEALTH = 1;
 
   this.m_image = image;
   this.m_x = x;
@@ -26,6 +27,8 @@ function WallSection(image, x, y)
 
   var _block = new Block(this, this.m_x, this.m_y, WallSection.WALL_WIDTH,
 						 WallSection.WALL_HEIGHT);
+						 
+  _block.m_blockIntegrity = WallSection.STARTING_HEALTH;
   
   this.m_blocks.push(_block);
 
@@ -39,6 +42,9 @@ function WallSection(image, x, y)
 		context.strokeStyle = 'green';
 		context.strokeRect(this.m_x - screenX, this.m_y - screenY,
 						   WallSection.WALL_WIDTH, WallSection.WALL_HEIGHT);
+						   
+		context.fillStyle = 'green';
+		context.fillText(this.m_blocks[0].m_blockIntegrity, this.m_x - screenX, this.m_y - screenY);
 	}
   }
 };

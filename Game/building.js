@@ -36,6 +36,9 @@ function Building(physics, x, y)
   this.m_foregroundSprite = new Sprite("images/sectionForeground.png",
                                        Building.SECTION_WIDTH,
                                        Building.SECTION_HEIGHT);
+  this.m_foregroundSpriteTransparent = new Sprite("images/sectionForegroundTransparent.png",
+												  Building.SECTION_WIDTH,
+												  Building.SECTION_HEIGHT);
   this.m_backgroundSprite = new Sprite("images/sectionBackground.png",
                                        Building.SECTION_WIDTH,
                                        Building.SECTION_HEIGHT);
@@ -103,6 +106,8 @@ function Building(physics, x, y)
 				if(_type == "Destructable")
 				{
 					this.m_sections[column][row] = new Section(this.m_foregroundSprite,
+														this.m_foregroundSpriteTransparent,
+														
 														this.m_backgroundSprite,
 														this.m_x + (column * Building.SECTION_WIDTH) + Building.WALL_WIDTH,
 														this.m_y - (row * Building.SECTION_HEIGHT),

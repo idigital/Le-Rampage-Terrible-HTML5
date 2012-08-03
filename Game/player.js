@@ -3,7 +3,9 @@ Player.prototype = new GameObject();
 function Player()
 {
   this.m_currentVelocity = new Vector(0,0);
-  this.m_mass = 1;
+  this.m_mass = 5;
+  this.m_currentPowerX = 0;
+  this.m_currentPowerY = 0;
 	
   this.m_onGround = false;
   var m_jumping = false;
@@ -73,6 +75,17 @@ function Player()
     {
       this.m_currentVelocity.m_dx = vX;
       this.m_currentVelocity.m_dy = vY;
+	  
+	  this.m_currentPowerX = vX / 3;
+	  if(this.m_currentPowerX < 0)
+	  {
+	    this.m_currentPowerX *= -1;
+	  }
+	  this.m_currentPowerY = vY / 3;
+	  if(this.m_currentPowerY < 0)
+	  {
+	    this.m_currentPowerY *= -1;
+	  }
 
       m_jumping = true;
       m_crouching = false;
@@ -102,6 +115,10 @@ Player.prototype.Draw = function(context, screenX, screenY)
   this.sprite.Draw(context, this.m_x, this.m_y, screenX, screenY);
 
   this.m_bounds.Draw(context, screenX, screenY);
+  
+  context.fillStyle = "Black";
+  context.fillText("PowerX: " + this.m_currentPowerX, 510, 50);
+  context.fillText("PowerY: " + this.m_currentPowerY, 510, 70);
 }
 
 Player.prototype.HandleCollision = function(collision)
@@ -114,7 +131,11 @@ Player.prototype.HandleCollision = function(collision)
   {
       if(collision.left == true)
       {
-		collision.m_objHit.m_blocks[0].m_blockIntegrity -= 1;
+		if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity)
+	    {
+	      this.m_currentPowerX -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
+          collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
+	    }
 		
 		if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
 		{
@@ -126,7 +147,11 @@ Player.prototype.HandleCollision = function(collision)
 
       if(collision.right == true)
       {
-		collision.m_objHit.m_blocks[0].m_blockIntegrity -= 1;
+		if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity)
+	    {
+	      this.m_currentPowerX -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
+          collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
+	    }
 		
 		if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
 		{
@@ -142,8 +167,12 @@ Player.prototype.HandleCollision = function(collision)
   {
     if(collision.top == true)
     {
-	  collision.m_objHit.m_blocks[0].m_blockIntegrity -= 1;
-		
+	  if(this.m_currentPowerY >= collision.m_objHit.m_blocks[0].m_blockIntegrity)
+	  {
+	    this.m_currentPowerY -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
+        collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
+	  }
+	  
 	  if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
 	  {
         this.Move(this.m_x, _boundsOfObjHit.m_top  - this.m_height);
@@ -162,7 +191,7 @@ Player.prototype.HandleCollision = function(collision)
   
   if(collision.m_objHit.m_type == ObjectType.Section)
   {
-  
+	collision.m_objHit.m_transparentForeground = true;
   }
   
   if(collision.m_objHit.m_type == ObjectType.Building)

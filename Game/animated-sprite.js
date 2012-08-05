@@ -1,23 +1,32 @@
 AnimatedSprite.prototype = new Sprite();
 
-function AnimatedSprite(filename, frameWidth, frameHeight, numFrames)
+function AnimatedSprite(image, frameWidth, frameHeight, numFrames)
 {
-  this.m_filename = filename;
-
-  this.m_image = new Image();
-  this.m_image.src = filename;
+  this.m_image = image;
 
   this.m_width = frameWidth;
   this.m_height = frameHeight;
-
 
   this.m_numFrames = numFrames;
 
   this.m_currentFrame = 0;
 
+  this.m_loop = false;
+  this.m_timeLength;
+  this.m_animationTimeElapsed = 0;
+
   this.SetFrame = function(frame)
   {
+    if(frame < 0)
+    {
+      frame = 0;
+    }
+    else if(frame >= this.m_numFrames)
+    {
+      frame = this.m_numFrames - 1;
+    }
 
+    this.m_currentFrame = frame;
   }
 
   this.NextFrame = function()
@@ -28,6 +37,30 @@ function AnimatedSprite(filename, frameWidth, frameHeight, numFrames)
     {
       this.m_currentFrame = 0;
     }
+  }
+
+  this.Update = function(dt)
+  {
+    this.m_animationTimeElapsed += dt;
+
+    if(this.m_animationTimeElapsed >= this.m_timeLength && this.m_loop == true)
+    {
+      this.m_animationTimeElapsed -= this.m_timeLength;
+    }
+    else if(this.m_animationTimeElapsed >= this.m_timeLength
+            && this.m_loop == false)
+    {
+      this.m_animationTimeElapsed = this.m_timeLength;
+    }
+
+    //Calculate the length of each frame.
+    var _frameLength = this.m_timeLength / this.m_numFrames;
+
+    //Get frame that the current time is in.
+    var _frame = this.m_animationTimeElapsed / _frameLength;
+    _frame = Math.floor(_frame);
+
+    SetFrame(_frame);
   }
 
   this.DrawFrame = function(context, frame, x, y, screenX, screenY)

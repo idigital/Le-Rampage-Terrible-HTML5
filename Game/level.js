@@ -19,9 +19,11 @@ function Level()
   var m_objective;
 
   var m_physics = new PhysicsHandler();
+  var m_damage = new DamageHandler();
+  m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.RIGHT, 3, 100, 100);
 
   m_character = new Player();
-  m_character.SetDimensions(128, 128);
+  m_character.SetDimensions(103, 128);
   m_character.EnablePhysics(m_physics, false);
   m_character.Move(0, 472);
 
@@ -73,6 +75,8 @@ function Level()
 	
     m_building.Update(dt);
 
+    m_damage.Update(dt);
+
     m_screenX = m_character.m_x - 50;
     m_screenY = m_character.m_y - 422;
   }
@@ -81,6 +85,7 @@ function Level()
   {
     bg.Draw(context, 0, 0, m_screenX, m_screenY);
     m_building.Draw(context, m_screenX, m_screenY);
+    m_damage.Draw(context, m_screenX, m_screenY);
     m_character.Draw(context, m_screenX, m_screenY);
     m_aimSprite.Draw(context, m_aimPos.m_dx, m_aimPos.m_dy,
                      m_screenX, m_screenY);

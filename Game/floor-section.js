@@ -23,29 +23,33 @@ function FloorSection(image, x, y)
   this.m_type = ObjectType.Floor;
 
   //List of the blocks that make up the floor.
-  this.m_blocks = new Array();
+  this.m_blocks = new Array(FloorSection.SECTIONS);
 
-  var _block = new Block(this, this.m_x, this.m_y, FloorSection.FLOOR_WIDTH,
-						 FloorSection.FLOOR_HEIGHT);
-						 
+  var _block = new Block(this, this.m_x, this.m_y,
+                         FloorSection.FLOOR_WIDTH,
+                         FloorSection.FLOOR_HEIGHT);
+
   _block.m_blockIntegrity = FloorSection.STARTING_HEALTH;
-  
+
+  this.m_bounds.AddChildBounds(_block.GetBounds());
+
   this.m_blocks.push(_block);
-  
+
   this.Draw = function(context, screenX, screenY)
   {
-	if(this.m_blocks[0].m_blockIntegrity > 0)
-	{
-		this.m_image.Draw(context, this.m_x, this.m_y, screenX, screenY);
+    if(this.m_blocks[0].m_blockIntegrity > 0)
+    {
+      this.m_image.Draw(context, this.m_x, this.m_y, screenX, screenY);
 
-		context.lineWidth = 1;
-		context.strokeStyle = 'green';
-		context.strokeRect(this.m_x - screenX, this.m_y - screenY,
-						   FloorSection.FLOOR_WIDTH, FloorSection.FLOOR_HEIGHT);
+      context.lineWidth = 1;
+      context.strokeStyle = 'green';
+      context.strokeRect(this.m_x - screenX, this.m_y - screenY,
+                         FloorSection.FLOOR_WIDTH, FloorSection.FLOOR_HEIGHT);
 						   
-		context.fillStyle = 'green';
-		context.fillText(this.m_blocks[0].m_blockIntegrity, this.m_x - screenX, this.m_y - screenY);
-   	}
+      context.fillStyle = 'green';
+      context.fillText(this.m_blocks[0].m_blockIntegrity,
+                       this.m_x - screenX, this.m_y - screenY);
+    }
   }
 };
 

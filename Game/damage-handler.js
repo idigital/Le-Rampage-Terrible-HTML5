@@ -12,10 +12,9 @@ function DamageHandler()
   //
   var m_currentDamageAnimations = new Array();
 
-
-  //******************************************************
+  //**************************************************************************
   //Damage animation sprite sheets;
-  //******************************************************
+  //**************************************************************************
 
   //Section.
   this.m_sectionExplosion = new Image();
@@ -49,10 +48,13 @@ function DamageHandler()
   this.m_floorDownwardsExplosion = new Image();
   this.m_floorDownwardsExplosion.src = "images/floor-explosion-down.png";
 
-  //******************************************************
+  //**************************************************************************
   //Methods.
-  //******************************************************
+  //**************************************************************************
 
+  //**************************************************************************
+  //
+  //**************************************************************************
   this.CreateSectionDamageAnimation = function(x, y)
   {
     var _damageAnimation = new DamageAnimation(this.m_sectionExplosion,
@@ -62,8 +64,11 @@ function DamageHandler()
       = DamageHandler.SECTION_EXPLOSION_LENGTH;
 
     m_currentDamageAnimations.push(_damageAnimation);
-  }
+  };
 
+  //**************************************************************************
+  //
+  //**************************************************************************
   this.CreateFloorDamageAnimation = function(damageDirection, x, y)
   {
     var _damageAnimation = null;
@@ -87,8 +92,11 @@ function DamageHandler()
 
       m_currentDamageAnimations.push(_damageAnimation);
     }
-  }
+  };
 
+  //**************************************************************************
+  //
+  //**************************************************************************
   this.CreateWallDamageAnimation = function(damageDirection, numSections, x, y)
   {
     var _damageAnimation = null;
@@ -139,21 +147,27 @@ function DamageHandler()
 
       m_currentDamageAnimations.push(_damageAnimation);
     }
-  }
+  };
 
+  //**************************************************************************
+  //
+  //**************************************************************************
   this.Update = function(dt)
   {
     for(currentAnimation = 0;
         currentAnimation < m_currentDamageAnimations.length;
-        currentAnimation++);
+        currentAnimation++)
     {
       m_currentDamageAnimations[currentAnimation].Update(dt);
     }
-  }
+  };
 
+  //**************************************************************************
+  //
+  //**************************************************************************
   this.Draw = function(context, screenX, screenY)
   {
     
-  }
+  };
 };
 

@@ -1,6 +1,6 @@
 Section.prototype = new GameObject();
 
-function Section(foregroundImage, foregroundImageTransparent, backgroundImage, x, y)
+function Section(physics, foregroundImage, foregroundImageTransparent, backgroundImage, x, y)
 {
   //Constants.
   Section.SECTION_WIDTH = 256;
@@ -17,6 +17,8 @@ function Section(foregroundImage, foregroundImageTransparent, backgroundImage, x
   this.m_type = ObjectType.Section;
   
   this.m_transparentForeground = false;
+  
+  this.EnablePhysics(physics, false);
 
   this.Draw = function(context, screenX, screenY)
   {

@@ -113,14 +113,15 @@ function Building(physics, x, y)
           if(_type == "Destructable")
           {
             this.m_sections[column][row] = new Section(
-                this.m_foregroundSprite,
+                physics,
+				this.m_foregroundSprite,
                 this.m_foregroundSpriteTransparent,
                 this.m_backgroundSprite,
                 this.m_x + (column * Building.SECTION_WIDTH) + Building.WALL_WIDTH,
                 this.m_y - (row * Building.SECTION_HEIGHT),
                 Building.SECTION_WIDTH, Building.SECTION_HEIGHT);
 
-            this.m_sections[column][row].EnablePhysics(physics, true);
+            //this.m_sections[column][row].EnablePhysics(physics, true);
             this.m_bounds.AddChildBounds(this.m_sections[column][row].GetBounds());
           }
         }
@@ -133,11 +134,11 @@ function Building(physics, x, y)
         for(floorY = 0; floorY < _height; floorY++)
         {
           this.m_floors.push(
-            new FloorSection(this.m_floorSprite,
+            new FloorSection(physics, this.m_floorSprite,
                              this.m_x + (floorX * Building.SECTION_WIDTH) + Building.WALL_WIDTH,
           this.m_y - (floorY * Building.SECTION_HEIGHT)));
 
-          this.m_floors[this.m_floors.length - 1].EnablePhysics(physics, true);
+          //this.m_floors[this.m_floors.length - 1].EnablePhysics(physics, true);
           this.m_bounds.AddChildBounds(this.m_floors[this.m_floors.length - 1].GetBounds());
         }
       }
@@ -155,26 +156,26 @@ function Building(physics, x, y)
           //If first wall.
           if(wallX == 0)
           {
-            _wall = new WallSection(this.m_wallSprite, this.m_x,
+            _wall = new WallSection(physics, this.m_wallSprite, this.m_x,
                                     this.m_y - (wallY * Building.SECTION_HEIGHT));
           }
 
           //If internal wall.
           else if(wallX > 0 && wallX < _width)
           {
-            _wall = new WallSection(this.m_wallSprite,
+            _wall = new WallSection(physics, this.m_wallSprite,
             this.m_x + (Building.SECTION_WIDTH * wallX) + Building.WALL_WIDTH - (Building.WALL_WIDTH * 0.5),
             this.m_y - (wallY * Building.SECTION_HEIGHT));
           }
           //If last wall.
           else if(wallX == _width)
           {
-            _wall = new WallSection(this.m_wallSprite,
+            _wall = new WallSection(physics, this.m_wallSprite,
                                     this.m_x + (Building.SECTION_WIDTH * wallX) + Building.WALL_WIDTH,
                                     this.m_y - (wallY * Building.SECTION_HEIGHT));
           }
 
-          _wall.EnablePhysics(physics, true);
+          //_wall.EnablePhysics(physics, true);
           this.m_bounds.AddChildBounds(_wall.GetBounds());
           this.m_walls.push(_wall);
         }
@@ -187,35 +188,35 @@ function Building(physics, x, y)
       //Set up initial section.
       this.m_sections = new Array(1);
       this.m_sections[0] = new Array(1);
-      this.m_sections[0][0] = new Section(this.m_foregroundSprite,
+      this.m_sections[0][0] = new Section(physics, this.m_foregroundSprite,
                                           this.m_backgroundSprite,
                                           this.m_x + Building.WALL_WIDTH,
                                           this.m_y,
                                           Building.SECTION_WIDTH,
                                           Building.SECTION_HEIGHT);
 
-      this.m_sections[0][0].EnablePhysics(physics, true);
+      //this.m_sections[0][0].EnablePhysics(physics, true);
       this.m_bounds.AddChildBounds(m_sections[0][0].GetBounds());
 
       //Set up initial walls.
       this.m_walls = new Array();
-      var _wall1 = new WallSection(this.m_wallSprite, this.m_x, this.m_y);
-      _wall1.EnablePhysics(physics, true);
+      var _wall1 = new WallSection(physics, this.m_wallSprite, this.m_x, this.m_y);
+      //_wall1.EnablePhysics(physics, true);
       this.m_bounds.AddChildBounds(_wall1.GetBounds());
       this.m_walls.push(_wall1);
 
-      var _wall2 = new WallSection(this.m_wallSprite,
+      var _wall2 = new WallSection(physics, this.m_wallSprite,
                                    this.m_x + Building.WALL_WIDTH
                                    + Building.SECTION_WIDTH, this.m_y);
-      _wall2.EnablePhysics(physics, true);
+      //_wall2.EnablePhysics(physics, true);
       this.m_bounds.AddChildBounds(_wall2.GetBounds());
       this.m_walls.push(_wall2);
 
       //Set up initial floor section as ceiling set into initial sections.
       this.m_floors = new Array();
-      var _floor = new FloorSection(this.m_floorSprite,
+      var _floor = new FloorSection(physics, this.m_floorSprite,
                                     this.m_x + Building.WALL_WIDTH, this.m_y);
-      _floor.EnablePhysics(physics, true);
+      //_floor.EnablePhysics(physics, true);
       this.m_bounds.AddChildBounds(_floor.GetBounds());
       this.m_floors.push(_floor);
     }

@@ -3,7 +3,7 @@ WallSection.prototype = new GameObject();
 //****************************************************************************
 //Represents a single wall made up of a number of individual blocks.
 //****************************************************************************
-function WallSection(image, x, y)
+function WallSection(physics, image, x, y)
 {
   //Constants.
   WallSection.WALL_WIDTH = 8;
@@ -20,6 +20,7 @@ function WallSection(image, x, y)
   //Holds the walls's overall bounding box in order to make collision
   //detection more efficient.
   this.m_bounds;
+  this.EnablePhysics(physics, true);
 
   this.m_type = ObjectType.Wall;
 
@@ -38,23 +39,22 @@ function WallSection(image, x, y)
 
     this.m_bounds.AddChildBounds(_block.GetBounds());
  
-    this.m_blocks.push(_block);
+    this.m_blocks[section] = _block;
   }
 
   this.Draw = function(context, screenX, screenY)
   {
     if(this.m_blocks[0].m_blockIntegrity > 0)
-{
-this.m_image.Draw(context, this.m_x, this.m_y, screenX, screenY);
+    {
+      this.m_image.Draw(context, this.m_x, this.m_y, screenX, screenY);
 
-context.lineWidth = 1;
-context.strokeStyle = 'green';
-context.strokeRect(this.m_x - screenX, this.m_y - screenY,
-						   WallSection.WALL_WIDTH, WallSection.WALL_HEIGHT);
+      context.lineWidth = 1;
+      context.strokeStyle = 'green';
+      context.strokeRect(this.m_x - screenX, this.m_y - screenY,
+                         WallSection.WALL_WIDTH, WallSection.WALL_HEIGHT);
 						   
-context.fillStyle = 'green';
-context.fillText(this.m_blocks[0].m_blockIntegrity, this.m_x - screenX, this.m_y - screenY);
-}
+      context.fillStyle = 'green';
+      context.fillText(this.m_blocks[0].m_blockIntegrity, this.m_x - screenX, this.m_y - screenY);
+    }
   }
 };
-

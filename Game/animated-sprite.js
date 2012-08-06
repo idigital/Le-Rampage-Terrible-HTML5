@@ -60,7 +60,7 @@ function AnimatedSprite(image, frameWidth, frameHeight, numFrames)
     var _frame = this.m_animationTimeElapsed / _frameLength;
     _frame = Math.floor(_frame);
 
-    SetFrame(_frame);
+    this.SetFrame(_frame);
   }
 
   this.DrawFrame = function(context, frame, x, y, screenX, screenY)

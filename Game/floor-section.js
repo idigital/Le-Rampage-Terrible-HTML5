@@ -1,9 +1,9 @@
 FloorSection.prototype = new GameObject();
 
-//******************************
+//****************************************************************************
 //Represents a single floor made up of a number of individual blocks.
-//******************************
-function FloorSection(image, x, y)
+//****************************************************************************
+function FloorSection(physics, image, x, y)
 {
   //Constants.
   FloorSection.FLOOR_WIDTH = 256;
@@ -19,25 +19,22 @@ function FloorSection(image, x, y)
   //Holds the floor's overall bounding box in order to make collision
   //detection more efficient.
   this.m_bounds;
+  this.EnablePhysics(physics, false);
 
   this.m_type = ObjectType.Floor;
 
   //List of the blocks that make up the floor.
-  this.m_blocks = new Array(FloorSection.SECTIONS);
+  this.m_block = new Block(this, this.m_x, this.m_y,
+						   FloorSection.FLOOR_WIDTH,
+                           FloorSection.FLOOR_HEIGHT);
 
-  var _block = new Block(this, this.m_x, this.m_y,
-                         FloorSection.FLOOR_WIDTH,
-                         FloorSection.FLOOR_HEIGHT);
+  this.m_block.m_blockIntegrity = FloorSection.STARTING_HEALTH;
 
-  _block.m_blockIntegrity = FloorSection.STARTING_HEALTH;
-
-  this.m_bounds.AddChildBounds(_block.GetBounds());
-
-  this.m_blocks.push(_block);
+  this.m_bounds.AddChildBounds(this.m_block.GetBounds());
 
   this.Draw = function(context, screenX, screenY)
   {
-    if(this.m_blocks[0].m_blockIntegrity > 0)
+    if(this.m_block.m_blockIntegrity > 0)
     {
       this.m_image.Draw(context, this.m_x, this.m_y, screenX, screenY);
 
@@ -47,7 +44,7 @@ function FloorSection(image, x, y)
                          FloorSection.FLOOR_WIDTH, FloorSection.FLOOR_HEIGHT);
 						   
       context.fillStyle = 'green';
-      context.fillText(this.m_blocks[0].m_blockIntegrity,
+      context.fillText(this.m_block.m_blockIntegrity,
                        this.m_x - screenX, this.m_y - screenY);
     }
   }

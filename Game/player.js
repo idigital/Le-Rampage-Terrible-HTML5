@@ -13,7 +13,7 @@ function Player()
   var m_gravity = 9.8;
   var m_floorHeight = 600;
   var m_worldWidth = 2000;
-  var m_airDrag = 0.99;
+  var m_airDrag = 1.0;//0.99;
 
   this.m_currentState;
 
@@ -167,13 +167,13 @@ Player.prototype.HandleCollision = function(collision)
   {
     if(collision.top == true)
     {
-	  if(this.m_currentPowerY >= collision.m_objHit.m_blocks[0].m_blockIntegrity)
+	  if(this.m_currentPowerY >= collision.m_objHit.m_block.m_blockIntegrity)
 	  {
-	    this.m_currentPowerY -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
-        collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
+	    this.m_currentPowerY -= collision.m_objHit.m_block.m_blockIntegrity;
+        collision.m_objHit.m_block.m_blockIntegrity = 0;
 	  }
 	  
-	  if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
+	  if(collision.m_objHit.m_block.m_blockIntegrity > 0)
 	  {
         this.Move(this.m_x, _boundsOfObjHit.m_top  - this.m_height);
         this.m_currentVelocity.m_dx = 0;

@@ -171,7 +171,7 @@ function DamageHandler()
         currentAnimation < m_currentDamageAnimations.length;
         currentAnimation++)
     {
-      m_currentDamageAnimations[currentAnimation].Draw(context, screenX, screenY);
+      m_currentDamageAnimations[currentAnimation].Draw(context, screenX, screenY, scale);
     }
   };
 };

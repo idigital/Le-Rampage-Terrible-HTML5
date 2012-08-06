@@ -19,10 +19,14 @@ Sprite.prototype.Draw = function(context, x, y, screenX, screenY, scale)
     var _scaledHeight = this.m_height * scale;
     var _scaledScreenX = x - screenX;
     var _scaledScreenY = y - screenY;
-	
+
+    var _screenXOffset = (Game.CANVAS_WIDTH - (Game.CANVAS_WIDTH / scale)) / 2;
+    var _screenYOffset = (Game.CANVAS_HEIGHT - (Game.CANVAS_HEIGHT / scale)) / 2;
+
     context.drawImage(this.m_image, 0, 0, this.m_width, this.m_height,
-                      _scaledScreenX, _scaledScreenY,
-					  _scaledWidth, _scaledHeight);
+                      _scaledScreenX + 0,//_screenXOffset,
+                      _scaledScreenY + 0,//_screenYOffset,
+                      _scaledWidth, _scaledHeight);
   }
 };
 

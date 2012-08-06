@@ -13,7 +13,7 @@ function DamageAnimation(image, x, y, frameWidth, frameHeight, numFrames)
 
   this.Draw = function(context, screenX, screenY, scale)
   {
-    this.m_animation.Draw(context, this.m_x, this.m_y, screenX, screenY);
+    this.m_animation.Draw(context, this.m_x, this.m_y, screenX, screenY, scale);
   }
 };
 

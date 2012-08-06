@@ -13,13 +13,14 @@ function Player(damage)
   var m_gravity = 9.8;
   var m_floorHeight = 600;
   var m_worldWidth = 2000;
-  var m_airDrag = 1.0;//0.99;
+  var m_airDrag = 1.0;
 
   this.m_currentState;
   
   this.m_damage = damage;
 
-  this.sprite = new Sprite("images/player_idle.png", 103, 128);
+  this.animations = //new AnimatedSprite("images/player_anim.png", 103, 128, 3);
+  new Sprite("images/player_anim.png", 103, 128);
 
   this.m_type = ObjectType.Player;
  
@@ -96,10 +97,10 @@ function Player(damage)
     }
   }
 
-  this.GetSprite = function()
-  {
-    return this.sprite;
-  }
+  //this.GetSprite = function()
+  //{
+  //  return this.animations;
+  //}
 
   return this;
 };
@@ -114,9 +115,10 @@ Player.prototype.Move = function(x, y)
 
 Player.prototype.Draw = function(context, screenX, screenY, scale)
 {
-  this.sprite.Draw(context, this.m_x, this.m_y, screenX, screenY, scale);
+  //this.animations.DrawFrame(context, 0, this.m_x, this.m_y, screenX, screenY, scale);
+  this.animations.Draw(context, this.m_x, this.m_y, screenX, screenY, scale);
 
-  this.m_bounds.Draw(context, screenX, screenY);
+  this.m_bounds.Draw(context, screenX, screenY, scale);
   
   context.fillStyle = "Black";
   context.fillText("PowerX: " + this.m_currentPowerX, 510, 50);
@@ -131,23 +133,23 @@ Player.prototype.HandleCollision = function(collision)
   //If the block is a solid block or bottom block then bounce of the side.
   if(collision.m_objHit.m_type == ObjectType.Wall)
   {
-      if(collision.left == true)
+    if(collision.left == true)
+    {
+      if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity
+         && collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
       {
-		if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity
-		    && collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
-	    {
-	      this.m_currentPowerX -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
-          collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
-		  this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.RIGHT, 3, collision.m_objHit.m_x, collision.m_objHit.m_y);
-	    }
-		
-		if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
-		{
-			this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
-			this.m_currentVelocity.m_dx *= -0.2;
-			this.m_currentVelocity.m_dy *= 0.2;
-		}
+        this.m_currentPowerX -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
+        collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
+        this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.RIGHT, 3, collision.m_objHit.m_x, collision.m_objHit.m_y);
       }
+
+      if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
+      {
+        this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
+        this.m_currentVelocity.m_dx *= -0.2;
+        this.m_currentVelocity.m_dy *= 0.2;
+      }
+    }
 
       if(collision.right == true)
       {

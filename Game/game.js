@@ -1,8 +1,8 @@
 var FPS = 30;
 var SECONDS_BETWEEN_FRAMES = 1 / FPS;
 
-var canvasWidth = 900;
-var canvasHeight = 600;
+Game.CANVAS_WIDTH = 900;
+Game.CANVAS_HEIGHT = 600;
 
 var game;
 var mouseX = 0, mouseY = 0;
@@ -35,8 +35,8 @@ function Game()
   {
     //Initialise game variables.
     canvas = document.getElementById('c');
-    canvas.width = canvasWidth;
-    canvas.height = canvasHeight;
+    canvas.width = Game.CANVAS_WIDTH;
+    canvas.height = Game.CANVAS_HEIGHT;
 
     //Check whether the browser supports getting canvas context.
     if(canvas && canvas.getContext)

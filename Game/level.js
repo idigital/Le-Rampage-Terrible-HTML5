@@ -77,8 +77,17 @@ function Level()
 
     m_damage.Update(dt);
 
-    m_screenX = m_character.m_x - 50;
-    m_screenY = m_character.m_y - 422;
+    //var _scaledScreenX = 50 * m_scale;
+    //var _scaledScreenY = 422 * m_scale;
+
+    //var _screenXOffset = (Game.CANVAS_WIDTH - (Game.CANVAS_WIDTH / m_scale)) / 2;
+    //var _screenYOffset = (Game.CANVAS_HEIGHT - (Game.CANVAS_HEIGHT / m_scale)) / 2;
+	
+	//m_screenX = m_character.m_x - _scaledScreenX + _screenXOffset;
+    //m_screenY = m_character.m_y - _scaledScreenY + _screenYOffset;
+	
+	m_screenX = m_character.m_x - 100;
+    m_screenY = m_character.m_y - (500 - (m_character.m_height * m_scale));
   }
 
   this.Draw = function(context)
@@ -94,8 +103,7 @@ function Level()
     context.fillText("Power: " + m_power, 10, 50);
     context.fillText("Time Score:: " + m_timeElapsed.toFixed(2), 10, 70);
     context.fillText("Damage Score:: " + m_damageScore, 10, 90);
-}
-
+  }
 
   this.MouseClick = function(mouseX, mouseY)
   {
@@ -107,7 +115,7 @@ function Level()
       m_dragging = true;
       m_startX = mouseX + m_screenX;
       m_startY = mouseY + m_screenY;
-    } 
+    }
   }
 
   this.MouseRelease = function(mouseX, mouseY)

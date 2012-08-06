@@ -42,23 +42,22 @@ function WallSection(physics, image, x, y)
     this.m_blocks[section] = _block;
   }
 
-  this.Draw = function(context, screenX, screenY)
+  this.Draw = function(context, screenX, screenY, scale)
   {
-    //for(block = 0; block < this.m_blocks.length; block++)
-	//{
-      //if(this.m_blocks[block].m_blockIntegrity > 0)
-	  if(this.m_blocks[0].m_blockIntegrity > 0)
-      {
-        this.m_image.Draw(context, this.m_x, this.m_y, screenX, screenY);
+    for(block = 0; block < this.m_blocks.length; block++)
+	{
+      if(this.m_blocks[block].m_blockIntegrity > 0)
+	  {
+        this.m_image.Draw(context, this.m_x, this.m_y + ((WallSection.WALL_HEIGHT / WallSection.SECTIONS) * block), screenX, screenY, scale);
 
         context.lineWidth = 1;
         context.strokeStyle = 'green';
-        context.strokeRect(this.m_x - screenX, this.m_y - screenY,
-                           WallSection.WALL_WIDTH, WallSection.WALL_HEIGHT);// / WallSection.SECTIONS);
+        context.strokeRect(this.m_x - screenX, this.m_y + ((WallSection.WALL_HEIGHT / WallSection.SECTIONS) * block) - screenY,
+                           WallSection.WALL_WIDTH, WallSection.WALL_HEIGHT / WallSection.SECTIONS);
 						   
         context.fillStyle = 'green';
         context.fillText(this.m_blocks[0].m_blockIntegrity, this.m_x - screenX, this.m_y - screenY);
       }
-    //}
+    }
   }
 };

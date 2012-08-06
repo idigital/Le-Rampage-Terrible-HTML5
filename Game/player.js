@@ -112,9 +112,9 @@ Player.prototype.Move = function(x, y)
   this.m_bounds.Move(this.m_x, this.m_y);
 };
 
-Player.prototype.Draw = function(context, screenX, screenY)
+Player.prototype.Draw = function(context, screenX, screenY, scale)
 {
-  this.sprite.Draw(context, this.m_x, this.m_y, screenX, screenY);
+  this.sprite.Draw(context, this.m_x, this.m_y, screenX, screenY, scale);
 
   this.m_bounds.Draw(context, screenX, screenY);
   

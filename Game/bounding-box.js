@@ -295,7 +295,7 @@ function BoundingBox(gameObject, x, y, width, height)
     this.m_bottomRight.m_dy = this.m_bottom;
   }
 
-  this.Draw = function(context, screenX, screenY)
+  this.Draw = function(context, screenX, screenY, scale)
   {
     context.lineWidth = 1;
     context.strokeStyle = 'red';

@@ -20,16 +20,16 @@ function Section(physics, foregroundImage, foregroundImageTransparent, backgroun
   
   this.EnablePhysics(physics, false);
 
-  this.Draw = function(context, screenX, screenY)
+  this.Draw = function(context, screenX, screenY, scale)
   {
 	if(this.m_transparentForeground != true)
 	{
-      this.m_foregroundImage.Draw(context, this.m_x, this.m_y, screenX, screenY);
+      this.m_foregroundImage.Draw(context, this.m_x, this.m_y, screenX, screenY, scale);
 	}
 	else
 	{
-	  this.m_backgroundImage.Draw(context, this.m_x, this.m_y, screenX, screenY);
-	  //this.m_foregroundImageTransparent.Draw(context, this.m_x, this.m_y, screenX, screenY);
+	  this.m_backgroundImage.Draw(context, this.m_x, this.m_y, screenX, screenY, scale);
+	  //this.m_foregroundImageTransparent.Draw(context, this.m_x, this.m_y, screenX, screenY, scale);
 	}
   }
 };

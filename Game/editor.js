@@ -19,7 +19,7 @@ function Editor(level)
 
   }
 
-  this.Draw = function(context)
+  this.Draw = function(context, screenX, screenY, scale)
   {
     m_currentLevel.Draw(context);
   }

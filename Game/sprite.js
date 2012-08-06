@@ -11,9 +11,19 @@ function Sprite(filename, width, height)
   this.m_visible = true;
 };
 
-Sprite.prototype.Draw = function(context, x, y, screenX, screenY)
+Sprite.prototype.Draw = function(context, x, y, screenX, screenY, scale)
 {
-  context.drawImage(this.m_image, x - screenX, y - screenY);
+  if(this.m_visible == true)
+  {
+    var _scaledWidth = this.m_width * scale;
+    var _scaledHeight = this.m_height * scale;
+    var _scaledScreenX = x - screenX;
+    var _scaledScreenY = y - screenY;
+	
+    context.drawImage(this.m_image, 0, 0, this.m_width, this.m_height,
+                      _scaledScreenX, _scaledScreenY,
+					  _scaledWidth, _scaledHeight);
+  }
 };
 
 

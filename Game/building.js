@@ -12,6 +12,7 @@ function Building(physics, x, y)
   Building.SECTION_HEIGHT = 192;
   Building.WALL_WIDTH = 8;
   Building.WALL_HEIGHT = 192;
+  Building.SECTIONS = 3;
   Building.FLOOR_WIDTH = 256;
   Building.FLOOR_HEIGHT = 8;
 
@@ -50,9 +51,9 @@ function Building(physics, x, y)
                                   Building.FLOOR_WIDTH,
                                   Building.FLOOR_HEIGHT);
 
-  this.m_wallSprite = new Sprite("images/wall.png",
+  this.m_wallSprite = new Sprite("images/wallThird.png",
                                   Building.WALL_WIDTH,
-                                  Building.WALL_HEIGHT);
+                                  Building.WALL_HEIGHT / Building.SECTIONS);
 
   this.m_width = 0;
   this.m_height = 0;
@@ -238,7 +239,7 @@ function Building(physics, x, y)
 	}*/
   };
   
-  this.Draw = function(context, screenX, screenY)
+  this.Draw = function(context, screenX, screenY, scale)
   {
     if(this.m_sections != null)
 	{
@@ -255,7 +256,7 @@ function Building(physics, x, y)
           //Draw if a section in that space.
           if(this.m_sections[i][j] != null)
           {
-            this.m_sections[i][j].Draw(context, screenX, screenY);
+            this.m_sections[i][j].Draw(context, screenX, screenY, scale);
           }
         }
       }
@@ -265,7 +266,7 @@ function Building(physics, x, y)
 	{
       for(i = 0; i < this.m_walls.length; i++)
       {
-        this.m_walls[i].Draw(context, screenX, screenY);
+        this.m_walls[i].Draw(context, screenX, screenY, scale);
       }
 	}
 	
@@ -273,7 +274,7 @@ function Building(physics, x, y)
 	{
       for(i = 0; i < this.m_floors.length; i++)
       {
-        this.m_floors[i].Draw(context, screenX, screenY);
+        this.m_floors[i].Draw(context, screenX, screenY, scale);
       }
 	}
     

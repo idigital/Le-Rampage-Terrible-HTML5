@@ -26,6 +26,6 @@ MapScreen.prototype.Update = function(dt, mouseX, mouseY,
 
 MapScreen.prototype.Draw = function(context)
 {
-  this.m_image.Draw(context, 0, 0, 0, 0);
+  this.m_image.Draw(context, 0, 0, 0, 0, 1);
 };
 

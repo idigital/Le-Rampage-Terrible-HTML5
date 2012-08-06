@@ -165,7 +165,7 @@ function DamageHandler()
   //**************************************************************************
   //
   //**************************************************************************
-  this.Draw = function(context, screenX, screenY)
+  this.Draw = function(context, screenX, screenY, scale)
   {
     for(currentAnimation = 0;
         currentAnimation < m_currentDamageAnimations.length;

@@ -64,7 +64,7 @@ function AnimatedSprite(image, frameWidth, frameHeight, numFrames)
     this.SetFrame(_frame);
   }
 
-  this.DrawFrame = function(context, frame, x, y, screenX, screenY)
+  this.DrawFrame = function(context, frame, x, y, screenX, screenY, scale)
   {
     //Check frame is in bounds.
     if(frame >= 0 && frame < this.m_numFrames)
@@ -77,14 +77,20 @@ function AnimatedSprite(image, frameWidth, frameHeight, numFrames)
   }
 };
 
-AnimatedSprite.prototype.Draw = function(context, x, y, screenX, screenY)
+AnimatedSprite.prototype.Draw = function(context, x, y, screenX, screenY, scale)
 {
   if(this.m_visible == true)
   {
     var _offset = this.m_width * this.m_currentFrame;
+	
+	var _scaledWidth = this.m_width * scale;
+    var _scaledHeight = this.m_height * scale;
+    var _scaledScreenX = x - screenX;
+    var _scaledScreenY = y - screenY;
 
     context.drawImage(this.m_image, _offset, 0, this.m_width, this.m_height,
-                      x - screenX, y - screenY, this.m_width, this.m_height);
+                      _scaledScreenX, _scaledScreenY,
+					  _scaledWidth, _scaledHeight);
   }
 };
 

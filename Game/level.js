@@ -37,6 +37,7 @@ function Level()
   //Side-scrolling variables.
   var m_screenX = 0;
   var m_screenY = 0;
+  var m_scale = 1.0;
   
   //Scoring variables.
   var m_timeElapsed = 0;
@@ -82,12 +83,12 @@ function Level()
 
   this.Draw = function(context)
   {
-    bg.Draw(context, 0, 0, m_screenX, m_screenY);
-    m_building.Draw(context, m_screenX, m_screenY);
-    m_damage.Draw(context, m_screenX, m_screenY);
-    m_character.Draw(context, m_screenX, m_screenY);
+    bg.Draw(context, 0, 0, m_screenX, m_screenY, m_scale);
+    m_building.Draw(context, m_screenX, m_screenY, m_scale);
+    m_damage.Draw(context, m_screenX, m_screenY, m_scale);
+    m_character.Draw(context, m_screenX, m_screenY, m_scale);
     m_aimSprite.Draw(context, m_aimPos.m_dx, m_aimPos.m_dy,
-                     m_screenX, m_screenY);
+                     m_screenX, m_screenY, m_scale);
 
     context.fillStyle = "Black";
     context.fillText("Power: " + m_power, 10, 50);

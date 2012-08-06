@@ -32,11 +32,11 @@ function FloorSection(physics, image, x, y)
 
   this.m_bounds.AddChildBounds(this.m_block.GetBounds());
 
-  this.Draw = function(context, screenX, screenY)
+  this.Draw = function(context, screenX, screenY, scale)
   {
     if(this.m_block.m_blockIntegrity > 0)
     {
-      this.m_image.Draw(context, this.m_x, this.m_y, screenX, screenY);
+      this.m_image.Draw(context, this.m_x, this.m_y, screenX, screenY, scale);
 
       context.lineWidth = 1;
       context.strokeStyle = 'green';

@@ -63,7 +63,7 @@ GameObject.prototype.Move = function(x, y)
   this.m_bounds.Move(this.m_x, this.m_y);
 };
 
-GameObject.prototype.Draw = function(context)
+GameObject.prototype.Draw = function(context, screenX, screenY, scale)
 {
 
 };

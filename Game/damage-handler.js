@@ -5,9 +5,9 @@ function DamageHandler()
 {
   //Constants.
   //Animation length in milliseconds.
-  DamageHandler.SECTION_EXPLOSION_LENGTH = 1000;
-  DamageHandler.WALL_EXPLOSION_LENGTH = 1000;
-  DamageHandler.FLOOR_EXPLOSION_LENGTH = 1000;
+  DamageHandler.SECTION_EXPLOSION_LENGTH = 0.250;
+  DamageHandler.WALL_EXPLOSION_LENGTH = 0.250;
+  DamageHandler.FLOOR_EXPLOSION_LENGTH = 0.250;
 
   //
   var m_currentDamageAnimations = new Array();
@@ -167,7 +167,12 @@ function DamageHandler()
   //**************************************************************************
   this.Draw = function(context, screenX, screenY)
   {
-    
+    for(currentAnimation = 0;
+        currentAnimation < m_currentDamageAnimations.length;
+        currentAnimation++)
+    {
+      m_currentDamageAnimations[currentAnimation].Draw(context, screenX, screenY);
+    }
   };
 };
 

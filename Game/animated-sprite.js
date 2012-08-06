@@ -51,6 +51,7 @@ function AnimatedSprite(image, frameWidth, frameHeight, numFrames)
             && this.m_loop == false)
     {
       this.m_animationTimeElapsed = this.m_timeLength;
+	  this.m_visible = false;
     }
 
     //Calculate the length of each frame.
@@ -78,9 +79,12 @@ function AnimatedSprite(image, frameWidth, frameHeight, numFrames)
 
 AnimatedSprite.prototype.Draw = function(context, x, y, screenX, screenY)
 {
-  var _offset = m_witdh * m_currentFrame;
+  if(this.m_visible == true)
+  {
+    var _offset = this.m_width * this.m_currentFrame;
 
-  context.drawImage(this.m_image, _offset, 0, this.m_width, this.m_height,
-                    x - screenX, y - screenY, this.m_width, this.m_height);
+    context.drawImage(this.m_image, _offset, 0, this.m_width, this.m_height,
+                      x - screenX, y - screenY, this.m_width, this.m_height);
+  }
 };
 

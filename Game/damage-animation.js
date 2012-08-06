@@ -5,7 +5,7 @@ function DamageAnimation(image, x, y, frameWidth, frameHeight, numFrames)
 
   this.m_x = x;
   this.m_y = y;
-
+  
   this.Update = function(dt)
   {
     this.m_animation.Update(dt);

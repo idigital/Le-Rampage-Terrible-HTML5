@@ -1,6 +1,6 @@
 Player.prototype = new GameObject();
 
-function Player()
+function Player(damage)
 {
   this.m_currentVelocity = new Vector(0,0);
   this.m_mass = 5;
@@ -16,6 +16,8 @@ function Player()
   var m_airDrag = 1.0;//0.99;
 
   this.m_currentState;
+  
+  this.m_damage = damage;
 
   this.sprite = new Sprite("images/player_idle.png", 103, 128);
 
@@ -131,10 +133,12 @@ Player.prototype.HandleCollision = function(collision)
   {
       if(collision.left == true)
       {
-		if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity)
+		if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity
+		    && collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
 	    {
 	      this.m_currentPowerX -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
           collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
+		  this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.RIGHT, 3, collision.m_objHit.m_x, collision.m_objHit.m_y);
 	    }
 		
 		if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
@@ -147,10 +151,12 @@ Player.prototype.HandleCollision = function(collision)
 
       if(collision.right == true)
       {
-		if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity)
+		if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity
+		   && collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
 	    {
 	      this.m_currentPowerX -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
           collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
+		  this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.LEFT, 3, collision.m_objHit.m_x - 256, collision.m_objHit.m_y);
 	    }
 		
 		if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
@@ -167,10 +173,12 @@ Player.prototype.HandleCollision = function(collision)
   {
     if(collision.top == true)
     {
-	  if(this.m_currentPowerY >= collision.m_objHit.m_block.m_blockIntegrity)
+	  if(this.m_currentPowerY >= collision.m_objHit.m_block.m_blockIntegrity
+	     && collision.m_objHit.m_block.m_blockIntegrity > 0)
 	  {
 	    this.m_currentPowerY -= collision.m_objHit.m_block.m_blockIntegrity;
         collision.m_objHit.m_block.m_blockIntegrity = 0;
+		this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.DOWN, collision.m_objHit.m_x, collision.m_objHit.m_y);
 	  }
 	  
 	  if(collision.m_objHit.m_block.m_blockIntegrity > 0)
@@ -184,6 +192,10 @@ Player.prototype.HandleCollision = function(collision)
     }
     else if(collision.bottom == true)
     {
+	  if(collision.m_objHit.m_block.m_blockIntegrity > 0)
+	  {
+	    this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.UP, collision.m_objHit.m_x, collision.m_objHit.m_y - 192);
+	  }
       //this.m_currentVelocity.m_x *= 0.8;
       //this.m_currentVelocity.m_y *= -0.2;
     }
@@ -191,6 +203,11 @@ Player.prototype.HandleCollision = function(collision)
   
   if(collision.m_objHit.m_type == ObjectType.Section)
   {
+	if(collision.m_objHit.m_transparentForeground != true)
+	{
+	  this.m_damage.CreateSectionDamageAnimation(collision.m_objHit.m_x, collision.m_objHit.m_y);
+	}
+	
 	collision.m_objHit.m_transparentForeground = true;
   }
   

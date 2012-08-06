@@ -20,9 +20,8 @@ function Level()
 
   var m_physics = new PhysicsHandler();
   var m_damage = new DamageHandler();
-  m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.RIGHT, 3, 100, 100);
-
-  m_character = new Player();
+  
+  m_character = new Player(m_damage);
   m_character.SetDimensions(103, 128);
   m_character.EnablePhysics(m_physics, false);
   m_character.Move(0, 472);

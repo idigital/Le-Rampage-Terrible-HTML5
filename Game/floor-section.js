@@ -8,7 +8,7 @@ function FloorSection(physics, image, x, y)
   //Constants.
   FloorSection.FLOOR_WIDTH = 256;
   FloorSection.FLOOR_HEIGHT = 8;
-  FloorSection.STARTING_HEALTH = 3;
+  FloorSection.STARTING_HEALTH = 1;
 
   this.m_image = image;
   this.m_x = x;

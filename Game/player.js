@@ -97,11 +97,6 @@ function Player(damage)
     }
   }
 
-  //this.GetSprite = function()
-  //{
-  //  return this.animations;
-  //}
-
   return this;
 };
 
@@ -130,10 +125,15 @@ Player.prototype.HandleCollision = function(collision)
   //Get bounding box of object hit.
   var _boundsOfObjHit = collision.m_objHit.GetBounds();
 
-  //If the block is a solid block or bottom block then bounce of the side.
+  //********************
+  //Check if hit a wall.
+  //********************
   if(collision.m_objHit.m_type == ObjectType.Wall)
   {
-    if(collision.left == true)
+    //Determine which side of the wall is hit and from which direction.
+    //If the force of impact is strong enough, destroy the wall and play
+    //the corresponding damage animation. If not then player bounces off.
+    if(collision.left == true && this.m_currentVelocity.m_dx >= 0)
     {
       if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity
          && collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
@@ -151,104 +151,85 @@ Player.prototype.HandleCollision = function(collision)
       }
     }
 
-      if(collision.right == true)
+    if(collision.right == true && this.m_currentVelocity.m_dx < 0)
+    {
+      if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity
+         && collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
       {
-		if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity
-		   && collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
-	    {
-	      this.m_currentPowerX -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
-          collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
-		  this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.LEFT, 3, collision.m_objHit.m_x - 256, collision.m_objHit.m_y);
-	    }
-		
-		if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
-		{
-			this.Move(_boundsOfObjHit.m_right, this.m_y);
-			this.m_currentVelocity.m_dx *= -0.2;
-			this.m_currentVelocity.m_dy *= 0.2;
-		}
+        this.m_currentPowerX -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
+        collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
+        this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.LEFT, 3, collision.m_objHit.m_x - 256, collision.m_objHit.m_y);
       }
+
+      if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
+      {
+        this.Move(_boundsOfObjHit.m_right, this.m_y);
+        this.m_currentVelocity.m_dx *= -0.2;
+        this.m_currentVelocity.m_dy *= 0.2;
+      }
+    }
   }
 
-  //If hit top
+  //*********************
+  //Check if hit a floor.
+  //*********************
   if(collision.m_objHit.m_type == ObjectType.Floor)
   {
+    //If hitting the floor on the top edge. Check direction of travel.
+    //If travelling upwards then player is passing through floor and so ignore.
+    //If travelling downwards then land on floor if not enough power to break
+    //trough it.
     if(collision.top == true)
     {
-	  if(this.m_currentPowerY >= collision.m_objHit.m_block.m_blockIntegrity
-	     && collision.m_objHit.m_block.m_blockIntegrity > 0)
-	  {
-	    this.m_currentPowerY -= collision.m_objHit.m_block.m_blockIntegrity;
-        collision.m_objHit.m_block.m_blockIntegrity = 0;
-		this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.DOWN, collision.m_objHit.m_x, collision.m_objHit.m_y);
-	  }
-	  
-	  if(collision.m_objHit.m_block.m_blockIntegrity > 0)
-	  {
-        this.Move(this.m_x, _boundsOfObjHit.m_top  - this.m_height);
-        this.m_currentVelocity.m_dx = 0;
-        this.m_currentVelocity.m_dy = 0;
+      if(this.m_currentVelocity.m_dy <= 0)
+      {
+        //Moving upwards so ignore.
+        //Cause upwards destruction if first time hit.
 
-        this.m_onGround = true;
-	  }
+        if(this.m_currentPowerY >= collision.m_objHit.m_block.m_blockIntegrity
+           && collision.m_objHit.m_block.m_blockIntegrity > 0)
+        {
+          this.m_currentPowerY -= collision.m_objHit.m_block.m_blockIntegrity;
+          collision.m_objHit.m_block.m_blockIntegrity = 0;
+          this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.DOWN, collision.m_objHit.m_x, collision.m_objHit.m_y);
+        }
+	  
+        if(collision.m_objHit.m_block.m_blockIntegrity > 0)
+        {
+          this.Move(this.m_x, _boundsOfObjHit.m_top  - this.m_height);
+          this.m_currentVelocity.m_dx = 0;
+          this.m_currentVelocity.m_dy = 0;
+
+          this.m_onGround = true;
+        }
+      }
     }
     else if(collision.bottom == true)
     {
-	  if(collision.m_objHit.m_block.m_blockIntegrity > 0)
-	  {
-	    this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.UP, collision.m_objHit.m_x, collision.m_objHit.m_y - 192);
-	  }
-      //this.m_currentVelocity.m_x *= 0.8;
-      //this.m_currentVelocity.m_y *= -0.2;
+      if(this.m_currentVelocity.m_dy > 0)
+      {
+        if(collision.m_objHit.m_block.m_blockIntegrity > 0)
+        {
+          this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.UP,
+                                                  collision.m_objHit.m_x,
+                                                  collision.m_objHit.m_y - 192);
+        }
+        //this.m_currentVelocity.m_x *= 0.8;
+        //this.m_currentVelocity.m_y *= -0.2;
+      }
     }
   }
   
   if(collision.m_objHit.m_type == ObjectType.Section)
   {
-	if(collision.m_objHit.m_transparentForeground != true)
-	{
-	  this.m_damage.CreateSectionDamageAnimation(collision.m_objHit.m_x, collision.m_objHit.m_y);
-	}
-	
-	collision.m_objHit.m_transparentForeground = true;
-  }
-  
-  if(collision.m_objHit.m_type == ObjectType.Building)
-  {
-	/*if(collision.left == true)
+    if(collision.m_objHit.m_transparentForeground != true)
     {
-      this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
-	  this.m_currentVelocity.m_dx *= -0.2;
-	  this.m_currentVelocity.m_dy *= 0.2;
-    }*/
+      this.m_damage.CreateSectionDamageAnimation(collision.m_objHit.m_x,
+                                                 collision.m_objHit.m_y);
+    }
+
+    collision.m_objHit.m_transparentForeground = true;
   }
-	
-/*if(collision.m_objHit.m_type == BlockType.GrabBlock)
-{
-if(collision.left == true)
-{
-this.Move(_boundsOfObjHit.m_left - this.m_width, this.y);
-this.m_currentVelocity.m_dx = 0.0;
-this.m_currentVelocity.m_dy = 0.0;
-this.m_onGround = true;
-}
-
-if(collision.right == true)
-{
-this.Move(_boundsOfObjHit.m_right, this.y);
-this.m_currentVelocity.m_dx = 0.0;
-this.m_currentVelocity.m_dy = 0.0;
-this.m_onGround = true;
-}
-}
-
-if(collision.m_objHit.m_type == ObjectType.Objective)
-{
-this.Move(50, 500);
-this.m_onGround = false;
-this.m_currentVelocity.m_dx = 0.0;
-this.m_currentVelocity.m_dy = 0.0;
-}*/
 };
 
 Player.prototype.UpdatePhysics = function()
@@ -260,3 +241,4 @@ Player.prototype.UpdatePhysics = function()
 
   this.m_collisions = [];
 };
+

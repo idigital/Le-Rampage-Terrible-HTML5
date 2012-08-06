@@ -3,6 +3,8 @@ function DamageAnimation(image, x, y, frameWidth, frameHeight, numFrames)
   this.m_animation = new AnimatedSprite(image, frameWidth, frameHeight,
                                         numFrames);
 
+  this.m_audio;
+
   this.m_x = x;
   this.m_y = y;
   

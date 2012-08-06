@@ -30,7 +30,10 @@ function WallSection(physics, image, x, y)
   for(section = 0; section < WallSection.SECTIONS; section++)
   {
     var _sectionHeight = WallSection.WALL_HEIGHT / WallSection.SECTIONS;
-    var _block = new Block(this, this.m_x,
+
+    var _block = new Block(null,
+                           BlockType.WallBlock,
+                           this.m_x,
                            this.m_y + (section * _sectionHeight),
                            WallSection.WALL_WIDTH,
                            _sectionHeight);

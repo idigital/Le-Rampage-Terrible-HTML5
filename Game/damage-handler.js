@@ -13,7 +13,7 @@ function DamageHandler()
   var m_currentDamageAnimations = new Array();
 
   //**************************************************************************
-  //Damage animation sprite sheets;
+  //Damage animation sprite sheets.
   //**************************************************************************
 
   //Section.
@@ -47,6 +47,15 @@ function DamageHandler()
 
   this.m_floorDownwardsExplosion = new Image();
   this.m_floorDownwardsExplosion.src = "images/floor-explosion-down.png";
+
+  //**************************************************************************
+  //Audio to play alongside damage animation.
+  //**************************************************************************
+
+  this.m_audio1 = new Audio("building_collapse_01.wav");
+  this.m_audio2 = new Audio("building_collapse_02.wav");
+  this.m_audio3 = new Audio("building_collapse_03.wav");
+  this.m_audio4 = new Audio("building_collapse_04.wav");
 
   //**************************************************************************
   //Methods.

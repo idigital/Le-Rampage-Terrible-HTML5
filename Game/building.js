@@ -62,7 +62,7 @@ function Building(physics, x, y)
   this.m_width = 0;
   this.m_height = 0;
 
-  this.EnablePhysics(physics, false);
+  this.EnablePhysics(physics, false, true);
   
   this.Load = function(file)
   {
@@ -126,7 +126,6 @@ function Building(physics, x, y)
                 this.m_y - (row * Building.SECTION_HEIGHT),
                 Building.SECTION_WIDTH, Building.SECTION_HEIGHT);
 
-            //this.m_sections[column][row].EnablePhysics(physics, true);
             this.m_bounds.AddChildBounds(this.m_sections[column][row].GetBounds());
           }
         }
@@ -143,7 +142,6 @@ function Building(physics, x, y)
                              this.m_x + (floorX * Building.SECTION_WIDTH) + Building.WALL_WIDTH,
           this.m_y - (floorY * Building.SECTION_HEIGHT)));
 
-          //this.m_floors[this.m_floors.length - 1].EnablePhysics(physics, true);
           this.m_bounds.AddChildBounds(this.m_floors[this.m_floors.length - 1].GetBounds());
         }
       }
@@ -180,7 +178,6 @@ function Building(physics, x, y)
                                     this.m_y - (wallY * Building.SECTION_HEIGHT));
           }
 
-          //_wall.EnablePhysics(physics, true);
           this.m_bounds.AddChildBounds(_wall.GetBounds());
           this.m_walls.push(_wall);
         }
@@ -200,20 +197,17 @@ function Building(physics, x, y)
                                           Building.SECTION_WIDTH,
                                           Building.SECTION_HEIGHT);
 
-      //this.m_sections[0][0].EnablePhysics(physics, true);
       this.m_bounds.AddChildBounds(m_sections[0][0].GetBounds());
 
       //Set up initial walls.
       this.m_walls = new Array();
       var _wall1 = new WallSection(physics, this.m_wallSprite, this.m_x, this.m_y);
-      //_wall1.EnablePhysics(physics, true);
       this.m_bounds.AddChildBounds(_wall1.GetBounds());
       this.m_walls.push(_wall1);
 
       var _wall2 = new WallSection(physics, this.m_wallSprite,
                                    this.m_x + Building.WALL_WIDTH
                                    + Building.SECTION_WIDTH, this.m_y);
-      //_wall2.EnablePhysics(physics, true);
       this.m_bounds.AddChildBounds(_wall2.GetBounds());
       this.m_walls.push(_wall2);
 
@@ -221,7 +215,6 @@ function Building(physics, x, y)
       this.m_floors = new Array();
       var _floor = new FloorSection(physics, this.m_floorSprite, this.m_floorBrokenSprite,
                                     this.m_x + Building.WALL_WIDTH, this.m_y);
-      //_floor.EnablePhysics(physics, true);
       this.m_bounds.AddChildBounds(_floor.GetBounds());
       this.m_floors.push(_floor);
     }

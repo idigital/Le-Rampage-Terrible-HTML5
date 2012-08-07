@@ -20,12 +20,15 @@ function WallSection(physics, image, x, y)
   //Holds the walls's overall bounding box in order to make collision
   //detection more efficient.
   this.m_bounds;
-  this.EnablePhysics(physics, true);
+  this.EnablePhysics(physics, false);
 
   this.m_type = ObjectType.Wall;
 
   //List of the blocks that make up the wall.
   this.m_blocks = new Array(WallSection.SECTIONS);
+  //List containing a boolean value associated with each block denoting whether
+  //that block is still intact.
+  this.m_blocksIntact = new Array(WallSection.SECTIONS);
 
   for(section = 0; section < WallSection.SECTIONS; section++)
   {
@@ -40,18 +43,55 @@ function WallSection(physics, image, x, y)
 
     _block.m_blockIntegrity = WallSection.STARTING_HEALTH;
 
-    //_block.EnablePhysics(physics, false);
-    this.m_bounds.AddChildBounds(_block.GetBounds());
+    _block.EnablePhysics(physics, false, false);
+    //this.m_bounds.AddChildBounds(_block.GetBounds());
  
     this.m_blocks[section] = _block;
+
+    this.m_blocksIntact[section] = true;
   }
 
+  //***************************************************************************
+  //
+  //***************************************************************************
+  this.DetermineSectionsHit = function(bounds)
+  {
+    var _sectionsHit = new Array(WallSection.SECTIONS);
+
+    //Use passed in bounds to check which block sections, that are still intact
+    //, have been collided with.
+    for(section = 0; section < WallSection.SECTIONS; section++)
+    {
+      if(this.m_blocksIntact[section] == true)
+      {
+        if(this.m_blocks[section].GetBounds().CheckForCollision(bounds) == true)
+        {
+          //Section hit.
+          _sectionsHit[section] = true;
+          this.m_blocksIntact[section] = false;
+        }
+        else
+        {
+          //Section not hit.
+          _sectionsHit[section] = false;
+        }
+      }
+    }
+
+    //Return an array of sections that have been hit.
+    return _sectionsHit;
+  };
+
+  //***************************************************************************
+  //
+  //***************************************************************************
   this.Draw = function(context, screenX, screenY, scale)
   {
     for(block = 0; block < this.m_blocks.length; block++)
-	{
-      if(this.m_blocks[block].m_blockIntegrity > 0)
-	  {
+    {
+      //if(this.m_blocks[block].m_blockIntegrity > 0)
+      if(this.m_blocksIntact[block] == true)
+      {
         this.m_image.Draw(context, this.m_x, this.m_y + ((WallSection.WALL_HEIGHT / WallSection.SECTIONS) * block), screenX, screenY, scale);
 
         context.lineWidth = 1;
@@ -65,3 +105,4 @@ function WallSection(physics, image, x, y)
     }
   }
 };
+

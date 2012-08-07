@@ -3,7 +3,7 @@ function PhysicsHandler()
   //An array to hold each object in the level's bounding box.
   var m_objects = new Array();
 
-  this.CreateBoundingBox = function(gameObject, hasParent)
+  this.CreateBoundingBox = function(gameObject, hasParent, addToWorld)
   {
     var _bounds = new BoundingBox(gameObject,
                                   gameObject.m_x,
@@ -14,7 +14,7 @@ function PhysicsHandler()
     //Add to array of objects in level if bounds does not have parent bounds.
     //If it has parent bounds the parent will check it's collision during
     //physics update.
-    if(hasParent == false)
+    if(hasParent == false && addToWorld == true)
     {
       m_objects.push(_bounds);
     }

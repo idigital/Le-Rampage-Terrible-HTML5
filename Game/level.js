@@ -23,7 +23,7 @@ function Level()
   
   m_character = new Player(m_damage);
   m_character.SetDimensions(103, 128);
-  m_character.EnablePhysics(m_physics, false);
+  m_character.EnablePhysics(m_physics, false, true);
   m_character.Move(0, 472);
 
   var bg = new Sprite("images/SkyBackground.png", 800, 600);

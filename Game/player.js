@@ -128,14 +128,83 @@ Player.prototype.HandleCollision = function(collision)
   //********************
   //Check if hit a wall.
   //********************
-/*  if(collision.m_objHit.m_type == BlockType.WallBlock)//ObjectType.Wall)
+  if(collision.m_objHit.m_type == ObjectType.Wall)
   {
+    var _sectionsHit;
+
     //Determine which side of the wall is hit and from which direction.
     //If the force of impact is strong enough, destroy the wall and play
     //the corresponding damage animation. If not then player bounces off.
     if(collision.left == true && this.m_currentVelocity.m_dx >= 0)
     {
-      if(this.m_currentPowerX >= collision.m_objHit.m_blockIntegrity
+      //Get sections hit by player.
+      _sectionsHit = collision.m_objHit.DetermineSectionsHit(this.m_bounds);
+
+      //Iterate through sections hit to find out how many are hit and hence which damage animation to play.
+      _numSectionsHit = 0;
+      for(section = 0; section < _sectionsHit.length; section++)
+      {
+        if(_sectionsHit[section] == true)
+        {
+          _numSectionsHit++;
+        }
+      }
+
+      //Depending on number of sections hit. React and cause damage.
+      if(_numSectionsHit == 0)
+      {
+        //Ignore.
+      }
+      else if(_numSectionsHit == 1)
+      {
+        //Find which section hit and play one third wall damage animation.
+        var _section;
+        if(_sectionsHit[0] == true)
+        {
+          _section = 0;
+        }
+        else if(_sectionsHit[1] == true)
+        {
+          _section = 1;
+        }
+        else if(_sectionsHit[2] == true)
+        {
+          _section = 2;
+        }
+        var _y = collision.m_objHit.m_y + ((WallSection.WALL_HEIGHT / WallSection.SECTIONS) * _section);
+        this.m_damage.CreateWallDamageAnimation(
+                                        DamageHorizontalDirection.RIGHT, 1,
+                                        collision.m_objHit.m_x,
+                                        _y);
+      }
+      else if (_numSectionsHit == 2)
+      {
+        //Find which two sections hit and play two thirds wall damage animation.
+        var _section;
+        if(_sectionsHit[0] == true)
+        {
+          _section = 0;
+        }
+        else if(_sectionsHit[1] == true)
+        {
+          _section = 1;
+        }
+        var _y = collision.m_objHit.m_y + ((WallSection.WALL_HEIGHT / WallSection.SECTIONS) * _section);
+        this.m_damage.CreateWallDamageAnimation(
+                                        DamageHorizontalDirection.RIGHT, 2,
+                                        collision.m_objHit.m_x,
+                                        _y);
+      }
+      else if (_numSectionsHit == 3)
+      {
+        //Play whole wall damage animation.
+        this.m_damage.CreateWallDamageAnimation(
+                                        DamageHorizontalDirection.RIGHT, 3,
+                                        collision.m_objHit.m_x,
+                                        collision.m_objHit.m_y);
+      }
+
+      /*if(this.m_currentPowerX >= collision.m_objHit.m_blockIntegrity
          && collision.m_objHit.m_blockIntegrity > 0)
       {
         this.m_currentPowerX -= collision.m_objHit.m_blockIntegrity;
@@ -148,27 +217,95 @@ Player.prototype.HandleCollision = function(collision)
         this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
         this.m_currentVelocity.m_dx *= -0.2;
         this.m_currentVelocity.m_dy *= 0.2;
-      }
+      }*/
     }
 
     if(collision.right == true && this.m_currentVelocity.m_dx < 0)
     {
-      if(this.m_currentPowerX >= collision.m_objHit.m_blockIntegrity
+      //Get sections hit by player.
+      _sectionsHit = collision.m_objHit.DetermineSectionsHit(this.m_bounds);
+
+      //Iterate through sections hit to find out how many are hit and hence which damage animation to play.
+      _numSectionsHit = 0;
+      for(section = 0; section < _sectionsHit.length; section++)
+      {
+        if(_sectionsHit[section] == true)
+        {
+          _numSectionsHit++;
+        }
+      }
+
+      //Depending on number of sections hit. React and cause damage.
+      if(_numSectionsHit == 0)
+      {
+        //Ignore.
+      }
+      else if(_numSectionsHit == 1)
+      {
+        //Find which section hit and play one third wall damage animation.
+        var _section;
+        if(_sectionsHit[0] == true)
+        {
+          _section = 0;
+        }
+        else if(_sectionsHit[1] == true)
+        {
+          _section = 1;
+        }
+        else if(_sectionsHit[2] == true)
+        {
+          _section = 2;
+        }
+        var _y = collision.m_objHit.m_y + ((WallSection.WALL_HEIGHT / WallSection.SECTIONS) * _section);
+        this.m_damage.CreateWallDamageAnimation(
+                                        DamageHorizontalDirection.LEFT, 1,
+                                        collision.m_objHit.m_x - 64,
+                                        _y);
+      }
+      else if (_numSectionsHit == 2)
+      {
+        //Find which two sections hit and play two thirds wall damage animation.
+        var _section;
+        if(_sectionsHit[0] == true)
+        {
+          _section = 0;
+        }
+        else if(_sectionsHit[1] == true)
+        {
+          _section = 1;
+        }
+        var _y = collision.m_objHit.m_y + ((WallSection.WALL_HEIGHT / WallSection.SECTIONS) * _section);
+        this.m_damage.CreateWallDamageAnimation(
+                                        DamageHorizontalDirection.LEFT, 2,
+                                        collision.m_objHit.m_x - 64,
+                                        _y);
+      }
+      else if (_numSectionsHit == 3)
+      {
+        //Play whole wall damage animation.
+        this.m_damage.CreateWallDamageAnimation(
+                                        DamageHorizontalDirection.LEFT, 3,
+                                        collision.m_objHit.m_x - 256,
+                                        collision.m_objHit.m_y);
+      }
+
+      /*if(this.m_currentPowerX >= collision.m_objHit.m_blockIntegrity
          && collision.m_objHit.m_blockIntegrity > 0)
       {
         this.m_currentPowerX -= collision.m_objHit.m_blockIntegrity;
         collision.m_objHit.m_blockIntegrity = 0;
-        this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.LEFT, 3, collision.m_objHit.m_x - 256, collision.m_objHit.m_y);
+        this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.RIGHT, 3, collision.m_objHit.m_x, collision.m_objHit.m_y);
       }
 
       if(collision.m_objHit.m_blockIntegrity > 0)
       {
-        this.Move(_boundsOfObjHit.m_right, this.m_y);
+        this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
         this.m_currentVelocity.m_dx *= -0.2;
         this.m_currentVelocity.m_dy *= 0.2;
-      }
+      }*/
+
     }
-  }*/
+  }
 
   //*********************
   //Check if hit a floor.
@@ -195,13 +332,6 @@ Player.prototype.HandleCollision = function(collision)
         if(this.m_currentPowerY >= FloorSection.FORCE_TO_MOVE_DOWN_A_FLOOR)
         {
           this.m_currentPowerY -= FloorSection.FORCE_TO_MOVE_DOWN_A_FLOOR;
-
-          //Cause downwards destruction if first time hit.
-          if(collision.m_objHit.m_block.m_blockIntegrity > 0)
-          {
-            collision.m_objHit.m_block.m_blockIntegrity = 0;
-            this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.DOWN, collision.m_objHit.m_x, collision.m_objHit.m_y);
-          }
         }
         //If power not great enough, land.
         else
@@ -213,6 +343,12 @@ Player.prototype.HandleCollision = function(collision)
           this.m_onGround = true;
         }
 
+        //Cause downwards destruction if first time hit.
+        if(collision.m_objHit.m_block.m_blockIntegrity > 0)
+        {
+          collision.m_objHit.m_block.m_blockIntegrity = 0;
+          this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.DOWN, collision.m_objHit.m_x, collision.m_objHit.m_y);
+        }
       }
     }
     else if(collision.bottom == true)

@@ -31,6 +31,9 @@ function Game()
 
   var m_screenManager = new ScreenManager();
 
+  var m_music = new Audio("audio/ROTA_Music_draft_01.wav");
+  //m_music.play();
+
   this.Initialise = function()
   {
     //Initialise game variables.

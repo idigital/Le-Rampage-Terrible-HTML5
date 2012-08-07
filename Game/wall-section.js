@@ -40,6 +40,7 @@ function WallSection(physics, image, x, y)
 
     _block.m_blockIntegrity = WallSection.STARTING_HEALTH;
 
+    //_block.EnablePhysics(physics, false);
     this.m_bounds.AddChildBounds(_block.GetBounds());
  
     this.m_blocks[section] = _block;

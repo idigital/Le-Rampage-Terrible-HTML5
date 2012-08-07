@@ -79,12 +79,12 @@ function Player(damage)
       this.m_currentVelocity.m_dx = vX;
       this.m_currentVelocity.m_dy = vY;
 	  
-	  this.m_currentPowerX = vX / 3;
+	  this.m_currentPowerX = Math.floor(vX / 3);
 	  if(this.m_currentPowerX < 0)
 	  {
 	    this.m_currentPowerX *= -1;
 	  }
-	  this.m_currentPowerY = vY / 3;
+	  this.m_currentPowerY = Math.floor(vY / 4);
 	  if(this.m_currentPowerY < 0)
 	  {
 	    this.m_currentPowerY *= -1;
@@ -128,22 +128,22 @@ Player.prototype.HandleCollision = function(collision)
   //********************
   //Check if hit a wall.
   //********************
-  if(collision.m_objHit.m_type == ObjectType.Wall)
+/*  if(collision.m_objHit.m_type == BlockType.WallBlock)//ObjectType.Wall)
   {
     //Determine which side of the wall is hit and from which direction.
     //If the force of impact is strong enough, destroy the wall and play
     //the corresponding damage animation. If not then player bounces off.
     if(collision.left == true && this.m_currentVelocity.m_dx >= 0)
     {
-      if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity
-         && collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
+      if(this.m_currentPowerX >= collision.m_objHit.m_blockIntegrity
+         && collision.m_objHit.m_blockIntegrity > 0)
       {
-        this.m_currentPowerX -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
-        collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
+        this.m_currentPowerX -= collision.m_objHit.m_blockIntegrity;
+        collision.m_objHit.m_blockIntegrity = 0;
         this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.RIGHT, 3, collision.m_objHit.m_x, collision.m_objHit.m_y);
       }
 
-      if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
+      if(collision.m_objHit.m_blockIntegrity > 0)
       {
         this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
         this.m_currentVelocity.m_dx *= -0.2;
@@ -153,48 +153,58 @@ Player.prototype.HandleCollision = function(collision)
 
     if(collision.right == true && this.m_currentVelocity.m_dx < 0)
     {
-      if(this.m_currentPowerX >= collision.m_objHit.m_blocks[0].m_blockIntegrity
-         && collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
+      if(this.m_currentPowerX >= collision.m_objHit.m_blockIntegrity
+         && collision.m_objHit.m_blockIntegrity > 0)
       {
-        this.m_currentPowerX -= collision.m_objHit.m_blocks[0].m_blockIntegrity;
-        collision.m_objHit.m_blocks[0].m_blockIntegrity = 0;
+        this.m_currentPowerX -= collision.m_objHit.m_blockIntegrity;
+        collision.m_objHit.m_blockIntegrity = 0;
         this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.LEFT, 3, collision.m_objHit.m_x - 256, collision.m_objHit.m_y);
       }
 
-      if(collision.m_objHit.m_blocks[0].m_blockIntegrity > 0)
+      if(collision.m_objHit.m_blockIntegrity > 0)
       {
         this.Move(_boundsOfObjHit.m_right, this.m_y);
         this.m_currentVelocity.m_dx *= -0.2;
         this.m_currentVelocity.m_dy *= 0.2;
       }
     }
-  }
+  }*/
 
   //*********************
   //Check if hit a floor.
   //*********************
   if(collision.m_objHit.m_type == ObjectType.Floor)
   {
-    //If hitting the floor on the top edge. Check direction of travel.
-    //If travelling upwards then player is passing through floor and so ignore.
-    //If travelling downwards then land on floor if not enough power to break
-    //trough it.
+    //Find edges hit and resolve.
     if(collision.top == true)
     {
+      //If hitting the floor on the top edge. Check direction of travel.
+      //If travelling upwards then the player is passing through floor and so
+      //ignore. If travelling downwards then land on floor if not enough power
+      //to break trough it.
+   
       if(this.m_currentVelocity.m_dy <= 0)
       {
-        //Moving upwards so ignore.
-        //Cause upwards destruction if first time hit.
+        //Moving upwards. Ignore.
+      }
+      else if(this.m_currentVelocity.m_dy > 0)
+      {
+        //Moving downwards.
 
-        if(this.m_currentPowerY >= collision.m_objHit.m_block.m_blockIntegrity
-           && collision.m_objHit.m_block.m_blockIntegrity > 0)
+        //If power is great enough, break through floor.
+        if(this.m_currentPowerY >= FloorSection.FORCE_TO_MOVE_DOWN_A_FLOOR)
         {
-          this.m_currentPowerY -= collision.m_objHit.m_block.m_blockIntegrity;
-          collision.m_objHit.m_block.m_blockIntegrity = 0;
-          this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.DOWN, collision.m_objHit.m_x, collision.m_objHit.m_y);
+          this.m_currentPowerY -= FloorSection.FORCE_TO_MOVE_DOWN_A_FLOOR;
+
+          //Cause downwards destruction if first time hit.
+          if(collision.m_objHit.m_block.m_blockIntegrity > 0)
+          {
+            collision.m_objHit.m_block.m_blockIntegrity = 0;
+            this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.DOWN, collision.m_objHit.m_x, collision.m_objHit.m_y);
+          }
         }
-	  
-        if(collision.m_objHit.m_block.m_blockIntegrity > 0)
+        //If power not great enough, land.
+        else
         {
           this.Move(this.m_x, _boundsOfObjHit.m_top  - this.m_height);
           this.m_currentVelocity.m_dx = 0;
@@ -202,24 +212,49 @@ Player.prototype.HandleCollision = function(collision)
 
           this.m_onGround = true;
         }
+
       }
     }
     else if(collision.bottom == true)
     {
-      if(this.m_currentVelocity.m_dy > 0)
+      //If hitting the floor on the bottom edge. Check direction of travel.
+      //If travelling downwards then the player is passing through floor and so
+      //ignore. If travelling upwards then break through if enough power or
+      //bounce off if not.
+      if(this.m_currentVelocity.m_dy >= 0)
       {
-        if(collision.m_objHit.m_block.m_blockIntegrity > 0)
+        //Moving downwards. Ignore.
+      }
+      else if(this.m_currentVelocity.m_dy < 0)
+      {
+        //Moving upwards.
+
+        //If power is great enough, break through floor.
+        if(this.m_currentPowerY >= FloorSection.FORCE_TO_MOVE_UP_A_FLOOR)
         {
-          this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.UP,
+          this.m_currentPowerY -= FloorSection.FORCE_TO_MOVE_UP_A_FLOOR;
+
+          //Cause downwards destruction if first time hit.
+          if(collision.m_objHit.m_block.m_blockIntegrity > 0)
+          {
+            collision.m_objHit.m_block.m_blockIntegrity = 0;
+            this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.UP,
                                                   collision.m_objHit.m_x,
                                                   collision.m_objHit.m_y - 192);
+          }
         }
-        //this.m_currentVelocity.m_x *= 0.8;
-        //this.m_currentVelocity.m_y *= -0.2;
+        //If power not great enough, bounce.
+        else
+        {
+          this.m_currentVelocity.m_dy *= -0.2;
+        }
       }
     }
   }
   
+  //********************************
+  //Check if hit a building section.
+  //********************************
   if(collision.m_objHit.m_type == ObjectType.Section)
   {
     if(collision.m_objHit.m_transparentForeground != true)

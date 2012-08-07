@@ -51,6 +51,10 @@ function Building(physics, x, y)
                                   Building.FLOOR_WIDTH,
                                   Building.FLOOR_HEIGHT);
 
+  this.m_floorBrokenSprite = new Sprite("images/floorBroken.png",
+                                        Building.FLOOR_WIDTH,
+                                        Building.FLOOR_HEIGHT);
+
   this.m_wallSprite = new Sprite("images/wallThird.png",
                                   Building.WALL_WIDTH,
                                   Building.WALL_HEIGHT / Building.SECTIONS);
@@ -135,7 +139,7 @@ function Building(physics, x, y)
         for(floorY = 0; floorY < _height; floorY++)
         {
           this.m_floors.push(
-            new FloorSection(physics, this.m_floorSprite,
+            new FloorSection(physics, this.m_floorSprite, this.m_floorBrokenSprite,
                              this.m_x + (floorX * Building.SECTION_WIDTH) + Building.WALL_WIDTH,
           this.m_y - (floorY * Building.SECTION_HEIGHT)));
 
@@ -215,7 +219,7 @@ function Building(physics, x, y)
 
       //Set up initial floor section as ceiling set into initial sections.
       this.m_floors = new Array();
-      var _floor = new FloorSection(physics, this.m_floorSprite,
+      var _floor = new FloorSection(physics, this.m_floorSprite, this.m_floorBrokenSprite,
                                     this.m_x + Building.WALL_WIDTH, this.m_y);
       //_floor.EnablePhysics(physics, true);
       this.m_bounds.AddChildBounds(_floor.GetBounds());

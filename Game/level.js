@@ -16,12 +16,13 @@ function Level()
   var m_aim;
   var m_building;
 
+  var m_scoreHandler = new ScoreHandler();
   var m_objective;
 
   var m_physics = new PhysicsHandler();
   var m_damage = new DamageHandler();
   
-  m_character = new Player(m_damage);
+  m_character = new Player(m_damage, m_scoreHandler);
   m_character.SetDimensions(103, 128);
   m_character.EnablePhysics(m_physics, false, true);
   m_character.Move(0, 472);
@@ -41,7 +42,6 @@ function Level()
   
   //Scoring variables.
   var m_timeElapsed = 0;
-  var m_damageScore = 0;
 
   this.Update = function(dt, mouseX, mouseY, leftClick, leftRelease)
   {
@@ -77,6 +77,8 @@ function Level()
 
     m_damage.Update(dt);
 
+    m_scoreHandler.Update(dt);
+
     //var _scaledScreenX = 50 * m_scale;
     //var _scaledScreenY = 422 * m_scale;
 
@@ -99,10 +101,12 @@ function Level()
     m_aimSprite.Draw(context, m_aimPos.m_dx, m_aimPos.m_dy,
                      m_screenX, m_screenY, m_scale);
 
-    context.fillStyle = "Black";
+    context.fillStyle = "Red";
     context.fillText("Power: " + m_power, 10, 50);
-    context.fillText("Time Score:: " + m_timeElapsed.toFixed(2), 10, 70);
-    context.fillText("Damage Score:: " + m_damageScore, 10, 90);
+    context.fillText("Time Score: " + m_timeElapsed.toFixed(2), 10, 70);
+    context.fillText("Damage Score: " + m_scoreHandler.m_currentScore, 10, 90);
+    context.fillText("Damage Chain Score: " + m_scoreHandler.m_currentChainScore, 10, 110);
+    m_scoreHandler.Draw(context, 10, 150);
   }
 
   this.MouseClick = function(mouseX, mouseY)

@@ -1,6 +1,6 @@
 Player.prototype = new GameObject();
 
-function Player(damage)
+function Player(damage, scoreHandler)
 {
   this.m_currentVelocity = new Vector(0,0);
   this.m_mass = 5;
@@ -18,6 +18,7 @@ function Player(damage)
   this.m_currentState;
   
   this.m_damage = damage;
+  this.m_scoreHandler = scoreHandler;
 
   this.animations = //new AnimatedSprite("images/player_anim.png", 103, 128, 3);
   new Sprite("images/player_anim.png", 103, 128);
@@ -176,6 +177,9 @@ Player.prototype.HandleCollision = function(collision)
                                         DamageHorizontalDirection.RIGHT, 1,
                                         collision.m_objHit.m_x,
                                         _y);
+
+        this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
       }
       else if (_numSectionsHit == 2)
       {
@@ -194,7 +198,12 @@ Player.prototype.HandleCollision = function(collision)
                                         DamageHorizontalDirection.RIGHT, 2,
                                         collision.m_objHit.m_x,
                                         _y);
-      }
+
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
+    }
       else if (_numSectionsHit == 3)
       {
         //Play whole wall damage animation.
@@ -202,7 +211,14 @@ Player.prototype.HandleCollision = function(collision)
                                         DamageHorizontalDirection.RIGHT, 3,
                                         collision.m_objHit.m_x,
                                         collision.m_objHit.m_y);
-      }
+
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
+   }
 
       /*if(this.m_currentPowerX >= collision.m_objHit.m_blockIntegrity
          && collision.m_objHit.m_blockIntegrity > 0)
@@ -261,7 +277,10 @@ Player.prototype.HandleCollision = function(collision)
                                         DamageHorizontalDirection.LEFT, 1,
                                         collision.m_objHit.m_x - 64,
                                         _y);
-      }
+
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
+     }
       else if (_numSectionsHit == 2)
       {
         //Find which two sections hit and play two thirds wall damage animation.
@@ -279,7 +298,12 @@ Player.prototype.HandleCollision = function(collision)
                                         DamageHorizontalDirection.LEFT, 2,
                                         collision.m_objHit.m_x - 64,
                                         _y);
-      }
+
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
+    }
       else if (_numSectionsHit == 3)
       {
         //Play whole wall damage animation.
@@ -287,7 +311,14 @@ Player.prototype.HandleCollision = function(collision)
                                         DamageHorizontalDirection.LEFT, 3,
                                         collision.m_objHit.m_x - 256,
                                         collision.m_objHit.m_y);
-      }
+
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
+                                         ScoreHandler.WALL_SECTION_POINTS);
+   }
 
       /*if(this.m_currentPowerX >= collision.m_objHit.m_blockIntegrity
          && collision.m_objHit.m_blockIntegrity > 0)
@@ -348,7 +379,10 @@ Player.prototype.HandleCollision = function(collision)
         {
           collision.m_objHit.m_block.m_blockIntegrity = 0;
           this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.DOWN, collision.m_objHit.m_x, collision.m_objHit.m_y);
-        }
+
+         this.m_scoreHandler.AddChainLink(ScoreObjectType.FLOOR,
+                                         ScoreHandler.FLOOR_SECTION_POINTS);
+       }
       }
     }
     else if(collision.bottom == true)
@@ -377,6 +411,9 @@ Player.prototype.HandleCollision = function(collision)
             this.m_damage.CreateFloorDamageAnimation(DamageVerticalDirection.UP,
                                                   collision.m_objHit.m_x,
                                                   collision.m_objHit.m_y - 192);
+
+            this.m_scoreHandler.AddChainLink(ScoreObjectType.FLOOR,
+                                         ScoreHandler.FLOOR_SECTION_POINTS);
           }
         }
         //If power not great enough, bounce.
@@ -397,7 +434,10 @@ Player.prototype.HandleCollision = function(collision)
     {
       this.m_damage.CreateSectionDamageAnimation(collision.m_objHit.m_x,
                                                  collision.m_objHit.m_y);
-    }
+
+      this.m_scoreHandler.AddChainLink(ScoreObjectType.BUILDING_NORMAL,
+                                         ScoreHandler.NORMAL_BUILDING_POINTS);
+   }
 
     collision.m_objHit.m_transparentForeground = true;
   }

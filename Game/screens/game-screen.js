@@ -11,14 +11,11 @@ function GameScreen()
   this.m_editorButton;
   this.m_editorBounds;
 
-  //this.Initialise(levelData)
-  //{
-    this.m_level = new Level();
+  this.m_level = new Level();
 
-    this.m_editor = new Editor(this.m_level);
-    this.m_editorButton = new Sprite("images/editButton.png", 32, 32);
-    this.m_editorBounds = new BoundingBox(null, 868, 0, 32, 32);
-  //};
+  this.m_editor = new Editor(this.m_level);
+  this.m_editorButton = new Sprite("images/editButton.png", 32, 32);
+  this.m_editorBounds = new BoundingBox(null, 868, 0, 32, 32);
 }
 
 GameScreen.prototype.Update = function(dt, mouseX, mouseY,
@@ -42,6 +39,7 @@ GameScreen.prototype.Update = function(dt, mouseX, mouseY,
   if(this.m_editMode == true)
   {
     this.m_editor.Update(dt, mouseX, mouseY,
+                         this.m_level.m_screenX, this.m_level.m_screenY,
                          leftClickOccured, leftReleaseOccured);
   }
   else
@@ -55,7 +53,8 @@ GameScreen.prototype.Draw = function(context)
 {
   if(this.m_editMode == true)
   {
-    this.m_editor.Draw(context);
+    this.m_editor.Draw(context, this.m_level.m_screenX, this.m_level.m_screenY,
+        this.m_level.m_scale);
   }
   else
   {

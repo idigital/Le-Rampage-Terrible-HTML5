@@ -34,14 +34,10 @@ function Building(physics, x, y)
 
   //Load the sprites required for the section's foreground, background, the
   //floor sprite and wall sprite.
-  this.m_foregroundSprite = new Sprite("images/sectionForeground.png",
+  this.m_foregroundSprite = new AnimatedSprite("images/sectionForeground.png",
                                        Building.SECTION_WIDTH,
-                                       Building.SECTION_HEIGHT);
-
-  this.m_foregroundSpriteTransparent
-    = new Sprite("images/sectionForegroundTransparent.png",
-                 Building.SECTION_WIDTH,
-                 Building.SECTION_HEIGHT);
+                                       Building.SECTION_HEIGHT,
+                                       4);
 
   this.m_backgroundSprite = new Sprite("images/sectionBackground.png",
                                        Building.SECTION_WIDTH,
@@ -222,18 +218,7 @@ function Building(physics, x, y)
 
   this.Update = function(dt)
   {
-  /*	//Iterate through building array and update blocks if necessary.
-	for(i = 0; i < m_width; i++)
-    {
-      for(j = 0; j < m_height; j++)
-      {
-		if(m_blocks[i][j].m_blockIntegrity <= 0
-			&& j > 0)
-        {
-		  m_blocks[i][j - 1].m_type = BlockType.TopBlock;
-		}
-	  }
-	}*/
+
   };
   
   this.Draw = function(context, screenX, screenY, scale)

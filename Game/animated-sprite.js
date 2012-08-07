@@ -1,8 +1,11 @@
 AnimatedSprite.prototype = new Sprite();
 
-function AnimatedSprite(image, frameWidth, frameHeight, numFrames)
+function AnimatedSprite(filename, frameWidth, frameHeight, numFrames)
 {
-  this.m_image = image;
+  this.m_filename = filename;
+
+  this.m_image = new Image();
+  this.m_image.src = filename;
 
   this.m_width = frameWidth;
   this.m_height = frameHeight;

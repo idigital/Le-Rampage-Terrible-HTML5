@@ -15,6 +15,7 @@ function Level()
   var m_character;
   var m_aim;
   var m_building;
+  this.m_buildings = new Array();
 
   var m_scoreHandler = new ScoreHandler();
   var m_objective;
@@ -35,10 +36,12 @@ function Level()
   m_building = new Building(m_physics, 380, 600 - 192);
   m_building.Load("levels/level1.xml");
 
+  this.m_buildings.push(m_building);
+
   //Side-scrolling variables.
-  var m_screenX = 0;
-  var m_screenY = 0;
-  var m_scale = 1.0;
+  this.m_screenX = 0;
+  this.m_screenY = 0;
+  this.m_scale = 1.0;
   
   //Scoring variables.
   var m_timeElapsed = 0;
@@ -79,27 +82,27 @@ function Level()
 
     m_scoreHandler.Update(dt);
 
-    //var _scaledScreenX = 50 * m_scale;
-    //var _scaledScreenY = 422 * m_scale;
+    //var _scaledScreenX = 50 * this.m_scale;
+    //var _scaledScreenY = 422 * this.m_scale;
 
-    //var _screenXOffset = (Game.CANVAS_WIDTH - (Game.CANVAS_WIDTH / m_scale)) / 2;
-    //var _screenYOffset = (Game.CANVAS_HEIGHT - (Game.CANVAS_HEIGHT / m_scale)) / 2;
+    //var _screenXOffset = (Game.CANVAS_WIDTH - (Game.CANVAS_WIDTH / this.m_scale)) / 2;
+    //var _screenYOffset = (Game.CANVAS_HEIGHT - (Game.CANVAS_HEIGHT / this.m_scale)) / 2;
 	
 	//m_screenX = m_character.m_x - _scaledScreenX + _screenXOffset;
     //m_screenY = m_character.m_y - _scaledScreenY + _screenYOffset;
 	
-	m_screenX = m_character.m_x - 100;
-    m_screenY = m_character.m_y - (500 - (m_character.m_height * m_scale));
+    this.m_screenX = m_character.m_x - 100;
+    this.m_screenY = m_character.m_y - (500 - (m_character.m_height * this.m_scale));
   }
 
   this.Draw = function(context)
   {
-    bg.Draw(context, 0, 0, m_screenX, m_screenY, m_scale);
-    m_building.Draw(context, m_screenX, m_screenY, m_scale);
-    m_damage.Draw(context, m_screenX, m_screenY, m_scale);
-    m_character.Draw(context, m_screenX, m_screenY, m_scale);
+    bg.Draw(context, 0, 0, this.m_screenX, this.m_screenY, this.m_scale);
+    m_building.Draw(context, this.m_screenX, this.m_screenY, this.m_scale);
+    m_damage.Draw(context, this.m_screenX, this.m_screenY, this.m_scale);
+    m_character.Draw(context, this.m_screenX, this.m_screenY, this.m_scale);
     m_aimSprite.Draw(context, m_aimPos.m_dx, m_aimPos.m_dy,
-                     m_screenX, m_screenY, m_scale);
+                     this.m_screenX, this.m_screenY, this.m_scale);
 
     context.fillStyle = "Red";
     context.fillText("Power: " + m_power, 10, 50);
@@ -113,12 +116,12 @@ function Level()
   {
     var _bounds = m_character.GetBounds();
 
-    if(_bounds.CheckForPointCollision(mouseX + m_screenX,
-                                      mouseY + m_screenY))
+    if(_bounds.CheckForPointCollision(mouseX + this.m_screenX,
+                                      mouseY + this.m_screenY))
     {
       m_dragging = true;
-      m_startX = mouseX + m_screenX;
-      m_startY = mouseY + m_screenY;
+      m_startX = mouseX + this.m_screenX;
+      m_startY = mouseY + this.m_screenY;
     }
   }
 
@@ -136,8 +139,8 @@ function Level()
   {
     if(m_dragging == true)
     {
-      m_endX = mouseX + m_screenX;
-      m_endY = mouseY + m_screenY;
+      m_endX = mouseX + this.m_screenX;
+      m_endY = mouseY + this.m_screenY;
 
       var _origin = m_character.GetOrigin();
 

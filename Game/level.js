@@ -307,9 +307,9 @@ function Level()
           _newBuilding.m_walls.push(_wall);
         }
       }
+
+	  this.m_buildings[building] = _newBuilding;
 	}
-	
-	this.m_buildings[building] = _newBuilding;
   }
 
   this.MouseClick = function(mouseX, mouseY)

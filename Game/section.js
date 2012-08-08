@@ -30,7 +30,7 @@ function Section(physics, foregroundImage, backgroundImage, x, y, sectionType, s
   this.m_width = Section.SECTION_WIDTH;
   this.m_height = Section.SECTION_HEIGHT;
 
-  this.m_type = null;// = ObjectType.Section;
+  this.m_type = ObjectType.Section;
   this.m_value = null;// = sectionType;
   this.m_points = null;// = sectionValue;
   

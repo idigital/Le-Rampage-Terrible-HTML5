@@ -32,6 +32,11 @@ function Level()
   var m_aimPos = new Vector(0, 0);
   var m_aimSprite = new Sprite("images/Aim.png", 4, 4);
 
+  this.m_start = new Sprite("images/start.png", 256, 160);
+  this.m_startPos = new Vector(0, 440);
+  this.m_end = new Objective("images/finish.png", 32636, 440, 256, 160);
+  this.m_end.EnablePhysics(m_physics, false, true);
+
   //Side-scrolling variables.
   this.m_screenX = 0;
   this.m_screenY = 0;
@@ -96,12 +101,18 @@ function Level()
   {
     bg.Draw(context, 0, 0, this.m_screenX, this.m_screenY, this.m_scale);
 
-	for(building = 0; building < this.m_buildings.length; building++)
-	{
-		this.m_buildings[building].Draw(context, this.m_screenX, this.m_screenY, this.m_scale);
-	}
-	
+    for(building = 0; building < this.m_buildings.length; building++)
+    {
+      this.m_buildings[building].Draw(
+          context, this.m_screenX, this.m_screenY, this.m_scale);
+    }
+
+    this.m_start.Draw(context, this.m_startPos.m_dx, this.m_startPos.m_dy,
+                      this.m_screenX, this.m_screenY, this.m_scale);
+    this.m_end.Draw(context, this.m_screenX, this.m_screenY, this.m_scale);
+
     m_damage.Draw(context, this.m_screenX, this.m_screenY, this.m_scale);
+
     m_character.Draw(context, this.m_screenX, this.m_screenY, this.m_scale);
     m_aimSprite.Draw(context, m_aimPos.m_dx, m_aimPos.m_dy,
                      this.m_screenX, this.m_screenY, this.m_scale);

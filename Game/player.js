@@ -12,7 +12,7 @@ function Player(damage, scoreHandler)
   var m_crouching = false;
   var m_gravity = 9.8;
   var m_floorHeight = 600;
-  var m_worldWidth = 2000;
+  var m_worldWidth = 32796;
   var m_airDrag = 1.0;
 
   this.m_currentState;
@@ -481,6 +481,14 @@ Player.prototype.HandleCollision = function(collision)
         this.m_currentVelocity.m_dy *= -0.2;
       }
     }
+  }
+
+  //*************************
+  //Check if hit finish line.
+  //*************************
+  if(collision.m_objHit.m_type == ObjectType.Finish)
+  {
+    //Reached finish. End level.
   }
 };
 

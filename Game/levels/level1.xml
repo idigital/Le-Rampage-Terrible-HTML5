@@ -1,11 +1,11 @@
 <level>
   <buildings>
-    <number>2</number>
+    <number>11</number>
     <building>
       <x>380</x>
       <y>408</y>
-      <width>2</width>
-      <height>2</height>
+      <width>3</width>
+      <height>4</height>
       <design>Plain</design>
       <row>
         <section>
@@ -16,8 +16,26 @@
 		  <type>Destructable</type>
 		  <value>Bronze</value>
 		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
       </row>
-      <row>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+      </row>
+	  <row>
         <section>
 		  <type>Destructable</type>
 		  <value>Bronze</value>
@@ -26,56 +44,427 @@
 		  <type>Destructable</type>
 		  <value>Bronze</value>
 		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
       </row>
+	  <row>
+	    <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+	  </row>
     </building>
     <building>
-      <x>1000</x>
+      <x>636</x>
+      <y>-360</y>
+      <width>1</width>
+      <height>1</height>
+      <design>Plain</design>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+      </row>
+    </building>
+	<building>
+      <x>1404</x>
       <y>408</y>
-      <width>3</width>
+      <width>7</width>
       <height>3</height>
       <design>Plain</design>
-      <row>
+	  <row>
         <section>
 		  <type>Destructable</type>
 		  <value>Bronze</value>
 		</section>
-        <section>
+		<section>
 		  <type>Destructable</type>
 		  <value>Bronze</value>
 		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+      </row>
+	  <row>
         <section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
 		  <type>Destructable</type>
 		  <value>Bronze</value>
 		</section>
       </row>
-      <row>
+	  <row>
         <section>
 		  <type>Destructable</type>
 		  <value>Bronze</value>
 		</section>
-        <section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
 		  <type>Destructable</type>
 		  <value>Bronze</value>
 		</section>
-        <section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
 		  <type>Destructable</type>
 		  <value>Bronze</value>
 		</section>
-      </row>
-      <row>
-        <section>
+		<section>
 		  <type>Destructable</type>
 		  <value>Bronze</value>
 		</section>
-        <section>
-		  <type>Destructable</type>
-		  <value>Bronze</value>
-		</section>
-        <section>
+		<section>
 		  <type>Destructable</type>
 		  <value>Bronze</value>
 		</section>
       </row>
     </building>
+	<building>
+      <x>1404</x>
+      <y>-168</y>
+      <width>4</width>
+      <height>1</height>
+      <design>Plain</design>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+      </row>
+	</building>
+	<building>
+      <x>2684</x>
+      <y>-168</y>
+      <width>2</width>
+      <height>1</height>
+      <design>Plain</design>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+	  </row>
+	</building>
+	<building>
+      <x>1404</x>
+      <y>-360</y>
+      <width>4</width>
+      <height>1</height>
+      <design>Plain</design>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+      </row>
+	</building>
+	<building>
+      <x>2684</x>
+      <y>-360</y>
+      <width>1</width>
+      <height>1</height>
+      <design>Plain</design>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+	  </row>
+	</building>
+	<building>
+      <x>1404</x>
+      <y>-552</y>
+      <width>1</width>
+      <height>2</height>
+      <design>Plain</design>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+      </row>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+      </row>
+	</building>
+		<building>
+      <x>1916</x>
+      <y>-552</y>
+      <width>2</width>
+      <height>1</height>
+      <design>Plain</design>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+      </row>
+	</building>
+	<building>
+      <x>2172</x>
+      <y>-744</y>
+      <width>1</width>
+      <height>3</height>
+      <design>Plain</design>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+      </row>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+      </row>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+      </row>
+	</building>
+	<building>
+      <x>3708</x>
+      <y>408</y>
+      <width>17</width>
+      <height>2</height>
+      <design>Plain</design>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Impassable</type>
+		  <value>Billboard1</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Gold</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Impassable</type>
+		  <value>Billboard1</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+      </row>
+	  <row>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Impassable</type>
+		  <value>Billboard1</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Impassable</type>
+		  <value>Billboard1</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+		<section>
+		  <type>Destructable</type>
+		  <value>Silver</value>
+		</section>
+      </row>
+	</building>
   </buildings>
 </level>

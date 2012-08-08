@@ -344,6 +344,14 @@ function Level()
 	  this.m_buildings[building] = _newBuilding;
 	}
   }
+  
+  this.GetLevelDetails = function()
+  {
+	var _levelDetails = "<test></test>";
+	
+	
+	return _levelDetails;
+  }
 
   this.MouseClick = function(mouseX, mouseY)
   {

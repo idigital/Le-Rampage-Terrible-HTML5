@@ -10,9 +10,11 @@ function GameScreen()
   this.m_editor;
   this.m_editorButton;
   this.m_editorBounds;
+  
+  this.m_levelFilename = "levels/level1.xml";
 
   this.m_level = new Level();
-  this.m_level.LoadLevel("levels/level1.xml");
+  this.m_level.LoadLevel(this.m_levelFilename);
 
   this.m_editor = new Editor(this.m_level);
   this.m_editorButton = new Sprite("images/editButton.png", 32, 32);
@@ -28,6 +30,23 @@ GameScreen.prototype.Update = function(dt, mouseX, mouseY,
     if(this.m_editMode == true)
     {
       this.m_editMode = false;
+	  
+	  //Write edited level to file.
+	  var _levelInfo = this.m_level.GetLevelDetails();
+	  
+	  var _xmlhttp;
+
+      if (window.XMLHttpRequest)
+      {// code for IE7+, Firefox, Chrome, Opera, Safari
+        _xmlhttp = new XMLHttpRequest();
+      }
+      else
+      {// code for IE6, IE5
+        _xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+      }
+
+      _xmlhttp.open("GET", "write-level.php", false);
+      _xmlhttp.send();
     }
     else if(this.m_editMode == false)
     {

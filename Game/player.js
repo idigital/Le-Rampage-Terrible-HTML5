@@ -21,7 +21,6 @@ function Player(damage, scoreHandler)
   this.m_scoreHandler = scoreHandler;
 
   this.animations = new AnimatedSprite("images/player_anim.png", null, 103, 128, 3);
-  //new Sprite("images/player_anim.png", 103, 128);
 
   this.m_type = ObjectType.Player;
  

@@ -347,7 +347,7 @@ function Level()
   
   this.GetLevelDetails = function()
   {
-	var _levelDetails = "<test></test>";
+	var _levelDetails = "<Secondtest></Secondtest>";
 	
 	
 	return _levelDetails;

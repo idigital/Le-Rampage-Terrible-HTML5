@@ -1,7 +1,7 @@
 <?php
 $file = fopen("levels/level1.xml", 'w');
 
-$stringData = "<test>Hello</test>";
+$stringData = $_GET['data'];
 
 fwrite($file, $stringData);
 

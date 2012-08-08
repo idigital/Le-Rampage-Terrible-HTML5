@@ -45,7 +45,7 @@ GameScreen.prototype.Update = function(dt, mouseX, mouseY,
         _xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
       }
 
-      _xmlhttp.open("GET", "write-level.php", false);
+      _xmlhttp.open("GET", "write-level.php?data=" + _levelInfo, false);
       _xmlhttp.send();
     }
     else if(this.m_editMode == false)

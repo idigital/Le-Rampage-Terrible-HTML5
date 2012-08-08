@@ -83,14 +83,20 @@ function Section(physics,
       if(sectionValue == SectionValue.BRONZE)
       {
         this.m_frame = 0;
+		this.m_value = ScoreObjectType.BUILDING_BRONZE;
+		this.m_points = ScoreHandler.BRONZE_BUILDING_POINTS;
 	  }
 	  else if(sectionValue == SectionValue.SILVER)
 	  {
         this.m_frame = 1;
+		this.m_value = ScoreObjectType.BUILDING_SILVER;
+		this.m_points = ScoreHandler.SILVER_BUILDING_POINTS;
 	  }
 	  else if(sectionValue == SectionValue.GOLD)
 	  {
         this.m_frame = 2;
+		this.m_value = ScoreObjectType.BUILDING_GOLD;
+		this.m_points = ScoreHandler.GOLD_BUILDING_POINTS;
 	  }
     }
     else if(sectionType == SectionType.PASSABLE)
@@ -101,6 +107,8 @@ function Section(physics,
       if(sectionValue == SectionValue.PLAIN)
       {
         this.m_frame = 0;
+		this.m_value = null;
+		this.m_points = null;
       }
     }
     else if(sectionType == SectionType.IMPASSABLE)
@@ -117,6 +125,9 @@ function Section(physics,
 	  else if(sectionValue == SectionValue.BILLBOARD7){ this.m_frame = 6; }
       else if(sectionValue == SectionValue.BILLBOARD8){ this.m_frame = 7; }
       else if(sectionValue == SectionValue.BILLBOARD9){ this.m_frame = 8; }
+	  
+      this.m_value = null;
+      this.m_points = null;
     }
   }
   

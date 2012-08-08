@@ -248,6 +248,30 @@ function Level()
 			{
 			  _sectionValue = SectionValue.BILLBOARD3;
 			}
+            else if(_value == "Billboard4")
+			{
+			  _sectionValue = SectionValue.BILLBOARD4;
+			}
+			else if(_value == "Billboard5")
+			{
+			  _sectionValue = SectionValue.BILLBOARD5;
+			}
+			else if(_value == "Billboard6")
+			{
+			  _sectionValue = SectionValue.BILLBOARD6;
+			}
+            else if(_value == "Billboard7")
+			{
+			  _sectionValue = SectionValue.BILLBOARD7;
+			}
+			else if(_value == "Billboard8")
+			{
+			  _sectionValue = SectionValue.BILLBOARD8;
+			}
+			else if(_value == "Billboard9")
+			{
+			  _sectionValue = SectionValue.BILLBOARD9;
+			}
 			
             _newBuilding.m_sections[column][row] = new Section(
                 m_physics,

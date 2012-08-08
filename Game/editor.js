@@ -159,7 +159,7 @@ function Editor(level)
 	  
       if(this.m_blueButtonBounds.CheckForPointCollision(mouseX, mouseY) == true)
 	  {
-        if(this.m_hoveredSection.m_sectionType == SectionType.DESTRUCTABLE)
+        if(this.m_hoveredSection.m_sectionType == SectionType.IMPASSABLE)
 		{
 		  var _newValue = null;
 		  var _currentValue = this.m_hoveredSection.m_sectionValue;

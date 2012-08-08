@@ -430,16 +430,58 @@ Player.prototype.HandleCollision = function(collision)
   //********************************
   if(collision.m_objHit.m_type == ObjectType.Section)
   {
-    if(collision.m_objHit.m_transparentForeground != true)
-    {
-      this.m_damage.CreateSectionDamageAnimation(collision.m_objHit.m_x,
-                                                 collision.m_objHit.m_y);
+    //Get building type and react.
+	if(collision.m_objHit.m_sectionType == SectionType.DESTRUCTABLE)
+	{
+      if(collision.m_objHit.m_transparentForeground != true)
+      {
+        this.m_damage.CreateSectionDamageAnimation(collision.m_objHit.m_x,
+                                                   collision.m_objHit.m_y);
 
-      this.m_scoreHandler.AddChainLink(collision.m_objHit.m_value,
+        this.m_scoreHandler.AddChainLink(collision.m_objHit.m_value,
                                        collision.m_objHit.m_points);
-   }
-
-    collision.m_objHit.m_transparentForeground = true;
+									   
+		collision.m_objHit.m_transparentForeground = true;
+      }
+    }
+    else if(collision.m_objHit.m_sectionType == SectionType.PASSABLE)
+	{
+      //Do nothing.
+    }
+    else if(collision.m_objHit.m_sectionType == SectionType.IMPASSABLE)
+    {
+      //If hit left.
+	  if(collision.left == true)
+      {
+        this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
+        this.m_currentVelocity.m_dx *= -0.2;
+        this.m_currentVelocity.m_dy *= 0.2;
+      }
+	  
+	  //If hit right.
+	  else if(collision.right == true)
+      {
+        this.Move(_boundsOfObjHit.m_right, this.m_y);
+        this.m_currentVelocity.m_dx *= -0.2;
+        this.m_currentVelocity.m_dy *= 0.2;
+      }
+	  
+	  //If hit top.
+	  else if(collision.top == true)
+      {
+        this.Move(this.m_x, _boundsOfObjHit.m_top - this.m_height);
+        this.m_currentVelocity.m_dx = 0.0;
+        this.m_currentVelocity.m_dy = 0.0;
+      }
+	  
+	  //If hit bottom.
+	  else if(collision.bottom == true)
+      {
+        this.Move(this.m_x, _boundsOfObjHit.m_bottom);
+        this.m_currentVelocity.m_dx *= 0.2;
+        this.m_currentVelocity.m_dy *= -0.2;
+      }
+    }
   }
 };
 

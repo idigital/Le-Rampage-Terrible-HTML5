@@ -2,12 +2,23 @@ function Editor(level)
 {
   var m_currentLevel = level;
 
+  //Section change variables.
   this.m_redButtonSprite = new Sprite("images/red-square.png", 32, 32);
   this.m_redButtonBounds = new BoundingBox(null, 0, 0, 32, 32);
   this.m_greenButtonSprite = new Sprite("images/green-square.png", 32, 32);
   this.m_greenButtonBounds = new BoundingBox(null, 0, 0, 32, 32);
   this.m_blueButtonSprite = new Sprite("images/blue-square.png", 32, 32);
   this.m_blueButtonBounds = new BoundingBox(null, 0, 0, 32, 32);
+  
+  //Section build variables.
+  this.m_upArrowSprite = new Sprite("images/arrow-up.png", 32,32);
+  this.m_upArrowBounds = new BoundingBox(null, 0, 0, 32, 32);
+  this.m_leftArrowSprite = new Sprite("images/arrow-left.png", 32,32);
+  this.m_leftArrowBounds = new BoundingBox(null, 0, 0, 32, 32);
+  this.m_rightArrowSprite = new Sprite("images/arrow-right.png", 32,32);
+  this.m_rightArrowBounds = new BoundingBox(null, 0, 0, 32, 32);
+  this.m_downArrowSprite = new Sprite("images/arrow-down.png", 32,32);
+  this.m_downArrowBounds = new BoundingBox(null, 0, 0, 32, 32);
 
   this.m_hoveredSection = null;
 
@@ -63,9 +74,16 @@ function Editor(level)
       {
         this.m_hoveredSection = _sectionsInScreen[section];
 		
+		//Position visual change buttons.
 		this.m_redButtonBounds.Move(this.m_hoveredSection.m_x, this.m_hoveredSection.m_y);
 		this.m_greenButtonBounds.Move(this.m_hoveredSection.m_x + 32, this.m_hoveredSection.m_y);
 		this.m_blueButtonBounds.Move(this.m_hoveredSection.m_x + 64, this.m_hoveredSection.m_y);
+		
+		//Position building editing buttons.
+		this.m_upArrowBounds.Move(this.m_hoveredSection.m_x, this.m_hoveredSection.m_y + 32);
+		this.m_leftArrowBounds.Move(this.m_hoveredSection.m_x, this.m_hoveredSection.m_y + 64);
+		this.m_rightArrowBounds.Move(this.m_hoveredSection.m_x + 32, this.m_hoveredSection.m_y + 32);
+		this.m_downArrowBounds.Move(this.m_hoveredSection.m_x + 32, this.m_hoveredSection.m_y + 64);
       }
     }
 
@@ -90,6 +108,7 @@ function Editor(level)
 
     if(this.m_hoveredSection != null)
     {
+      //Draw buttons.
 	  this.m_redButtonSprite.Draw(context,
                                   this.m_redButtonBounds.m_left,
                                   this.m_redButtonBounds.m_top,
@@ -105,6 +124,32 @@ function Editor(level)
       this.m_blueButtonSprite.Draw(context,
                                   this.m_blueButtonBounds.m_left,
                                   this.m_blueButtonBounds.m_top,
+								  screenX,
+								  screenY,
+								  scale);
+
+      //Draw arrows.
+      this.m_upArrowSprite.Draw(context,
+                                  this.m_upArrowBounds.m_left,
+                                  this.m_upArrowBounds.m_top,
+								  screenX,
+								  screenY,
+								  scale);
+      this.m_leftArrowSprite.Draw(context,
+                                  this.m_leftArrowBounds.m_left,
+                                  this.m_leftArrowBounds.m_top,
+								  screenX,
+								  screenY,
+								  scale);
+      this.m_rightArrowSprite.Draw(context,
+                                  this.m_rightArrowBounds.m_left,
+                                  this.m_rightArrowBounds.m_top,
+								  screenX,
+								  screenY,
+								  scale);
+      this.m_downArrowSprite.Draw(context,
+                                  this.m_downArrowBounds.m_left,
+                                  this.m_downArrowBounds.m_top,
 								  screenX,
 								  screenY,
 								  scale);

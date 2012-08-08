@@ -10,10 +10,9 @@ function ScoreHandler()
   //Scores for objects.  
   ScoreHandler.WALL_SECTION_POINTS = 1;
   ScoreHandler.FLOOR_SECTION_POINTS = 2;
-  ScoreHandler.NORMAL_BUILDING_POINTS = 5;
-  ScoreHandler.BRONZE_BUILDING_POINTS = 10;
-  ScoreHandler.SILVER_BUILDING_POINTS = 20;
-  ScoreHandler.GOLD_BUILDING_POINTS = 30;
+  ScoreHandler.BRONZE_BUILDING_POINTS = 5;
+  ScoreHandler.SILVER_BUILDING_POINTS = 10;
+  ScoreHandler.GOLD_BUILDING_POINTS = 20;
   
   //***
   //

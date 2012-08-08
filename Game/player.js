@@ -20,8 +20,8 @@ function Player(damage, scoreHandler)
   this.m_damage = damage;
   this.m_scoreHandler = scoreHandler;
 
-  this.animations = //new AnimatedSprite("images/player_anim.png", 103, 128, 3);
-  new Sprite("images/player_anim.png", 103, 128);
+  this.animations = new AnimatedSprite("images/player_anim.png", null, 103, 128, 3);
+  //new Sprite("images/player_anim.png", 103, 128);
 
   this.m_type = ObjectType.Player;
  
@@ -435,8 +435,8 @@ Player.prototype.HandleCollision = function(collision)
       this.m_damage.CreateSectionDamageAnimation(collision.m_objHit.m_x,
                                                  collision.m_objHit.m_y);
 
-      this.m_scoreHandler.AddChainLink(ScoreObjectType.BUILDING_NORMAL,
-                                         ScoreHandler.NORMAL_BUILDING_POINTS);
+      this.m_scoreHandler.AddChainLink(collision.m_objHit.m_value,
+                                       collision.m_objHit.m_points);
    }
 
     collision.m_objHit.m_transparentForeground = true;

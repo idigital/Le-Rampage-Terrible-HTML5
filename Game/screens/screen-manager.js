@@ -1,8 +1,8 @@
 ScreenType = { SplashScreen : "splashScreen",
-               MenuScreen : "menuScreen",
+               //MenuScreen : "menuScreen",
                MapScreen : "mapScreen",
                GameScreen : "gameScreen",
-               EndScreen : "endScreen",
+               //EndScreen : "endScreen",
                CreditsScreen : "creditsScreen"
 };
 
@@ -13,10 +13,10 @@ function ScreenManager()
 
   //Set up game's screens.
   m_screens.push(new SplashScreen());
-  m_screens.push(new MenuScreen());
+  //m_screens.push(new MenuScreen());
   m_screens.push(new MapScreen());
   m_screens.push(new GameScreen());
-  m_screens.push(new EndScreen());
+  //m_screens.push(new EndScreen());
   m_screens.push(new CreditsScreen());
 
   this.Update = function(dt, mouseX, mouseY,

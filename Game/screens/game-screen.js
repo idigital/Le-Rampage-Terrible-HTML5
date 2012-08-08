@@ -12,6 +12,7 @@ function GameScreen()
   this.m_editorBounds;
 
   this.m_level = new Level();
+  this.m_level.LoadLevel("levels/level1.xml");
 
   this.m_editor = new Editor(this.m_level);
   this.m_editorButton = new Sprite("images/editButton.png", 32, 32);

@@ -12,7 +12,8 @@ SplashScreen.prototype.Update = function(dt, mouseX, mouseY,
 {
   if(leftClickOccurred == true)
   {
-    return ScreenType.MenuScreen;
+    //return ScreenType.MenuScreen;
+	return ScreenType.MapScreen;
   }
 
   return null;

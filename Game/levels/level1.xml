@@ -8,12 +8,24 @@
       <height>2</height>
       <design>Plain</design>
       <row>
-        <section><type>Destructable</type><value>Normal</value></section>
-        <section><type>Destructable</type><value>Normal</value></section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
       </row>
       <row>
-        <section><type>Destructable</type><value>Normal</value></section>
-        <section><type>Destructable</type><value>Normal</value></section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
       </row>
     </building>
     <building>
@@ -23,19 +35,46 @@
       <height>3</height>
       <design>Plain</design>
       <row>
-        <section><type>Destructable</type><value>Normal</value></section>
-        <section><type>Destructable</type><value>Normal</value></section>
-        <section><type>Destructable</type><value>Normal</value></section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
       </row>
       <row>
-        <section><type>Destructable</type><value>Normal</value></section>
-        <section><type>Destructable</type><value>Normal</value></section>
-        <section><type>Destructable</type><value>Normal</value></section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
       </row>
       <row>
-        <section><type>Destructable</type><value>Normal</value></section>
-        <section><type>Destructable</type><value>Normal</value></section>
-        <section><type>Destructable</type><value>Normal</value></section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
+        <section>
+		  <type>Destructable</type>
+		  <value>Bronze</value>
+		</section>
       </row>
     </building>
   </buildings>

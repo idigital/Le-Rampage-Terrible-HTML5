@@ -66,7 +66,7 @@ function DamageHandler()
   //**************************************************************************
   this.CreateSectionDamageAnimation = function(x, y)
   {
-    var _damageAnimation = new DamageAnimation(this.m_sectionExplosion,
+    var _damageAnimation = new DamageAnimation(null, this.m_sectionExplosion,
                                                x, y, 256, 192, 8);
 
     _damageAnimation.m_animation.m_timeLength
@@ -84,12 +84,12 @@ function DamageHandler()
 
     if(damageDirection == DamageVerticalDirection.UP)
     {
-      var _damageAnimation = new DamageAnimation(this.m_floorUpwardsExplosion,
+      var _damageAnimation = new DamageAnimation(null, this.m_floorUpwardsExplosion,
                                                  x, y, 256, 192, 6);
     }
     else if(damageDirection == DamageVerticalDirection.DOWN)
     {
-      var _damageAnimation = new DamageAnimation(this.m_floorDownwardsExplosion,
+      var _damageAnimation = new DamageAnimation(null, this.m_floorDownwardsExplosion,
                                                  x, y, 256, 192, 6);
     }
 
@@ -115,17 +115,17 @@ function DamageHandler()
     {
       if(numSections == 1)
       {
-        _damageAnimation = new DamageAnimation(this.m_wallOneThirdExplosionLeft,
+        _damageAnimation = new DamageAnimation(null, this.m_wallOneThirdExplosionLeft,
                                                x, y, 64, 64, 4);
       }
       else if(numSections == 2)
       {
-        _damageAnimation = new DamageAnimation(this.m_wallTwoThirdsExplosionLeft,
+        _damageAnimation = new DamageAnimation(null, this.m_wallTwoThirdsExplosionLeft,
                                                x, y, 64, 128, 4);
       }
       else if(numSections == 3)
       {
-        _damageAnimation = new DamageAnimation(this.m_wallWholeExplosionLeft,
+        _damageAnimation = new DamageAnimation(null, this.m_wallWholeExplosionLeft,
                                                x, y, 256, 192, 6)
       }
     }
@@ -133,17 +133,17 @@ function DamageHandler()
     {
       if(numSections == 1)
       {
-        _damageAnimation = new DamageAnimation(this.m_wallOneThirdExplosionRight,
+        _damageAnimation = new DamageAnimation(null, this.m_wallOneThirdExplosionRight,
                                                x, y, 64, 64, 4);
       }
       else if(numSections == 2)
       {
-        _damageAnimation = new DamageAnimation(this.m_wallTwoThirdsExplosionRight,
+        _damageAnimation = new DamageAnimation(null, this.m_wallTwoThirdsExplosionRight,
                                                x, y, 64, 128, 4);
       }
       else if(numSections == 3)
       {
-        _damageAnimation = new DamageAnimation(this.m_wallWholeExplosionRight,
+        _damageAnimation = new DamageAnimation(null, this.m_wallWholeExplosionRight,
                                                x, y, 256, 192, 6)
       }
     }

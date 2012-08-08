@@ -1,6 +1,7 @@
-function DamageAnimation(image, x, y, frameWidth, frameHeight, numFrames)
+function DamageAnimation(filename, image, x, y, frameWidth, frameHeight, numFrames)
 {
-  this.m_animation = new AnimatedSprite(image, frameWidth, frameHeight,
+  this.m_animation = new AnimatedSprite(filename, image, frameWidth,
+                                        frameHeight,
                                         numFrames);
 
   this.m_audio;

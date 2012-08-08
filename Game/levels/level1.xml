@@ -2,6 +2,8 @@
   <buildings>
     <number>2</number>
     <building>
+      <x>380</x>
+      <y>408</y>
       <width>2</width>
       <height>2</height>
       <design>Plain</design>
@@ -15,6 +17,8 @@
       </row>
     </building>
     <building>
+      <x>1000</x>
+      <y>408</y>
       <width>3</width>
       <height>3</height>
       <design>Plain</design>

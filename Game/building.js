@@ -35,6 +35,7 @@ function Building(physics, x, y)
   //Load the sprites required for the section's foreground, background, the
   //floor sprite and wall sprite.
   this.m_foregroundSprite = new AnimatedSprite("images/sectionForeground.png",
+                                       null,
                                        Building.SECTION_WIDTH,
                                        Building.SECTION_HEIGHT,
                                        4);
@@ -60,6 +61,42 @@ function Building(physics, x, y)
 
   this.EnablePhysics(physics, false, true);
   
+  this.CreateBaseBuilding = function()
+  {
+    //Create generic building.
+
+    //Set up initial section.
+    this.m_sections = new Array(1);
+    this.m_sections[0] = new Array(1);
+    this.m_sections[0][0] = new Section(physics, this.m_foregroundSprite,
+                                        this.m_backgroundSprite,
+                                        this.m_x + Building.WALL_WIDTH,
+                                        this.m_y,
+                                        Building.SECTION_WIDTH,
+                                        Building.SECTION_HEIGHT);
+
+    this.m_bounds.AddChildBounds(m_sections[0][0].GetBounds());
+
+    //Set up initial walls.
+    this.m_walls = new Array();
+    var _wall1 = new WallSection(physics, this.m_wallSprite, this.m_x, this.m_y);
+    this.m_bounds.AddChildBounds(_wall1.GetBounds());
+    this.m_walls.push(_wall1);
+
+    var _wall2 = new WallSection(physics, this.m_wallSprite,
+                                 this.m_x + Building.WALL_WIDTH
+                                 + Building.SECTION_WIDTH, this.m_y);
+    this.m_bounds.AddChildBounds(_wall2.GetBounds());
+    this.m_walls.push(_wall2);
+
+    //Set up initial floor section as ceiling set into initial sections.
+    this.m_floors = new Array();
+    var _floor = new FloorSection(physics, this.m_floorSprite, this.m_floorBrokenSprite,
+                                    this.m_x + Building.WALL_WIDTH, this.m_y);
+    this.m_bounds.AddChildBounds(_floor.GetBounds());
+    this.m_floors.push(_floor);
+  }
+
   this.Load = function(file)
   {
     //When a building is created check if a file of the building plan has been
@@ -178,41 +215,6 @@ function Building(physics, x, y)
           this.m_walls.push(_wall);
         }
       }
-    }
-    else
-    {
-      //Create generic building.
-
-      //Set up initial section.
-      this.m_sections = new Array(1);
-      this.m_sections[0] = new Array(1);
-      this.m_sections[0][0] = new Section(physics, this.m_foregroundSprite,
-                                          this.m_backgroundSprite,
-                                          this.m_x + Building.WALL_WIDTH,
-                                          this.m_y,
-                                          Building.SECTION_WIDTH,
-                                          Building.SECTION_HEIGHT);
-
-      this.m_bounds.AddChildBounds(m_sections[0][0].GetBounds());
-
-      //Set up initial walls.
-      this.m_walls = new Array();
-      var _wall1 = new WallSection(physics, this.m_wallSprite, this.m_x, this.m_y);
-      this.m_bounds.AddChildBounds(_wall1.GetBounds());
-      this.m_walls.push(_wall1);
-
-      var _wall2 = new WallSection(physics, this.m_wallSprite,
-                                   this.m_x + Building.WALL_WIDTH
-                                   + Building.SECTION_WIDTH, this.m_y);
-      this.m_bounds.AddChildBounds(_wall2.GetBounds());
-      this.m_walls.push(_wall2);
-
-      //Set up initial floor section as ceiling set into initial sections.
-      this.m_floors = new Array();
-      var _floor = new FloorSection(physics, this.m_floorSprite, this.m_floorBrokenSprite,
-                                    this.m_x + Building.WALL_WIDTH, this.m_y);
-      this.m_bounds.AddChildBounds(_floor.GetBounds());
-      this.m_floors.push(_floor);
     }
   }
 

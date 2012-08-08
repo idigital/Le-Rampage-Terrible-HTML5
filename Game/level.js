@@ -14,8 +14,7 @@ function Level()
   //Objects in the game.
   var m_character;
   var m_aim;
-  var m_building;
-  this.m_buildings = new Array();
+  this.m_buildings;
 
   var m_scoreHandler = new ScoreHandler();
   var m_objective;
@@ -32,11 +31,6 @@ function Level()
   
   var m_aimPos = new Vector(0, 0);
   var m_aimSprite = new Sprite("images/Aim.png", 4, 4);
-
-  m_building = new Building(m_physics, 380, 600 - 192);
-  m_building.Load("levels/level1.xml");
-
-  this.m_buildings.push(m_building);
 
   //Side-scrolling variables.
   this.m_screenX = 0;
@@ -110,6 +104,133 @@ function Level()
     context.fillText("Damage Score: " + m_scoreHandler.m_currentScore, 10, 90);
     context.fillText("Damage Chain Score: " + m_scoreHandler.m_currentChainScore, 10, 110);
     m_scoreHandler.Draw(context, 10, 150);
+  }
+
+  this.LoadLevel = function(levelFile)
+  {
+    //Load existing level plan.
+
+    var _xmlhttp;
+
+    if (window.XMLHttpRequest)
+    {// code for IE7+, Firefox, Chrome, Opera, Safari
+      _xmlhttp = new XMLHttpRequest();
+    }
+    else
+    {// code for IE6, IE5
+      _xmlhttp = new ActiveXObject("Microsoft.XMLHTTP");
+    }
+
+    _xmlhttp.open("GET", file, false);
+    _xmlhttp.send();
+    var _stringDoc = _xmlhttp.response;
+    var _parser = new DOMParser();
+    var _xmlDoc = _parser.parseFromString(_stringDoc,'text/xml');
+
+    //Get level.
+    var _level = _xmlDoc.getElementsByTagName("level");
+
+    //Get buildings in level.
+    var _buildings = _level[0].getElementsByTagName("buildings");
+
+    //Get number of buildings in level.
+    var _numBuildings = _buildings[0].getElementsByTagName("number")[0].childNodes[0].nodeValue;
+    this.m_buildings = new Array(_numBuildings);
+
+//***************************
+//Work from here.
+
+    //Build building.
+    var _buildings = _xmlDoc.getElementsByTagName("building");
+
+    var _width = parseFloat(_buildings[0].getElementsByTagName("width")[0].childNodes[0].nodeValue);
+
+    var _height = parseFloat(_buildings[0].getElementsByTagName("height")[0].childNodes[0].nodeValue);
+
+    //Create sections.
+    this.m_sections = new Array(_width);
+    for(section = 0; section < _width; section++)
+    {
+      this.m_sections[section] = new Array(_height);
+    }
+
+    //Start inserting correct sections into section array.
+    var _rows = _buildings[0].getElementsByTagName("row");
+
+    for(row = 0; row < _height; row++)
+    {
+      var _sections = _rows[row].getElementsByTagName("section");
+
+      for(column = 0; column < _width; column++)
+      {
+        var _type = _sections[column].getElementsByTagName("type")[0].childNodes[0].nodeValue;
+
+        if(_type == "Destructable")
+        {
+          this.m_sections[column][row] = new Section(
+              physics,
+              this.m_foregroundSprite,
+              this.m_foregroundSpriteTransparent,
+              this.m_backgroundSprite,
+              this.m_x + (column * Building.SECTION_WIDTH) + Building.WALL_WIDTH,
+              this.m_y - (row * Building.SECTION_HEIGHT),
+              Building.SECTION_WIDTH, Building.SECTION_HEIGHT);
+
+          this.m_bounds.AddChildBounds(this.m_sections[column][row].GetBounds());
+        }
+      }
+    }
+
+    //Add floors to correspond with tops of sections.
+    this.m_floors = new Array();
+    for(floorX = 0; floorX < _width; floorX++)
+    {
+      for(floorY = 0; floorY < _height; floorY++)
+      {
+        this.m_floors.push(
+          new FloorSection(physics, this.m_floorSprite, this.m_floorBrokenSprite,
+                           this.m_x + (floorX * Building.SECTION_WIDTH) + Building.WALL_WIDTH,
+        this.m_y - (floorY * Building.SECTION_HEIGHT)));
+
+        this.m_bounds.AddChildBounds(this.m_floors[this.m_floors.length - 1].GetBounds());
+      }
+    }
+
+    //Add walls to correspond with sides of sections.
+    //If on outside of building, set out.
+    //If inbetween sections put embed half and half.
+    this.m_walls = new Array();
+    for(wallX = 0; wallX <= _width; wallX++)
+    {
+      for(wallY = 0; wallY < _height; wallY++)
+      {
+        var _wall;
+
+        //If first wall.
+        if(wallX == 0)
+        {
+          _wall = new WallSection(physics, this.m_wallSprite, this.m_x,
+                                  this.m_y - (wallY * Building.SECTION_HEIGHT));
+        }
+        //If internal wall.
+        else if(wallX > 0 && wallX < _width)
+        {
+          _wall = new WallSection(physics, this.m_wallSprite,
+          this.m_x + (Building.SECTION_WIDTH * wallX) + Building.WALL_WIDTH - (Building.WALL_WIDTH * 0.5),
+          this.m_y - (wallY * Building.SECTION_HEIGHT));
+        }
+        //If last wall.
+        else if(wallX == _width)
+        {
+          _wall = new WallSection(physics, this.m_wallSprite,
+                                  this.m_x + (Building.SECTION_WIDTH * wallX) + Building.WALL_WIDTH,
+                                  this.m_y - (wallY * Building.SECTION_HEIGHT));
+        }
+
+        this.m_bounds.AddChildBounds(_wall.GetBounds());
+        this.m_walls.push(_wall);
+      }
+    }
   }
 
   this.MouseClick = function(mouseX, mouseY)

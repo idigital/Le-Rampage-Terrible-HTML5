@@ -65,7 +65,7 @@ function Building(physics, x, y)
 									   null,
 									   Building.SECTION_WIDTH,
 									   Building.SECTION_HEIGHT,
-									   3);
+									   9);
 
   this.m_floorSprite = new Sprite("images/floor.png",
                                   Building.FLOOR_WIDTH,
@@ -91,8 +91,12 @@ function Building(physics, x, y)
     //Set up initial section.
     this.m_sections = new Array(1);
     this.m_sections[0] = new Array(1);
-    this.m_sections[0][0] = new Section(physics, this.m_foregroundSprite,
+    this.m_sections[0][0] = new Section(physics,
+                                        this.m_foregroundSprite,
                                         this.m_backgroundSprite,
+                                        this.m_passableForegroundSprite,
+                                        this.m_passableBackgroundSprite,
+                                        this.m_impassableSprite,
                                         this.m_x + Building.WALL_WIDTH,
                                         this.m_y,
                                         Building.SECTION_WIDTH,

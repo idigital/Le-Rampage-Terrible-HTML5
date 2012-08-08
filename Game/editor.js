@@ -219,6 +219,30 @@ function Editor(level)
 		  }
 		  else if(_currentValue == SectionValue.BILLBOARD3)
 		  {
+		    _newValue = SectionValue.BILLBOARD4;
+		  }
+          else if(_currentValue == SectionValue.BILLBOARD4)
+		  {
+		    _newValue = SectionValue.BILLBOARD5;
+		  }
+		  else if(_currentValue == SectionValue.BILLBOARD5)
+		  {
+		    _newValue = SectionValue.BILLBOARD6;
+		  }
+		  else if(_currentValue == SectionValue.BILLBOARD6)
+		  {
+		    _newValue = SectionValue.BILLBOARD7;
+		  }
+          else if(_currentValue == SectionValue.BILLBOARD7)
+		  {
+		    _newValue = SectionValue.BILLBOARD8;
+		  }
+		  else if(_currentValue == SectionValue.BILLBOARD8)
+		  {
+		    _newValue = SectionValue.BILLBOARD9;
+		  }
+		  else if(_currentValue == SectionValue.BILLBOARD9)
+		  {
 		    _newValue = SectionValue.BILLBOARD1;
 		  }
 

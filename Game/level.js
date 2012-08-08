@@ -347,8 +347,107 @@ function Level()
   
   this.GetLevelDetails = function()
   {
-	var _levelDetails = "<Secondtest></Secondtest>";
+	var _levelDetails = "<level><buildings>";
 	
+	var _numBuildings = this.m_buildings.length;
+	_levelDetails = _levelDetails + "<number>" + _numBuildings + "</number>";
+	
+	for(building = 0; building < this.m_buildings.length; building++)
+	{
+		_levelDetails = _levelDetails
+						+ "<building><x>" + this.m_buildings[building].m_x + "</x><y>"
+						+ this.m_buildings[building].m_y + "</y><width>"
+						+ this.m_buildings[building].m_sections.length + "</width><height>"
+						+ this.m_buildings[building].m_sections[0].length + "</height>"
+						+ "<design>Plain</design>";
+						
+        var _sections = this.m_buildings[building].m_sections;
+		
+		for(row = 0; row < _sections.length; row++)
+		{
+			_levelDetails += "<row>";
+			
+			for(column = 0; column < _sections[0].length; column++)
+			{
+				_levelDetails += "<section><type>";
+				if(_sections[row][column].m_sectionType == SectionType.DESTRUCTABLE)
+				{
+					_levelDetails += "Destructable";
+				}
+				else if(_sections[row][column].m_sectionType == SectionType.PASSABLE)
+				{
+					_levelDetails += "Passable";
+				}
+				else if(_sections[row][column].m_sectionType == SectionType.IMPASSABLE)
+				{
+					_levelDetails += "Impassable";
+				}
+				
+				_levelDetails += "</type><value>";
+				
+				if(_sections[row][column].m_sectionValue == SectionValue.BRONZE)
+				{
+					_levelDetails += "Bronze";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.SILVER)
+				{
+					_levelDetails += "Silver";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.GOLD)
+				{
+					_levelDetails += "Gold";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.PLAIN)
+				{
+					_levelDetails += "Plain";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.BILLBOARD1)
+				{
+					_levelDetails += "Billboard1";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.BILLBOARD2)
+				{
+					_levelDetails += "Billboard2";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.BILLBOARD3)
+				{
+					_levelDetails += "Billboard3";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.BILLBOARD4)
+				{
+					_levelDetails += "Billboard4";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.BILLBOARD5)
+				{
+					_levelDetails += "Billboard5";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.BILLBOARD6)
+				{
+					_levelDetails += "Billboard6";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.BILLBOARD7)
+				{
+					_levelDetails += "Billboard7";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.BILLBOARD8)
+				{
+					_levelDetails += "Billboard8";
+				}
+				else if(_sections[row][column].m_sectionValue == SectionValue.BILLBOARD9)
+				{
+					_levelDetails += "Billboard9";
+				}
+                
+				_levelDetails += "</value></section>";
+			}
+			
+			_levelDetails += "</row>";		
+		}		
+		
+		_levelDetails += "</building>";
+	}
+	
+	_levelDetails += "</buildings></level>";
 	
 	return _levelDetails;
   }

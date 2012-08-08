@@ -62,6 +62,6 @@ GameScreen.prototype.Draw = function(context)
     this.m_level.Draw(context);
   }
 
-  this.m_editorButton.Draw(context, 868, 0, 0, 0);
+  this.m_editorButton.Draw(context, 868, 0, 0, 0, 1);
 };
 

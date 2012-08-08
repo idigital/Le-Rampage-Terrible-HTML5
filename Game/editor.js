@@ -2,9 +2,12 @@ function Editor(level)
 {
   var m_currentLevel = level;
 
-  this.m_redButton = new Sprite("images/red-square.png", 32, 32);
-  this.m_greenButton = new Sprite("images/green-square.png", 32, 32);
-  this.m_blueButton = new Sprite("images/blue-square.png", 32, 32);
+  this.m_redButtonSprite = new Sprite("images/red-square.png", 32, 32);
+  this.m_redButtonBounds = new BoundingBox(null, 0, 0, 32, 32);
+  this.m_greenButtonSprite = new Sprite("images/green-square.png", 32, 32);
+  this.m_greenButtonBounds = new BoundingBox(null, 0, 0, 32, 32);
+  this.m_blueButtonSprite = new Sprite("images/blue-square.png", 32, 32);
+  this.m_blueButtonBounds = new BoundingBox(null, 0, 0, 32, 32);
 
   this.m_hoveredSection = null;
 
@@ -59,12 +62,16 @@ function Editor(level)
                                                   mouseY + screenY) == true)
       {
         this.m_hoveredSection = _sectionsInScreen[section];
+		
+		this.m_redButtonBounds.Move(this.m_hoveredSection.m_x, this.m_hoveredSection.m_y);
+		this.m_greenButtonBounds.Move(this.m_hoveredSection.m_x + 32, this.m_hoveredSection.m_y);
+		this.m_blueButtonBounds.Move(this.m_hoveredSection.m_x + 64, this.m_hoveredSection.m_y);
       }
     }
 
     if(leftClick == true)
     {
-      this.MouseClick(mouseX, mouseY);
+      this.MouseClick(mouseX + screenX, mouseY + screenY);
     }
 
     if(leftRelease == true)
@@ -83,7 +90,26 @@ function Editor(level)
 
     if(this.m_hoveredSection != null)
     {
-      context.lineWidth = 3;
+	  this.m_redButtonSprite.Draw(context,
+                                  this.m_redButtonBounds.m_left,
+                                  this.m_redButtonBounds.m_top,
+								  screenX,
+								  screenY,
+								  scale);
+      this.m_greenButtonSprite.Draw(context,
+                                  this.m_greenButtonBounds.m_left,
+                                  this.m_greenButtonBounds.m_top,
+								  screenX,
+								  screenY,
+								  scale);
+      this.m_blueButtonSprite.Draw(context,
+                                  this.m_blueButtonBounds.m_left,
+                                  this.m_blueButtonBounds.m_top,
+								  screenX,
+								  screenY,
+								  scale);
+
+      context.lineWidth = 1;
       context.strokeStyle = 'yellow';
       context.strokeRect(this.m_hoveredSection.m_bounds.m_left - screenX,
                          this.m_hoveredSection.m_bounds.m_top - screenY,
@@ -94,7 +120,71 @@ function Editor(level)
 
   this.MouseClick = function(mouseX, mouseY)
   {
+    if(this.m_hoveredSection != null)
+    {
+      //Determine if any buttons have been clicked.
+      if(this.m_redButtonBounds.CheckForPointCollision(mouseX, mouseY) == true)
+	  {
+	    //Check if section is currently of this type. If so progress type. If not change to type.
+		if(this.m_hoveredSection.m_sectionType == SectionType.DESTRUCTABLE)
+		{
+		  var _newValue = null;
+		  var _currentValue = this.m_hoveredSection.m_sectionValue;
+		  
+		  if(_currentValue == SectionValue.BRONZE)
+		  {
+		    _newValue = SectionValue.SILVER;
+		  }
+		  else if(_currentValue == SectionValue.SILVER)
+		  {
+		    _newValue = SectionValue.GOLD;
+		  }
+		  else if(_currentValue == SectionValue.GOLD)
+		  {
+		    _newValue = SectionValue.BRONZE;
+		  }
 
+          this.m_hoveredSection.ChangeType(SectionType.DESTRUCTABLE, _newValue);
+		}
+		else
+		{
+          this.m_hoveredSection.ChangeType(SectionType.DESTRUCTABLE, SectionValue.BRONZE);
+		}
+	  }
+	  
+      if(this.m_greenButtonBounds.CheckForPointCollision(mouseX, mouseY) == true)
+	  {
+        this.m_hoveredSection.ChangeType(SectionType.PASSABLE, SectionValue.PLAIN);
+	  }
+	  
+      if(this.m_blueButtonBounds.CheckForPointCollision(mouseX, mouseY) == true)
+	  {
+        if(this.m_hoveredSection.m_sectionType == SectionType.DESTRUCTABLE)
+		{
+		  var _newValue = null;
+		  var _currentValue = this.m_hoveredSection.m_sectionValue;
+		  
+		  if(_currentValue == SectionValue.BILLBOARD1)
+		  {
+		    _newValue = SectionValue.BILLBOARD2;
+		  }
+		  else if(_currentValue == SectionValue.BILLBOARD2)
+		  {
+		    _newValue = SectionValue.BILLBOARD3;
+		  }
+		  else if(_currentValue == SectionValue.BILLBOARD3)
+		  {
+		    _newValue = SectionValue.BILLBOARD1;
+		  }
+
+          this.m_hoveredSection.ChangeType(SectionType.IMPASSABLE, _newValue);
+		}
+		else
+		{
+          this.m_hoveredSection.ChangeType(SectionType.IMPASSABLE, SectionValue.BILLBOARD1);
+		}
+	  }
+	}
   }
 
   this.MouseRelease = function(mouseX, mouseY)

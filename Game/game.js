@@ -3,6 +3,7 @@ var SECONDS_BETWEEN_FRAMES = 1 / FPS;
 
 Game.CANVAS_WIDTH = 900;
 Game.CANVAS_HEIGHT = 600;
+Game.EDIT_MODE = false;
 
 var game;
 var mouseX = 0, mouseY = 0;

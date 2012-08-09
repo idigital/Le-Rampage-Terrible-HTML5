@@ -22,6 +22,8 @@ function Level()
   var m_physics = new PhysicsHandler();
   var m_damage = new DamageHandler();
   
+  var m_ui = new UI();
+  
   m_character = new Player(m_damage, m_scoreHandler);
   m_character.SetDimensions(103, 128);
   m_character.EnablePhysics(m_physics, false, true);
@@ -85,6 +87,12 @@ function Level()
     m_damage.Update(dt);
 
     m_scoreHandler.Update(dt);
+	
+	m_ui.Update(dt,
+                m_scoreHandler.m_currentScore,
+                m_timeElapsed,
+                m_scoreHandler.m_currentMultiplier,
+                m_power);
 
     //var _scaledScreenX = 50 * this.m_scale;
     //var _scaledScreenY = 422 * this.m_scale;
@@ -125,13 +133,8 @@ function Level()
     m_character.Draw(context, this.m_screenX, this.m_screenY, this.m_scale);
     m_aimSprite.Draw(context, m_aimPos.m_dx, m_aimPos.m_dy,
                      this.m_screenX, this.m_screenY, this.m_scale);
-
-    context.fillStyle = "Red";
-    context.fillText("Power: " + m_power, 10, 50);
-    context.fillText("Time Score: " + m_timeElapsed.toFixed(2), 10, 70);
-    context.fillText("Damage Score: " + m_scoreHandler.m_currentScore, 10, 90);
-    context.fillText("Damage Chain Score: " + m_scoreHandler.m_currentChainScore, 10, 110);
-    m_scoreHandler.Draw(context, 10, 150);
+	
+	m_ui.Draw(context);
   }
 
   this.LoadLevel = function(levelFile)

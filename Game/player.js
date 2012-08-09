@@ -142,11 +142,10 @@ Player.prototype.Draw = function(context, screenX, screenY, scale)
     this.animations.DrawFrame(context, 1, this.m_x, this.m_y, screenX, screenY, scale);
   }
 
-  this.m_bounds.Draw(context, screenX, screenY, scale);
-  
-  context.fillStyle = "Black";
-  context.fillText("PowerX: " + this.m_currentPowerX, 510, 50);
-  context.fillText("PowerY: " + this.m_currentPowerY, 510, 70);
+  if(Game.EDIT_MODE == true)
+  {
+    this.m_bounds.Draw(context, screenX, screenY, scale);
+  }
 }
 
 Player.prototype.HandleCollision = function(collision)

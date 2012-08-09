@@ -94,13 +94,13 @@ function WallSection(physics, image, x, y)
       {
         this.m_image.Draw(context, this.m_x, this.m_y + ((WallSection.WALL_HEIGHT / WallSection.SECTIONS) * block), screenX, screenY, scale);
 
-        context.lineWidth = 1;
-        context.strokeStyle = 'green';
-        context.strokeRect(this.m_x - screenX, this.m_y + ((WallSection.WALL_HEIGHT / WallSection.SECTIONS) * block) - screenY,
-                           WallSection.WALL_WIDTH, WallSection.WALL_HEIGHT / WallSection.SECTIONS);
-						   
-        context.fillStyle = 'green';
-        context.fillText(this.m_blocks[0].m_blockIntegrity, this.m_x - screenX, this.m_y - screenY);
+		if(Game.EDIT_MODE == true)
+		{
+          context.lineWidth = 1;
+          context.strokeStyle = 'green';
+          context.strokeRect(this.m_x - screenX, this.m_y + ((WallSection.WALL_HEIGHT / WallSection.SECTIONS) * block) - screenY,
+                             WallSection.WALL_WIDTH, WallSection.WALL_HEIGHT / WallSection.SECTIONS);
+        }
       }
     }
   }

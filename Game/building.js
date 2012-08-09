@@ -289,11 +289,14 @@ function Building(physics, x, y)
       }
 	}
     
-    context.lineWidth = 1;
-    context.strokeStyle = 'red';
-    context.strokeRect(this.m_bounds.m_left - screenX,
-                       this.m_bounds.m_top - screenY,
-                       this.m_bounds.m_width,
-                       this.m_bounds.m_height);
+	if(Game.EDIT_MODE == true)
+	{
+      context.lineWidth = 1;
+      context.strokeStyle = 'red';
+      context.strokeRect(this.m_bounds.m_left - screenX,
+                         this.m_bounds.m_top - screenY,
+                         this.m_bounds.m_width,
+                         this.m_bounds.m_height);
+    }
   }
 };

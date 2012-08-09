@@ -48,14 +48,13 @@ function FloorSection(physics, floorImage, floorBrokenImage, x, y)
                                    screenX, screenY, scale);
     }
 
-    context.lineWidth = 1;
-    context.strokeStyle = 'green';
-    context.strokeRect(this.m_x - screenX, this.m_y - screenY,
+	if(Game.EDIT_MODE == true)
+	{
+      context.lineWidth = 1;
+      context.strokeStyle = 'green';
+      context.strokeRect(this.m_x - screenX, this.m_y - screenY,
                        FloorSection.FLOOR_WIDTH, FloorSection.FLOOR_HEIGHT);
-						   
-    context.fillStyle = 'green';
-    context.fillText(this.m_block.m_blockIntegrity,
-                     this.m_x - screenX, this.m_y - screenY);
- }
+    }				   
+  }
 };
 

@@ -23,9 +23,9 @@ function Level()
   var m_damage = new DamageHandler();
   
   var m_ui = new UI();
-  
+ 
   m_character = new Player(m_damage, m_scoreHandler);
-  m_character.SetDimensions(103, 128);
+  m_character.SetDimensions(100, 128);
   m_character.EnablePhysics(m_physics, false, true);
   m_character.Move(0, 472);
 

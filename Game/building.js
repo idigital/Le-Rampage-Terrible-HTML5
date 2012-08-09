@@ -34,17 +34,17 @@ function Building(physics, x, y)
 
   //Load the sprites required for the section's foreground, background, the
   //floor sprite and wall sprite.
-  this.m_foregroundSprite = new AnimatedSprite("images/sectionForegrounds.png",
+  this.m_foregroundSprite = new AnimatedSprite("images/buildingForeground2.png",
                                        null,
                                        Building.SECTION_WIDTH,
                                        Building.SECTION_HEIGHT,
-                                       4);
+                                       3);
 
-  this.m_backgroundSprite = new AnimatedSprite("images/sectionBackground.png",
+  this.m_backgroundSprite = new AnimatedSprite("images/buildingBackground.png",
                                        null,
                                        Building.SECTION_WIDTH,
                                        Building.SECTION_HEIGHT,
-									   1);
+									   3);
 									   
   this.m_passableForegroundSprite = new AnimatedSprite(
                                        "images/scaffold-foreground.png",

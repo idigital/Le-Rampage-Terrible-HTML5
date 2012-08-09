@@ -33,7 +33,7 @@ function Level()
   var m_aimSprite = new Sprite("images/Aim.png", 4, 4);
 
   this.m_start = new Sprite("images/start.png", 256, 160);
-  this.m_startPos = new Vector(0, 440);
+  this.m_startPos = new Vector(103, 440);
   this.m_end = new Objective("images/finish.png", 32636, 440, 256, 160);
   this.m_end.EnablePhysics(m_physics, false, true);
 

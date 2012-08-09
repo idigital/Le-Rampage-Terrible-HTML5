@@ -66,7 +66,7 @@ function Section(physics,
 	}
 	else
 	{
-	  this.m_currentBackgroundImage.Draw(context, this.m_x, this.m_y, screenX, screenY, scale);
+	  this.m_currentBackgroundImage.DrawFrame(context, this.m_frame, this.m_x, this.m_y, screenX, screenY, scale);
 	}
   }
   
@@ -106,7 +106,7 @@ function Section(physics,
 	  
       if(sectionValue == SectionValue.PLAIN)
       {
-        this.m_frame = 0;
+        this.m_frame = 1;
 		this.m_value = null;
 		this.m_points = null;
       }

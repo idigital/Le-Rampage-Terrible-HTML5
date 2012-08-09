@@ -48,6 +48,7 @@ function Level()
   
   //Scoring variables.
   var m_timeElapsed = 0;
+  var m_timeLimit = 135;
 
   this.Update = function(dt, mouseX, mouseY, leftClick, leftRelease)
   {

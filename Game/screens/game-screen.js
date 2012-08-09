@@ -81,6 +81,9 @@ GameScreen.prototype.Draw = function(context)
     this.m_level.Draw(context);
   }
 
-  this.m_editorButton.Draw(context, 868, 0, 0, 0, 1);
+  if(Game.EDIT_MODE == true)
+  {
+     (this.m_ingameNumbers.m_width * digit)this.m_editorButton.Draw(context, 868, 0, 0, 0, 1);
+  }
 };
 

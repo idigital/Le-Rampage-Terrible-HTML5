@@ -8,15 +8,15 @@ function UI()
   //***********
   
   //Ingame.
-  this.m_ingameNumbers = new AnimatedSprite("images/ui/Ui-Game-Numbers.png", null, 36, 69, 10);
+  this.m_ingameNumbers = new AnimatedSprite("images/ui/Ui-Game-Numbers.png", null, 36, 64, 10);
   this.m_ingameScore = new Sprite("images/ui/Ui-Game-Score.png", 123, 71);
-  this.m_ingameScorePos = new Vector(0, 0);
+  this.m_ingameScorePos = new Vector(600, 0);
   this.m_ingameTime = new Sprite("images/ui/Ui-Game-Time.png", 98, 79);
-  this.m_ingameTimePos = new Vector(0, 71);
+  this.m_ingameTimePos = new Vector(0, 0);
   this.m_ingameMultiplier = new Sprite("images/ui/Ui-Game-Multiplyerx.png", 226, 72);
-  this.m_ingameMultiplierPos = new Vector(0, 143);
+  this.m_ingameMultiplierPos = new Vector(600, 71);
   this.m_ingamePower = new Sprite("images/ui/Ui-Game-Power.png", 133, 73);
-  this.m_ingamePowerPos = new Vector(0, 216);
+  this.m_ingamePowerPos = new Vector(0, 79);
   
   //End game.
   this.m_endgameNumbers = new AnimatedSprite("images/ui/Ui-End-Numbers.png", null, 49, 101, 10);
@@ -50,36 +50,36 @@ function UI()
                             this.m_ingameScorePos.m_dx,
                             this.m_ingameScorePos.m_dy, 0, 0, 1);
 
-	this.DrawNumberSmall(context, this.m_score, 
-						 this.m_ingameScorePos.m_dx + this.m_ingameScore.m_width,
-                         this.m_ingameScorePos.m_dy);
+    this.DrawNumberSmall(context, this.m_score, 
+                      this.m_ingameScorePos.m_dx + this.m_ingameScore.m_width,
+                      this.m_ingameScorePos.m_dy);
 
-	//Draw time.
-	this.m_ingameTime.Draw(context,
+    //Draw time.
+    this.m_ingameTime.Draw(context,
                            this.m_ingameTimePos.m_dx,
                            this.m_ingameTimePos.m_dy, 0, 0, 1);
 
-	this.DrawNumberSmall(context, this.m_time, 
-						 this.m_ingameTimePos.m_dx + this.m_ingameTime.m_width,
-                         this.m_ingameTimePos.m_dy);
+    this.DrawNumberSmall(context, this.m_time, 
+                      this.m_ingameTimePos.m_dx + this.m_ingameTime.m_width,
+                      this.m_ingameTimePos.m_dy);
 
-	//Draw multiplier.
-	this.m_ingameMultiplier.Draw(context,
+    //Draw multiplier.
+    this.m_ingameMultiplier.Draw(context,
                                  this.m_ingameMultiplierPos.m_dx,
                                  this.m_ingameMultiplierPos.m_dy, 0, 0, 1);
 
-	this.DrawNumberSmall(context, this.m_multiplier, 
-						 this.m_ingameMultiplierPos.m_dx + this.m_ingameMultiplier.m_width,
-                         this.m_ingameMultiplierPos.m_dy);
+    this.DrawNumberSmall(context, this.m_multiplier, 
+            this.m_ingameMultiplierPos.m_dx + this.m_ingameMultiplier.m_width,
+            this.m_ingameMultiplierPos.m_dy);
 
-	//Draw power.
-	this.m_ingamePower.Draw(context,
+    //Draw power.
+    this.m_ingamePower.Draw(context,
                             this.m_ingamePowerPos.m_dx,
                             this.m_ingamePowerPos.m_dy, 0, 0, 1);
-							
-	this.DrawNumberSmall(context, this.m_power, 
-						 this.m_ingamePowerPos.m_dx + this.m_ingamePower.m_width,
-                         this.m_ingamePowerPos.m_dy);
+
+    this.DrawNumberSmall(context, this.m_power, 
+                  this.m_ingamePowerPos.m_dx + this.m_ingamePower.m_width,
+                  this.m_ingamePowerPos.m_dy);
   }
 
   //**************************************************************************
@@ -88,29 +88,31 @@ function UI()
   this.DrawNumberSmall = function(context, number, x, y)
   {
     //Find number of digits.
-	var _numDigits = 0;
-	var _temp = number;
-	
-	while(_temp > 1)
-	{
+    var _numDigits = 0;
+    var _temp = number;
+
+    while(_temp > 1)
+    {
       _temp /= 10;
       _numDigits++;
-	}
-	
+    }
+
+    //Get each digit and draw each number.
     for(digit = 0; digit < _numDigits; digit++)
     {
-	  var _mod = 10;
-	  	  
-	  for(multi = 0; multi < digit; multi++)
-	  {
-	    _mod *= 10;
-	  }
-	  
-	  var _remainder = number % _mod;
-	  
-	  var _digit = Math.floor(_remainder / 10);
-	  
-      this.m_ingameNumbers.DrawFrame(context, _digit, x + (this.m_ingameNumbers.m_width * digit), y, 0, 0, 1);
+      _digit = Math.floor(number / (Math.pow(10, digit)) % 10);
+
+      var _xPos = x + (this.m_ingameNumbers.m_width * (_numDigits - digit));
+
+      this.m_ingameNumbers.DrawFrame(context,
+            _digit, _xPos, y, 0, 0, 1);
+    }
+
+    if(number < 1 && number > 0)
+    {
+      this.m_ingameNumbers.DrawFrame(context,
+            _digit, x, y, 0, 0, 1);
+
     }
   }
 
@@ -123,3 +125,4 @@ function UI()
     this.m_endgameNumbers.DrawFrame(context, _frame, x, y, 0, 0, 1);
   }
 };
+

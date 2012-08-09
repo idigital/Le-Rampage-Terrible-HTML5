@@ -18,6 +18,9 @@ Objective.prototype.Draw = function(context, screenX, screenY, scale)
 {
   context.drawImage(this.m_image, this.m_x - screenX, this.m_y - screenY);
 
-  this.m_bounds.Draw(context, screenX, screenY, scale);
+  if(Game.EDIT_MODE == true)
+  {
+    this.m_bounds.Draw(context, screenX, screenY, scale);
+  }
 };
 

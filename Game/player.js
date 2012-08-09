@@ -17,7 +17,7 @@ function Player(damage, scoreHandler)
   var m_crouching = false;
   var m_gravity = 9.8;
   var m_floorHeight = 600;
-  var m_worldWidth = 32796;
+  var m_worldWidth = 8856;//32796;
   var m_airDrag = 1.0;
 
   this.m_currentState = PlayerState.PLAYER_IDLE;
@@ -28,6 +28,7 @@ function Player(damage, scoreHandler)
   this.animations = new AnimatedSprite("images/player_animation.png", null, 100, 128, 3);
 
   this.m_type = ObjectType.Player;
+  this.m_playerAtFinish = false;
  
   this.Update = function(dt)
   {
@@ -486,6 +487,7 @@ Player.prototype.HandleCollision = function(collision)
   if(collision.m_objHit.m_type == ObjectType.Finish)
   {
     //Reached finish. End level.
+    this.m_playerAtFinish = true;
   }
 };
 

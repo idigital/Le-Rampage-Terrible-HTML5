@@ -19,7 +19,7 @@ function UI()
   this.m_ingamePowerPos = new Vector(0, 79);
   
   //End game.
-  this.m_endgameNumbers = new AnimatedSprite("images/ui/Ui-End-Numbers.png", null, 49, 101, 10);
+  this.m_endgameNumbers = new AnimatedSprite("images/ui/Ui-End-Numbers.png", null, 48, 96, 10);
   this.m_endgameScore = new Sprite("images/ui/Ui-End-Score.png", 160, 90);
   this.m_endgameTime = new Sprite("images/ui/Ui-End-Time.png", 105, 90);
   
@@ -121,8 +121,33 @@ function UI()
   //**************************************************************************
   this.DrawNumberLarge = function(context, number, x, y)
   {
-    var _frame = 0;
-    this.m_endgameNumbers.DrawFrame(context, _frame, x, y, 0, 0, 1);
+    //Find number of digits.
+    var _numDigits = 0;
+    var _temp = number;
+
+    while(_temp > 1)
+    {
+      _temp /= 10;
+      _numDigits++;
+    }
+
+    //Get each digit and draw each number.
+    for(digit = 0; digit < _numDigits; digit++)
+    {
+      _digit = Math.floor(number / (Math.pow(10, digit)) % 10);
+
+      var _xPos = x + (this.m_endgameNumbers.m_width * (_numDigits - digit));
+
+      this.m_endgameNumbers.DrawFrame(context,
+            _digit, _xPos, y, 0, 0, 1);
+    }
+
+    if(number < 1 && number > 0)
+    {
+      this.m_endgameNumbers.DrawFrame(context,
+            _digit, x, y, 0, 0, 1);
+
+    }
   }
 };
 

@@ -16,7 +16,7 @@ function Level()
   var m_aim;
   this.m_buildings;
 
-  var m_scoreHandler = new ScoreHandler();
+  this.m_scoreHandler = new ScoreHandler();
   var m_objective;
 
   var m_physics = new PhysicsHandler();
@@ -24,7 +24,7 @@ function Level()
   
   var m_ui = new UI();
  
-  m_character = new Player(m_damage, m_scoreHandler);
+  m_character = new Player(m_damage, this.m_scoreHandler);
   m_character.SetDimensions(100, 128);
   m_character.EnablePhysics(m_physics, false, true);
   m_character.Move(0, 472);
@@ -38,7 +38,8 @@ function Level()
 
   this.m_start = new Sprite("images/start.png", 256, 160);
   this.m_startPos = new Vector(103, 440);
-  this.m_end = new Objective("images/finish.png", 32636, 440, 256, 160);
+  this.m_end = new Objective("images/finish.png", 8600, 440, 256, 160);
+  //this.m_end = new Objective("images/finish.png", 32636, 440, 256, 160);
   this.m_end.EnablePhysics(m_physics, false, true);
 
   //Side-scrolling variables.
@@ -49,6 +50,11 @@ function Level()
   //Scoring variables.
   var m_timeElapsed = 0;
   var m_timeLimit = 135;
+  this.m_levelComplete = false;
+  this.m_ranOutOfTime = false;
+
+  this.m_music = new Audio("audio/ROTA_Music.wav");
+  this.m_music.play();
 
   this.Update = function(dt, mouseX, mouseY, leftClick, leftRelease)
   {
@@ -87,12 +93,12 @@ function Level()
 
     m_damage.Update(dt);
 
-    m_scoreHandler.Update(dt);
+    this.m_scoreHandler.Update(dt);
 	
 	m_ui.Update(dt,
-                m_scoreHandler.m_currentScore,
+                this.m_scoreHandler.m_currentScore,
                 m_timeElapsed, m_timeLimit,
-                m_scoreHandler.m_currentMultiplier,
+                this.m_scoreHandler.m_currentMultiplier,
                 m_power);
 
     //var _scaledScreenX = 50 * this.m_scale;
@@ -106,6 +112,24 @@ function Level()
 	
     this.m_screenX = m_character.m_x - 100;
     this.m_screenY = m_character.m_y - (500 - (m_character.m_height * this.m_scale));
+
+    //Check for either run out of time or end of level.
+    if(m_timeElapsed >= m_timeLimit)
+    {
+      this.m_ranOutOfTime = true;
+      this.m_scoreHandler.EndChain();
+      Game.RemainingTime = 0;
+      Game.FinalScore = this.m_scoreHandler.m_currentScore;
+      this.m_music.pause();
+    }
+    else if(m_character.m_playerAtFinish == true)
+    {
+      this.m_levelComplete = true;
+      this.m_scoreHandler.EndChain();
+      Game.RemainingTime = m_timeLimit - m_timeElapsed;
+      Game.FinalScore = this.m_scoreHandler.m_currentScore;
+      this.m_music.pause();
+    }
   }
 
   this.Draw = function(context)

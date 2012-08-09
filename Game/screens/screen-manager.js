@@ -1,9 +1,10 @@
 ScreenType = { SplashScreen : "splashScreen",
-               //MenuScreen : "menuScreen",
                MapScreen : "mapScreen",
                GameScreen : "gameScreen",
-               //EndScreen : "endScreen",
-               CreditsScreen : "creditsScreen"
+               EndScreen : "endScreen",
+               CreditsScreen1 : "creditsScreen1",
+               CreditsScreen2 : "creditsScreen2",
+               Restart : "restart"
 };
 
 function ScreenManager()
@@ -13,11 +14,13 @@ function ScreenManager()
 
   //Set up game's screens.
   m_screens.push(new SplashScreen());
-  //m_screens.push(new MenuScreen());
   m_screens.push(new MapScreen());
   m_screens.push(new GameScreen());
-  //m_screens.push(new EndScreen());
-  m_screens.push(new CreditsScreen());
+  m_screens.push(new EndScreen());
+  m_screens.push(new CreditsScreen1());
+  m_screens.push(new CreditsScreen2());
+
+  this.m_restart = false;
 
   this.Update = function(dt, mouseX, mouseY,
                          leftClickOccurred, leftReleaseOccurred)
@@ -28,7 +31,14 @@ function ScreenManager()
 
     if(_moveToScreen != null)
     {
-      this.SetCurrentScreen(_moveToScreen);
+      if(_moveToScreen == ScreenType.Restart)
+      {
+        this.m_restart = true;
+      }
+      else
+      {
+        this.SetCurrentScreen(_moveToScreen);
+      }
     }
   };
 
@@ -47,6 +57,25 @@ function ScreenManager()
       }
     }
   };
+
+  this.Restart = function()
+  {
+    this.m_restart = false;
+
+    m_screens = [];
+
+    this.m_currentScreen = null;
+
+    //Set up game's screens.
+    m_screens.push(new SplashScreen());
+    m_screens.push(new MapScreen());
+    m_screens.push(new GameScreen());
+    m_screens.push(new EndScreen());
+    m_screens.push(new CreditsScreen1());
+    m_screens.push(new CreditsScreen2());
+
+    this.SetCurrentScreen(ScreenType.SplashScreen);
+  }
 
   //Set initial screen.
   this.SetCurrentScreen(ScreenType.SplashScreen);

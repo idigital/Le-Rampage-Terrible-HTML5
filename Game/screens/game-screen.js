@@ -66,7 +66,20 @@ GameScreen.prototype.Update = function(dt, mouseX, mouseY,
   {
     this.m_level.Update(dt, mouseX, mouseY,
                         leftClickOccured, leftReleaseOccured);
+
+    if(this.m_level.m_levelComplete == true)
+    {
+      //Player completed level. Go to score screen.
+      return ScreenType.EndScreen;
+    }
+    else if(this.m_level.m_ranOutOfTime == true)
+    {
+      //Player ran out of time. Go to score screen.
+      return ScreenType.EndScreen;
+    }
   }
+
+  return null;
 };
 
 GameScreen.prototype.Draw = function(context)

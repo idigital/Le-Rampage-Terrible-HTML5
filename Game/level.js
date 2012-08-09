@@ -106,6 +106,8 @@ function Level()
       bg1.Draw(context, 900 * bg, 200, this.m_screenX, this.m_screenY, this.m_scale);
 	  bg2.Draw(context, 900 * bg, -400, this.m_screenX, this.m_screenY, this.m_scale);
 	  bg3.Draw(context, 900 * bg, -1000, this.m_screenX, this.m_screenY, this.m_scale);
+	  bg2.Draw(context, 900 * bg, -1600, this.m_screenX, this.m_screenY, this.m_scale);
+	  bg3.Draw(context, 900 * bg, -2200, this.m_screenX, this.m_screenY, this.m_scale);
     }
 
     for(building = 0; building < this.m_buildings.length; building++)

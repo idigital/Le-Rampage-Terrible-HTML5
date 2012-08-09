@@ -27,7 +27,9 @@ function Level()
   m_character.EnablePhysics(m_physics, false, true);
   m_character.Move(0, 472);
 
-  var bg = new Sprite("images/SkyBackground.png", 800, 600);
+  var bg1 = new Sprite("images/background_with_floor.png", 900, 600);
+  var bg2 = new Sprite("images/plain_sky.png", 900, 600);
+  var bg3 = new Sprite("images/plain_sky_with_clouds.png", 900, 600);
   
   var m_aimPos = new Vector(0, 0);
   var m_aimSprite = new Sprite("images/Aim.png", 4, 4);
@@ -99,7 +101,12 @@ function Level()
 
   this.Draw = function(context)
   {
-    bg.Draw(context, 0, 0, this.m_screenX, this.m_screenY, this.m_scale);
+    for(bg = 0; bg < 20; bg++)
+	{
+      bg1.Draw(context, 900 * bg, 200, this.m_screenX, this.m_screenY, this.m_scale);
+	  bg2.Draw(context, 900 * bg, -400, this.m_screenX, this.m_screenY, this.m_scale);
+	  bg3.Draw(context, 900 * bg, -1000, this.m_screenX, this.m_screenY, this.m_scale);
+    }
 
     for(building = 0; building < this.m_buildings.length; building++)
     {
@@ -473,6 +480,8 @@ function Level()
       m_dragging = true;
       m_startX = mouseX + this.m_screenX;
       m_startY = mouseY + this.m_screenY;
+	  
+	  m_character.Crouch();
     }
   }
 

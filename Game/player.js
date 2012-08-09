@@ -1,3 +1,8 @@
+PlayerState = { PLAYER_IDLE : "playerIdle",
+                PLAYER_CROUCH : "playerCrouch",
+                PLAYER_JUMP : "playerJump"
+              };
+
 Player.prototype = new GameObject();
 
 function Player(damage, scoreHandler)
@@ -15,12 +20,12 @@ function Player(damage, scoreHandler)
   var m_worldWidth = 32796;
   var m_airDrag = 1.0;
 
-  this.m_currentState;
+  this.m_currentState = PlayerState.PLAYER_IDLE;
   
   this.m_damage = damage;
   this.m_scoreHandler = scoreHandler;
 
-  this.animations = new AnimatedSprite("images/player_anim.png", null, 103, 128, 3);
+  this.animations = new AnimatedSprite("images/player_animation.png", null, 103, 128, 3);
 
   this.m_type = ObjectType.Player;
  
@@ -55,10 +60,10 @@ function Player(damage, scoreHandler)
       this.m_currentVelocity.m_dy += (m_gravity * dt);
       this.m_currentVelocity.m_dx *= m_airDrag;
     }
-    /*else if(this.m_onGround == true && m_crouching == false && m_jumping == false)
+    else if(this.m_onGround == true && m_crouching == false && m_jumping == false)
     {
-      ChangeState(PlayerState.PlayerIdle);
-    }*/
+      this.ChangeState(PlayerState.PLAYER_IDLE);
+    }
 
     if(this.m_onGround == true && m_jumping == true)
     {
@@ -71,6 +76,15 @@ function Player(damage, scoreHandler)
 
     this.m_bounds.Move(this.m_x, this.m_y);
   };
+  
+  this.Crouch = function()
+  {
+    if(this.m_onGround == true)
+    {
+      m_crouching = true;
+      this.ChangeState(PlayerState.PLAYER_CROUCH);
+    }
+  }
 	
   this.Jump = function(vX, vY)
   {
@@ -93,8 +107,13 @@ function Player(damage, scoreHandler)
       m_jumping = true;
       m_crouching = false;
 
-      //ChangeState(PlayerState.PlayerJump);
+      this.ChangeState(PlayerState.PLAYER_JUMP);
     }
+  }
+  
+  this.ChangeState = function(newState)
+  {
+	this.m_currentState = newState;
   }
 
   return this;
@@ -110,8 +129,18 @@ Player.prototype.Move = function(x, y)
 
 Player.prototype.Draw = function(context, screenX, screenY, scale)
 {
-  //this.animations.DrawFrame(context, 0, this.m_x, this.m_y, screenX, screenY, scale);
-  this.animations.Draw(context, this.m_x, this.m_y, screenX, screenY, scale);
+  if(this.m_currentState == PlayerState.PLAYER_IDLE)
+  {
+    this.animations.DrawFrame(context, 0, this.m_x, this.m_y, screenX, screenY, scale);
+  }
+  else if(this.m_currentState == PlayerState.PLAYER_CROUCH)
+  {
+    this.animations.DrawFrame(context, 2, this.m_x, this.m_y, screenX, screenY, scale);
+  }
+  else if(this.m_currentState == PlayerState.PLAYER_JUMP)
+  {
+    this.animations.DrawFrame(context, 1, this.m_x, this.m_y, screenX, screenY, scale);
+  }
 
   this.m_bounds.Draw(context, screenX, screenY, scale);
   
@@ -217,22 +246,7 @@ Player.prototype.HandleCollision = function(collision)
                                          ScoreHandler.WALL_SECTION_POINTS);
          this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
                                          ScoreHandler.WALL_SECTION_POINTS);
-   }
-
-      /*if(this.m_currentPowerX >= collision.m_objHit.m_blockIntegrity
-         && collision.m_objHit.m_blockIntegrity > 0)
-      {
-        this.m_currentPowerX -= collision.m_objHit.m_blockIntegrity;
-        collision.m_objHit.m_blockIntegrity = 0;
-        this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.RIGHT, 3, collision.m_objHit.m_x, collision.m_objHit.m_y);
       }
-
-      if(collision.m_objHit.m_blockIntegrity > 0)
-      {
-        this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
-        this.m_currentVelocity.m_dx *= -0.2;
-        this.m_currentVelocity.m_dy *= 0.2;
-      }*/
     }
 
     if(collision.right == true && this.m_currentVelocity.m_dx < 0)
@@ -317,23 +331,7 @@ Player.prototype.HandleCollision = function(collision)
                                          ScoreHandler.WALL_SECTION_POINTS);
          this.m_scoreHandler.AddChainLink(ScoreObjectType.WALL,
                                          ScoreHandler.WALL_SECTION_POINTS);
-   }
-
-      /*if(this.m_currentPowerX >= collision.m_objHit.m_blockIntegrity
-         && collision.m_objHit.m_blockIntegrity > 0)
-      {
-        this.m_currentPowerX -= collision.m_objHit.m_blockIntegrity;
-        collision.m_objHit.m_blockIntegrity = 0;
-        this.m_damage.CreateWallDamageAnimation(DamageHorizontalDirection.RIGHT, 3, collision.m_objHit.m_x, collision.m_objHit.m_y);
       }
-
-      if(collision.m_objHit.m_blockIntegrity > 0)
-      {
-        this.Move(_boundsOfObjHit.m_left - this.m_width, this.m_y);
-        this.m_currentVelocity.m_dx *= -0.2;
-        this.m_currentVelocity.m_dy *= 0.2;
-      }*/
-
     }
   }
 

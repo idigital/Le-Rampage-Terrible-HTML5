@@ -1,4 +1,4 @@
-CreditsScreen.prototype = new GameScreen();
+CreditsScreen.prototype = new BaseScreen();
 
 function CreditsScreen()
 {

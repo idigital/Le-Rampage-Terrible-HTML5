@@ -32,10 +32,10 @@ function UI()
   //**************************************************************************
   //
   //**************************************************************************
-  this.Update = function(dt, score, time, multiplier, power)
+  this.Update = function(dt, score, time, timeLimit, multiplier, power)
   {
     this.m_score = score;
-    this.m_time = time;
+    this.m_time = timeLimit - time;
     this.m_multiplier = multiplier;
     this.m_power = power;
   }

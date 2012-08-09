@@ -91,7 +91,7 @@ function Level()
 	
 	m_ui.Update(dt,
                 m_scoreHandler.m_currentScore,
-                m_timeElapsed,
+                m_timeElapsed, m_timeLimit,
                 m_scoreHandler.m_currentMultiplier,
                 m_power);
 

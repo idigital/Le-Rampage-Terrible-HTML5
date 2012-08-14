@@ -1,19 +1,18 @@
-BuildingType = { GreyBuilding : 0,
-                 BlueBuilding : 1,
-                 GlassBuilding : 2
-	       };
-		   
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 Building.prototype = new GameObject();
 
 function Building(physics, x, y)
 {
   //Constants.
-  Building.SECTION_WIDTH = 256;
-  Building.SECTION_HEIGHT = 192;
+  Building.SECTION_WIDTH = 96;
+  Building.SECTION_HEIGHT = 64;
   Building.WALL_WIDTH = 8;
-  Building.WALL_HEIGHT = 192;
-  Building.SECTIONS = 3;
-  Building.FLOOR_WIDTH = 256;
+  Building.WALL_HEIGHT = 64;
+  Building.SECTIONS = 1;
+  Building.FLOOR_WIDTH = 96;
   Building.FLOOR_HEIGHT = 8;
 
   this.m_x = x;
@@ -34,46 +33,48 @@ function Building(physics, x, y)
 
   //Load the sprites required for the section's foreground, background, the
   //floor sprite and wall sprite.
-  this.m_foregroundSprite = new AnimatedSprite("images/buildingForeground2.png",
-                                       null,
-                                       Building.SECTION_WIDTH,
-                                       Building.SECTION_HEIGHT,
-                                       3);
+  this.m_foregroundSprite = new AnimatedSprite(
+                                      "images/sectionForegroundsSmall.png",
+                                      null,
+                                      Building.SECTION_WIDTH,
+                                      Building.SECTION_HEIGHT,
+                                      3);
 
-  this.m_backgroundSprite = new AnimatedSprite("images/buildingBackground.png",
-                                       null,
-                                       Building.SECTION_WIDTH,
-                                       Building.SECTION_HEIGHT,
-									   3);
+  this.m_backgroundSprite = new AnimatedSprite(
+                                      "images/sectionBackgroundSmall.png",
+                                      null,
+                                      Building.SECTION_WIDTH,
+                                      Building.SECTION_HEIGHT,
+                                      1);
 									   
   this.m_passableForegroundSprite = new AnimatedSprite(
-                                       "images/scaffold-foreground.png",
-									   null,
-									   Building.SECTION_WIDTH,
-									   Building.SECTION_HEIGHT,
-									   3);
+                                      "images/scaffold-foreground.png",
+                                      null,
+                                      Building.SECTION_WIDTH,
+                                      Building.SECTION_HEIGHT,
+                                      3);
 
   this.m_passableBackgroundSprite = new AnimatedSprite(
-                                       "images/scaffold-background.png",
-									   null,
-									   Building.SECTION_WIDTH,
-									   Building.SECTION_HEIGHT,
-									   3);
+                                      "images/scaffold-background.png",
+                                      null,
+                                      Building.SECTION_WIDTH,
+                                      Building.SECTION_HEIGHT,
+                                      3);
 									   
   this.m_impassableSprite = new AnimatedSprite(
-                                       "images/billboards.png",
-									   null,
-									   Building.SECTION_WIDTH,
-									   Building.SECTION_HEIGHT,
-									   9);
+                                      "images/billboards.png",
+                                      null,
+                                      Building.SECTION_WIDTH,
+                                      Building.SECTION_HEIGHT,
+                                      9);
 
   this.m_floorSprite = new Sprite("images/floor.png",
                                   Building.FLOOR_WIDTH,
                                   Building.FLOOR_HEIGHT);
 
   this.m_floorBrokenSprite = new Sprite("images/floorBroken.png",
-                                        Building.FLOOR_WIDTH,
-                                        Building.FLOOR_HEIGHT);
+                                      Building.FLOOR_WIDTH,
+                                      Building.FLOOR_HEIGHT);
 
   this.m_wallSprite = new Sprite("images/wallThird.png",
                                   Building.WALL_WIDTH,

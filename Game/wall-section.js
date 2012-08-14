@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 WallSection.prototype = new GameObject();
 
 //****************************************************************************
@@ -7,9 +11,9 @@ function WallSection(physics, image, x, y)
 {
   //Constants.
   WallSection.WALL_WIDTH = 8;
-  WallSection.WALL_HEIGHT = 192;
+  WallSection.WALL_HEIGHT = 64;
   WallSection.STARTING_HEALTH = 1;
-  WallSection.SECTIONS = 3;
+  WallSection.SECTIONS = 1;
 
   this.m_image = image;
   this.m_x = x;

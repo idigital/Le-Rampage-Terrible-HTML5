@@ -1,4 +1,9 @@
-function DamageAnimation(filename, image, x, y, frameWidth, frameHeight, numFrames)
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
+function DamageAnimation(filename, image, x, y,
+                         frameWidth, frameHeight, numFrames)
 {
   this.m_animation = new AnimatedSprite(filename, image, frameWidth,
                                         frameHeight,

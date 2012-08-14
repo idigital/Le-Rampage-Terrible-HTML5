@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 MapScreen.prototype = new BaseScreen();
 
 function MapScreen()
@@ -9,7 +13,7 @@ function MapScreen()
   this.m_cityBounds = new BoundingBox(null, 310, 500, 90, 100);
   
   this.m_topBar = new Sprite("images/topbar.png", 1300, 200);
-  this.m_sideBar = new Sprite("images/siderbar.png", 200, 1000);
+  this.m_sideBar = new Sprite("images/sidebar.png", 200, 1000);
 };
 
 MapScreen.prototype.Update = function(dt, mouseX, mouseY,

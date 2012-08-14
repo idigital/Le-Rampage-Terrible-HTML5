@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 SplashScreen.prototype = new BaseScreen();
 
 function SplashScreen()
@@ -9,7 +13,7 @@ function SplashScreen()
   this.m_startBounds = new BoundingBox(null, 880, 650, 180, 120);
   
   this.m_topBar = new Sprite("images/topbar.png", 1300, 200);
-  this.m_sideBar = new Sprite("images/siderbar.png", 200, 1000);
+  this.m_sideBar = new Sprite("images/sidebar.png", 200, 1000);
 };
 
 SplashScreen.prototype.Update = function(dt, mouseX, mouseY,

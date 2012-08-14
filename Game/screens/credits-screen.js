@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 CreditsScreen1.prototype = new BaseScreen();
 
 function CreditsScreen1()
@@ -9,7 +13,7 @@ function CreditsScreen1()
   this.m_clickBounds = new BoundingBox(null, 200, 200, 900, 600);
 
   this.m_topBar = new Sprite("images/topbar.png", 1300, 200);
-  this.m_sideBar = new Sprite("images/siderbar.png", 200, 1000);
+  this.m_sideBar = new Sprite("images/sidebar.png", 200, 1000);
 };
 
 CreditsScreen1.prototype.Update = function(dt, mouseX, mouseY,

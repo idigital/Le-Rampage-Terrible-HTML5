@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 FloorSection.prototype = new GameObject();
 
 //****************************************************************************
@@ -6,7 +10,7 @@ FloorSection.prototype = new GameObject();
 function FloorSection(physics, floorImage, floorBrokenImage, x, y)
 {
   //Constants.
-  FloorSection.FLOOR_WIDTH = 256;
+  FloorSection.FLOOR_WIDTH = 96;
   FloorSection.FLOOR_HEIGHT = 8;
   FloorSection.STARTING_HEALTH = 1;
   FloorSection.FORCE_TO_MOVE_DOWN_A_FLOOR = 2;

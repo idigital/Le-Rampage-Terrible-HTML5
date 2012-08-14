@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 GameScreen.prototype = new BaseScreen();
 
 function GameScreen()
@@ -21,7 +25,7 @@ function GameScreen()
   this.m_editorBounds = new BoundingBox(null, 868, 0, 32, 32);
   
   this.m_topBar = new Sprite("images/topbar.png", 1300, 200);
-  this.m_sideBar = new Sprite("images/siderbar.png", 200, 1000);
+  this.m_sideBar = new Sprite("images/sidebar.png", 200, 1000);
 }
 
 GameScreen.prototype.Update = function(dt, mouseX, mouseY,

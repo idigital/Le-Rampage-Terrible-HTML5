@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 ScoreObjectType = { WALL : "wallScoreType",
                     FLOOR : "floorScoreType",
                     BUILDING_BRONZE : "buildingBronzeScoreType",

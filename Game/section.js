@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 SectionType = { DESTRUCTABLE : "destructable",
                 PASSABLE : "passable",
                 IMPASSABLE : "impassable"
@@ -30,8 +34,8 @@ function Section(physics,
                  x, y, sectionType, sectionValue)
 {
   //Constants.
-  Section.SECTION_WIDTH = 256;
-  Section.SECTION_HEIGHT = 192;
+  Section.SECTION_WIDTH = 96;
+  Section.SECTION_HEIGHT = 64;
   
   this.m_foregroundImage = foregroundImage;
   this.m_backgroundImage = backgroundImage;

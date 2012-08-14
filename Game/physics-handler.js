@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 function PhysicsHandler()
 {
   //An array to hold each object in the level's bounding box.

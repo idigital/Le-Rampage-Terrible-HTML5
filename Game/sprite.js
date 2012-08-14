@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 function Sprite(filename, width, height)
 {
   this.m_filename = filename;

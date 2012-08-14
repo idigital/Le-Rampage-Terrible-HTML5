@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 PlayerState = { PLAYER_IDLE : "playerIdle",
                 PLAYER_CROUCH : "playerCrouch",
                 PLAYER_JUMP : "playerJump"

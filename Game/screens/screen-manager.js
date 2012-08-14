@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 ScreenType = { SplashScreen : "splashScreen",
                MapScreen : "mapScreen",
                GameScreen : "gameScreen",

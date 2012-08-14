@@ -1,3 +1,7 @@
+//****************************************************************************
+//This file is subject to the terms and conditions defined in license.txt.
+//****************************************************************************
+
 Objective.prototype = new GameObject();
 
 function Objective(filename, x, y, width, height)

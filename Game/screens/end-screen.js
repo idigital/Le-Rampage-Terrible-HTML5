@@ -9,7 +9,10 @@ function EndScreen()
   this.m_timeImage = new Sprite("images/ui/Ui-End-Time.png", 105, 90);
   this.m_numbers = new AnimatedSprite("images/ui/Ui-End-Numbers.png", null, 48, 96, 10);
 
-  this.m_clickBounds = new BoundingBox(null, 0, 0, 900, 600);
+  this.m_clickBounds = new BoundingBox(null, 200, 200, 900, 600);
+  
+  this.m_topBar = new Sprite("images/topbar.png", 1300, 200);
+  this.m_sideBar = new Sprite("images/siderbar.png", 200, 1000);
 };
 
 EndScreen.prototype.Update = function(dt, mouseX, mouseY,
@@ -30,12 +33,17 @@ EndScreen.prototype.Update = function(dt, mouseX, mouseY,
 
 EndScreen.prototype.Draw = function(context)
 {
-  this.m_image.Draw(context, 0, 0, 0, 0, 1);
+  this.m_image.Draw(context, 200, 200, 0, 0, 1);
 
-  this.m_scoreImage.Draw(context, 300, 400, 0, 0, 1);
-  this.DrawNumberLarge(context, Game.FinalScore, 480, 400);
-  this.m_timeImage.Draw(context, 300, 500, 0, 0, 1);
-  this.DrawNumberLarge(context, Game.RemainingTime, 480, 500);
+  this.m_topBar.Draw(context, 0, 0, 0, 0, 1);
+  this.m_topBar.Draw(context, 0, 1100, 0, 0, 1);
+  this.m_sideBar.Draw(context, 0, 0, 0, 0, 1);
+  this.m_sideBar.Draw(context, 1100, 0, 0, 0, 1);
+  
+  this.m_scoreImage.Draw(context, 500, 600, 0, 0, 1);
+  this.DrawNumberLarge(context, Game.FinalScore, 680, 600);
+  this.m_timeImage.Draw(context, 500, 700, 0, 0, 1);
+  this.DrawNumberLarge(context, Game.RemainingTime, 680, 700);
 };
 
   //**************************************************************************

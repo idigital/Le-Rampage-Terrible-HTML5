@@ -19,6 +19,9 @@ function GameScreen()
   this.m_editor = new Editor(this.m_level);
   this.m_editorButton = new Sprite("images/editButton.png", 32, 32);
   this.m_editorBounds = new BoundingBox(null, 868, 0, 32, 32);
+  
+  this.m_topBar = new Sprite("images/topbar.png", 1300, 200);
+  this.m_sideBar = new Sprite("images/siderbar.png", 200, 1000);
 }
 
 GameScreen.prototype.Update = function(dt, mouseX, mouseY,
@@ -86,7 +89,7 @@ GameScreen.prototype.Draw = function(context)
 {
   if(this.m_editMode == true)
   {
-    this.m_editor.Draw(context, this.m_level.m_screenX, this.m_level.m_screenY,
+    this.m_editor.Draw(context, this.m_level.m_screenX - 200, this.m_level.m_screenY - 200,
         this.m_level.m_scale);
   }
   else
@@ -98,5 +101,10 @@ GameScreen.prototype.Draw = function(context)
   {
      this.m_editorButton.Draw(context, 868, 0, 0, 0, 1);
   }
+  
+  this.m_topBar.Draw(context, 0, 0, 0, 0, 1);
+  this.m_topBar.Draw(context, 0, 800, 0, 0, 1);
+  this.m_sideBar.Draw(context, 0, 0, 0, 0, 1);
+  this.m_sideBar.Draw(context, 1100, 0, 0, 0, 1);
 };
 

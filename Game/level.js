@@ -27,7 +27,7 @@ function Level()
   m_character = new Player(m_damage, this.m_scoreHandler);
   m_character.SetDimensions(100, 128);
   m_character.EnablePhysics(m_physics, false, true);
-  m_character.Move(0, 472);
+  m_character.Move(200, 472);
 
   var bg1 = new Sprite("images/background_with_floor.png", 900, 600);
   var bg2 = new Sprite("images/plain_sky.png", 900, 600);
@@ -38,9 +38,9 @@ function Level()
 
   this.m_start = new Sprite("images/start.png", 256, 160);
   this.m_startPos = new Vector(103, 440);
-  this.m_end = new Objective("images/finish.png", 8600, 440, 256, 160);
+  //this.m_end = new Objective("images/finish.png", 8600, 440, 256, 160);
   //this.m_end = new Objective("images/finish.png", 32636, 440, 256, 160);
-  this.m_end.EnablePhysics(m_physics, false, true);
+  //this.m_end.EnablePhysics(m_physics, false, true);
 
   //Side-scrolling variables.
   this.m_screenX = 0;
@@ -49,7 +49,7 @@ function Level()
   
   //Scoring variables.
   var m_timeElapsed = 0;
-  var m_timeLimit = 135;
+  var m_timeLimit = 90;
   this.m_levelComplete = false;
   this.m_ranOutOfTime = false;
 
@@ -136,28 +136,28 @@ function Level()
   {
     for(bg = 0; bg < 20; bg++)
 	{
-      bg1.Draw(context, 900 * bg, 200, this.m_screenX, this.m_screenY, this.m_scale);
-	  bg2.Draw(context, 900 * bg, -400, this.m_screenX, this.m_screenY, this.m_scale);
-	  bg3.Draw(context, 900 * bg, -1000, this.m_screenX, this.m_screenY, this.m_scale);
-	  bg2.Draw(context, 900 * bg, -1600, this.m_screenX, this.m_screenY, this.m_scale);
-	  bg3.Draw(context, 900 * bg, -2200, this.m_screenX, this.m_screenY, this.m_scale);
+      bg1.Draw(context, 900 * bg, 200, this.m_screenX - 200, this.m_screenY - 200, this.m_scale);
+	  bg2.Draw(context, 900 * bg, -400, this.m_screenX - 200, this.m_screenY - 200, this.m_scale);
+	  bg3.Draw(context, 900 * bg, -1000, this.m_screenX - 200, this.m_screenY - 200, this.m_scale);
+	  bg2.Draw(context, 900 * bg, -1600, this.m_screenX - 200, this.m_screenY - 200, this.m_scale);
+	  bg3.Draw(context, 900 * bg, -2200, this.m_screenX - 200, this.m_screenY - 200, this.m_scale);
     }
 
     for(building = 0; building < this.m_buildings.length; building++)
     {
       this.m_buildings[building].Draw(
-          context, this.m_screenX, this.m_screenY, this.m_scale);
+          context, this.m_screenX - 200, this.m_screenY - 200, this.m_scale);
     }
 
     this.m_start.Draw(context, this.m_startPos.m_dx, this.m_startPos.m_dy,
-                      this.m_screenX, this.m_screenY, this.m_scale);
-    this.m_end.Draw(context, this.m_screenX, this.m_screenY, this.m_scale);
+                      this.m_screenX - 200, this.m_screenY - 200, this.m_scale);
+    //this.m_end.Draw(context, this.m_screenX - 200, this.m_screenY - 200, this.m_scale);
 
-    m_damage.Draw(context, this.m_screenX, this.m_screenY, this.m_scale);
+    m_damage.Draw(context, this.m_screenX - 200, this.m_screenY - 200, this.m_scale);
 
-    m_character.Draw(context, this.m_screenX, this.m_screenY, this.m_scale);
+    m_character.Draw(context, this.m_screenX - 200, this.m_screenY - 200, this.m_scale);
     m_aimSprite.Draw(context, m_aimPos.m_dx, m_aimPos.m_dy,
-                     this.m_screenX, this.m_screenY, this.m_scale);
+                     this.m_screenX - 200, this.m_screenY - 200, this.m_scale);
 	
 	m_ui.Draw(context);
   }
@@ -504,12 +504,12 @@ function Level()
   {
     var _bounds = m_character.GetBounds();
 
-    if(_bounds.CheckForPointCollision(mouseX + this.m_screenX,
-                                      mouseY + this.m_screenY))
+    if(_bounds.CheckForPointCollision(mouseX + this.m_screenX - 200,
+                                      mouseY + this.m_screenY - 200))
     {
       m_dragging = true;
-      m_startX = mouseX + this.m_screenX;
-      m_startY = mouseY + this.m_screenY;
+      m_startX = mouseX + this.m_screenX - 200;
+      m_startY = mouseY + this.m_screenY - 200;
 	  
 	  m_character.Crouch();
     }
@@ -529,8 +529,8 @@ function Level()
   {
     if(m_dragging == true)
     {
-      m_endX = mouseX + this.m_screenX;
-      m_endY = mouseY + this.m_screenY;
+      m_endX = mouseX + this.m_screenX - 200;
+      m_endY = mouseY + this.m_screenY - 200;
 
       var _origin = m_character.GetOrigin();
 

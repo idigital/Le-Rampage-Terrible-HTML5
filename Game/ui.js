@@ -10,13 +10,13 @@ function UI()
   //Ingame.
   this.m_ingameNumbers = new AnimatedSprite("images/ui/Ui-Game-Numbers.png", null, 36, 64, 10);
   this.m_ingameScore = new Sprite("images/ui/Ui-Game-Score.png", 123, 71);
-  this.m_ingameScorePos = new Vector(600, 0);
+  this.m_ingameScorePos = new Vector(800, 200);
   this.m_ingameTime = new Sprite("images/ui/Ui-Game-Time.png", 98, 79);
-  this.m_ingameTimePos = new Vector(0, 0);
+  this.m_ingameTimePos = new Vector(200, 200);
   this.m_ingameMultiplier = new Sprite("images/ui/Ui-Game-Multiplyerx.png", 226, 72);
-  this.m_ingameMultiplierPos = new Vector(600, 71);
+  this.m_ingameMultiplierPos = new Vector(800, 271);
   this.m_ingamePower = new Sprite("images/ui/Ui-Game-Power.png", 133, 73);
-  this.m_ingamePowerPos = new Vector(0, 79);
+  this.m_ingamePowerPos = new Vector(200, 279);
   
   //End game.
   this.m_endgameNumbers = new AnimatedSprite("images/ui/Ui-End-Numbers.png", null, 48, 96, 10);
